@@ -1,0 +1,68 @@
+{
+  "datasets": [
+    {
+      "name": "peptimizer_synthesis_data",
+      "url": "https://raw.githubusercontent.com/learningmatter-mit/peptimizer/master/dataset/data_synthesis/synthesis_data.csv",
+      "relative_path": "data/real/synthesis_data.csv",
+      "description": "AFPS step-level synthesis outcomes (multi-target regression).",
+      "absolutePath": "/Users/zhuhangcheng/Downloads/星辰计划/机器学习多肽/peptide-synthesis-predictor/data/real/synthesis_data.csv",
+      "bytes": 2193355,
+      "profile": {
+        "rows": 12600,
+        "columns": 18,
+        "columnNames": [
+          "amino_acid",
+          "coupling_agent",
+          "coupling_strokes",
+          "deprotection_strokes",
+          "flow_rate",
+          "machine",
+          "pre-chain",
+          "serial",
+          "temp_coupling",
+          "temp_reactor_1",
+          "first_area",
+          "first_height",
+          "first_width",
+          "first_diff",
+          "prev_area",
+          "prev_height",
+          "prev_width",
+          "prev_diff"
+        ]
+      }
+    },
+    {
+      "name": "peptimizer_cpp_predictor_dataset",
+      "url": "https://raw.githubusercontent.com/learningmatter-mit/peptimizer/master/dataset/data_cpp/cpp_predictor_dataset.csv",
+      "relative_path": "data/external/peptimizer_cpp_predictor_dataset.csv",
+      "description": "CPP predictor dataset with sequence intensity labels.",
+      "absolutePath": "/Users/zhuhangcheng/Downloads/星辰计划/机器学习多肽/peptide-synthesis-predictor/data/external/peptimizer_cpp_predictor_dataset.csv",
+      "bytes": 43047,
+      "profile": {
+        "rows": 640,
+        "columns": 2,
+        "columnNames": [
+          "sequences",
+          "Intensity"
+        ]
+      }
+    },
+    {
+      "name": "cyclization_site_dataset",
+      "url": "https://raw.githubusercontent.com/Yongboxiao/Selection-of-Cyclization-Sites/main/dataset.csv",
+      "relative_path": "data/external/cyclization_dataset.csv",
+      "description": "Cyclization site selection labeled sequences.",
+      "absolutePath": "/Users/zhuhangcheng/Downloads/星辰计划/机器学习多肽/peptide-synthesis-predictor/data/external/cyclization_dataset.csv",
+      "bytes": 2855,
+      "profile": {
+        "rows": 306,
+        "columns": 2,
+        "columnNames": [
+          "Sequence",
+          "Score"
+        ]
+      }
+    }
+  ]
+}

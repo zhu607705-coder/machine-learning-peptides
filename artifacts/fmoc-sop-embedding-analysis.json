@@ -1,0 +1,334 @@
+{
+  "dataset_summary": {
+    "rows": 66,
+    "sources": [
+      "amyloid_hydrophobic_2008",
+      "teabags_fmoc_2021",
+      "trityl_anchor_2013"
+    ],
+    "source_count": 3,
+    "purity_rows": 66,
+    "yield_rows": 66
+  },
+  "embedding": {
+    "modelName": "facebook/esm2_t6_8M_UR50D",
+    "device": "mps",
+    "cacheDir": "/Users/zhuhangcheng/Downloads/星辰计划/机器学习多肽/peptide-synthesis-predictor/data/cache/protein_embeddings",
+    "sequenceCount": 66,
+    "uniqueSequenceCount": 63,
+    "embeddingDimension": 320,
+    "requestedComponents": 8,
+    "prefix": "esm2"
+  },
+  "source_summary": [
+    {
+      "source_id": "amyloid_hydrophobic_2008",
+      "n": 14,
+      "mean_length": 9.785714285714286,
+      "mean_purity": 96.21428571428571,
+      "mean_yield": 7.814285714285715,
+      "yield_stage_counts": {
+        "isolated": 14
+      },
+      "purity_stage_counts": {
+        "final_product": 14
+      }
+    },
+    {
+      "source_id": "teabags_fmoc_2021",
+      "n": 50,
+      "mean_length": 13.98,
+      "mean_purity": 67.10600000000001,
+      "mean_yield": 54.08,
+      "yield_stage_counts": {
+        "crude": 50
+      },
+      "purity_stage_counts": {
+        "crude_hplc": 50
+      }
+    },
+    {
+      "source_id": "trityl_anchor_2013",
+      "n": 2,
+      "mean_length": 6.0,
+      "mean_purity": 59.0,
+      "mean_yield": 49.5,
+      "yield_stage_counts": {
+        "isolated": 2
+      },
+      "purity_stage_counts": {
+        "crude_hplc": 2
+      }
+    }
+  ],
+  "grouped_purity_manual": {
+    "n": 66,
+    "sources": [
+      "amyloid_hydrophobic_2008",
+      "teabags_fmoc_2021",
+      "trityl_anchor_2013"
+    ],
+    "ridge": {
+      "rmse": 30.78109097783222,
+      "mae": 24.710093823323433,
+      "r2": -1.1476597479084045
+    },
+    "mean_baseline": {
+      "rmse": 30.621343468308197,
+      "mae": 26.27655521561772,
+      "r2": -1.1254257711770643
+    },
+    "per_source": [
+      {
+        "source_id": "amyloid_hydrophobic_2008",
+        "n_test": 14,
+        "ridge_rmse": 50.91035993352946,
+        "baseline_rmse": 29.44475699683569,
+        "ridge_mae": 48.68629325070216,
+        "baseline_mae": 29.420054945054922
+      },
+      {
+        "source_id": "teabags_fmoc_2021",
+        "n_test": 50,
+        "ridge_rmse": 22.810550463667248,
+        "baseline_rmse": 31.358293261113555,
+        "ridge_mae": 18.62516173659033,
+        "baseline_mae": 25.868499999999997
+      },
+      {
+        "source_id": "trityl_anchor_2013",
+        "n_test": 2,
+        "ridge_rmse": 10.752208498995946,
+        "baseline_rmse": 17.04348535559575,
+        "ridge_mae": 9.0,
+        "baseline_mae": 14.473437500000017
+      }
+    ]
+  },
+  "grouped_purity_embedding": {
+    "n": 66,
+    "sources": [
+      "amyloid_hydrophobic_2008",
+      "teabags_fmoc_2021",
+      "trityl_anchor_2013"
+    ],
+    "ridge": {
+      "rmse": 29.28118143448894,
+      "mae": 23.41655935862541,
+      "r2": -0.9434557275194764
+    },
+    "mean_baseline": {
+      "rmse": 30.621343468308197,
+      "mae": 26.27655521561772,
+      "r2": -1.1254257711770643
+    },
+    "per_source": [
+      {
+        "source_id": "amyloid_hydrophobic_2008",
+        "n_test": 14,
+        "embedding_components": 8,
+        "embedding_feature_names": [
+          "esm2_pc1",
+          "esm2_pc2",
+          "esm2_pc3",
+          "esm2_pc4",
+          "esm2_pc5",
+          "esm2_pc6",
+          "esm2_pc7",
+          "esm2_pc8"
+        ],
+        "ridge_rmse": 41.402424071203114,
+        "baseline_rmse": 29.44475699683569,
+        "ridge_mae": 37.55862815430993,
+        "baseline_mae": 29.420054945054922
+      },
+      {
+        "source_id": "teabags_fmoc_2021",
+        "n_test": 50,
+        "embedding_components": 8,
+        "embedding_feature_names": [
+          "esm2_pc1",
+          "esm2_pc2",
+          "esm2_pc3",
+          "esm2_pc4",
+          "esm2_pc5",
+          "esm2_pc6",
+          "esm2_pc7",
+          "esm2_pc8"
+        ],
+        "ridge_rmse": 25.457768410960952,
+        "baseline_rmse": 31.358293261113555,
+        "ridge_mae": 20.03344247017876,
+        "baseline_mae": 25.868499999999997
+      },
+      {
+        "source_id": "trityl_anchor_2013",
+        "n_test": 2,
+        "embedding_components": 8,
+        "embedding_feature_names": [
+          "esm2_pc1",
+          "esm2_pc2",
+          "esm2_pc3",
+          "esm2_pc4",
+          "esm2_pc5",
+          "esm2_pc6",
+          "esm2_pc7",
+          "esm2_pc8"
+        ],
+        "ridge_rmse": 9.602916230341851,
+        "baseline_rmse": 17.04348535559575,
+        "ridge_mae": 9.0,
+        "baseline_mae": 14.473437500000017
+      }
+    ]
+  },
+  "grouped_yield_manual": {
+    "n": 66,
+    "sources": [
+      "amyloid_hydrophobic_2008",
+      "teabags_fmoc_2021",
+      "trityl_anchor_2013"
+    ],
+    "ridge": {
+      "rmse": 34.04026407002441,
+      "mae": 27.053680888444052,
+      "r2": -0.3693813211010726
+    },
+    "mean_baseline": {
+      "rmse": 47.10606851222953,
+      "mae": 41.04750145687646,
+      "r2": -1.622359792386142
+    },
+    "per_source": [
+      {
+        "source_id": "amyloid_hydrophobic_2008",
+        "n_test": 14,
+        "ridge_rmse": 26.089892164767125,
+        "baseline_rmse": 46.527690130274394,
+        "ridge_mae": 22.896040188463807,
+        "baseline_mae": 46.08956043956044
+      },
+      {
+        "source_id": "teabags_fmoc_2021",
+        "n_test": 50,
+        "ridge_rmse": 36.54788438381108,
+        "baseline_rmse": 48.18118538392346,
+        "ridge_mae": 28.956613621880322,
+        "baseline_mae": 41.056
+      },
+      {
+        "source_id": "trityl_anchor_2013",
+        "n_test": 2,
+        "ridge_rmse": 8.940494230525566,
+        "baseline_rmse": 6.078529870834311,
+        "ridge_mae": 8.58384745239924,
+        "baseline_mae": 5.540624999999999
+      }
+    ]
+  },
+  "grouped_yield_embedding": {
+    "n": 66,
+    "sources": [
+      "amyloid_hydrophobic_2008",
+      "teabags_fmoc_2021",
+      "trityl_anchor_2013"
+    ],
+    "ridge": {
+      "rmse": 30.867322876091823,
+      "mae": 24.313565017639657,
+      "r2": -0.1259950676187731
+    },
+    "mean_baseline": {
+      "rmse": 47.10606851222953,
+      "mae": 41.04750145687646,
+      "r2": -1.622359792386142
+    },
+    "per_source": [
+      {
+        "source_id": "amyloid_hydrophobic_2008",
+        "n_test": 14,
+        "embedding_components": 8,
+        "embedding_feature_names": [
+          "esm2_pc1",
+          "esm2_pc2",
+          "esm2_pc3",
+          "esm2_pc4",
+          "esm2_pc5",
+          "esm2_pc6",
+          "esm2_pc7",
+          "esm2_pc8"
+        ],
+        "ridge_rmse": 24.542484203237162,
+        "baseline_rmse": 46.527690130274394,
+        "ridge_mae": 21.795381949835598,
+        "baseline_mae": 46.08956043956044
+      },
+      {
+        "source_id": "teabags_fmoc_2021",
+        "n_test": 50,
+        "embedding_components": 8,
+        "embedding_feature_names": [
+          "esm2_pc1",
+          "esm2_pc2",
+          "esm2_pc3",
+          "esm2_pc4",
+          "esm2_pc5",
+          "esm2_pc6",
+          "esm2_pc7",
+          "esm2_pc8"
+        ],
+        "ridge_rmse": 32.816963671826244,
+        "baseline_rmse": 48.18118538392346,
+        "ridge_mae": 25.303348685843133,
+        "baseline_mae": 41.056
+      },
+      {
+        "source_id": "trityl_anchor_2013",
+        "n_test": 2,
+        "embedding_components": 8,
+        "embedding_feature_names": [
+          "esm2_pc1",
+          "esm2_pc2",
+          "esm2_pc3",
+          "esm2_pc4",
+          "esm2_pc5",
+          "esm2_pc6",
+          "esm2_pc7",
+          "esm2_pc8"
+        ],
+        "ridge_rmse": 17.377030203853824,
+        "baseline_rmse": 6.078529870834311,
+        "ridge_mae": 17.196254787181076,
+        "baseline_mae": 5.540624999999999
+      }
+    ]
+  },
+  "manual_centered_correlations": {
+    "purity": {
+      "longest_hydrophobic_run_norm": -0.11578403071303829,
+      "avg_hydrophobicity": -0.0804842497177632,
+      "hydrophobic_ratio": -0.06636300410551411,
+      "length": 0.06442179031575891,
+      "total_charge": 0.06357790080984452,
+      "aromatic_ratio": -0.06113721623631431,
+      "molecular_weight": 0.055762778677462946,
+      "max_coupling_difficulty": -0.007321236282082756
+    },
+    "yield": {
+      "total_charge": 0.06603964876440489,
+      "length": -0.06314261329781092,
+      "avg_hydrophobicity": -0.06258475604634549,
+      "max_coupling_difficulty": 0.052887055994036626,
+      "molecular_weight": -0.04947918867977787,
+      "longest_hydrophobic_run_norm": -0.04191144260567032,
+      "hydrophobic_ratio": -0.014949592170130314,
+      "aromatic_ratio": 0.00019664325159738562
+    }
+  },
+  "improvements": {
+    "purity_rmse_delta": -1.499909543343282,
+    "yield_rmse_delta": -3.1729411939325907,
+    "purity_mae_delta": -1.2935344646980234,
+    "yield_mae_delta": -2.740115870804395
+  }
+}

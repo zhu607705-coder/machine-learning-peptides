@@ -1,0 +1,40 @@
+{
+  "runDate": "2026-03-05",
+  "dataset": "MIT peptimizer grouped-by-serial split",
+  "huberDelta": 1.0,
+  "candidates": [
+    {
+      "name": "gru_residual_small_delta_1_0",
+      "architecture": "gru",
+      "validationCombinedRmse": 0.17196760140359402,
+      "testCombinedRmse": 0.16264873929321766
+    },
+    {
+      "name": "rnn_attention_residual_medium_delta_1_0",
+      "architecture": "rnn_attention",
+      "validationCombinedRmse": 0.17290856689214706,
+      "testCombinedRmse": 0.1626317109912634
+    },
+    {
+      "name": "hybrid_residual_medium_delta_1_0",
+      "architecture": "hybrid",
+      "validationCombinedRmse": 0.18153296038508415,
+      "testCombinedRmse": 0.15074212849140167
+    },
+    {
+      "name": "cnn_residual_medium_delta_1_0",
+      "architecture": "cnn",
+      "validationCombinedRmse": 0.18443830125033855,
+      "testCombinedRmse": 0.1405319608747959
+    }
+  ],
+  "deltaVsGru": {
+    "rnn_attention_validationRmse": 0.0009409654885530419,
+    "rnn_attention_testRmse": -1.702830195427203e-05
+  },
+  "referencePreviousBest": {
+    "name": "gru_residual_small_delta_0_75",
+    "validationCombinedRmse": 0.17153413780033588,
+    "testCombinedRmse": 0.16204913146793842
+  }
+}

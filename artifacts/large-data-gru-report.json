@@ -1,0 +1,74 @@
+{
+  "mode": "data_first_training",
+  "config": {
+    "name": "gru_data_first_fixed",
+    "architecture": "gru",
+    "max_length": 40,
+    "embed_dim": 16,
+    "sequence_hidden": 32,
+    "numeric_hidden": 32,
+    "trunk_hidden": 96,
+    "dropout": 0.12,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "batch_size": 256,
+    "max_epochs": 36,
+    "patience": 6,
+    "huber_delta": 0.75
+  },
+  "loss": {
+    "name": "HuberLoss",
+    "delta": 0.75
+  },
+  "bestEpoch": 9,
+  "validation": {
+    "first_area": {
+      "mae": 0.112753726541996,
+      "rmse": 0.18053020536899567,
+      "r2": 0.31115047511415295
+    },
+    "first_height": {
+      "mae": 0.12147525697946548,
+      "rmse": 0.18988336622714996,
+      "r2": 0.4094070249962303
+    },
+    "first_width": {
+      "mae": 0.0640416145324707,
+      "rmse": 0.09105838090181351,
+      "r2": 0.3774757467548069
+    },
+    "first_diff": {
+      "mae": 0.1555788815021515,
+      "rmse": 0.2246645987033844,
+      "r2": 0.4885911150090466
+    },
+    "combinedMae": 0.11346236988902092,
+    "combinedRmse": 0.17153413780033588
+  },
+  "test": {
+    "first_area": {
+      "mae": 0.09433773159980774,
+      "rmse": 0.14874330163002014,
+      "r2": -0.08617618614473699
+    },
+    "first_height": {
+      "mae": 0.10623971372842789,
+      "rmse": 0.17110005021095276,
+      "r2": -0.11046422768105724
+    },
+    "first_width": {
+      "mae": 0.06269466876983643,
+      "rmse": 0.0912148728966713,
+      "r2": 0.19786555330291788
+    },
+    "first_diff": {
+      "mae": 0.15195006132125854,
+      "rmse": 0.2371383011341095,
+      "r2": -0.018913748440473777
+    },
+    "combinedMae": 0.10380554385483265,
+    "combinedRmse": 0.16204913146793842
+  },
+  "datasetRows": 12600,
+  "datasetUniqueSerials": 769
+}

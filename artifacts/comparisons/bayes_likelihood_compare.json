@@ -1,0 +1,112 @@
+{
+  "mode": "quick_likelihood_ablation_without_local_yield_heads",
+  "normal": {
+    "metrics": {
+      "purity": {
+        "rmse": 31.207027981719865,
+        "mae": 23.074301384820057,
+        "r2": -1.7234340780543191,
+        "accuracyWithinTolerance": 0.1415929203539823
+      },
+      "yield": {
+        "rmse": 36.93657871784,
+        "mae": 30.75794807335851,
+        "r2": -0.4564793689675557,
+        "accuracyWithinTolerance": 0.19469026548672566
+      },
+      "combined": {
+        "rmse": 34.071803349779934,
+        "mae": 26.916124729089283,
+        "r2": -1.0899567235109373,
+        "jointToleranceAccuracy": 0.02654867256637168
+      }
+    },
+    "intervalMetrics": {
+      "purity": {
+        "coverage": 0.6814159292035398,
+        "meanWidth": 56.67951583933548
+      },
+      "yield": {
+        "coverage": 0.7699115044247787,
+        "meanWidth": 89.13711117104519
+      }
+    },
+    "heterogeneityDecomposition": {
+      "purity_target": {
+        "sigma2Mean": 203.15429901794863,
+        "tauSource2Mean": 64.00378298569015,
+        "tauStage2Mean": 1089.5047611987507,
+        "iccSourceMean": 0.048832797329181984,
+        "iccStageMean": 0.7823050982909484,
+        "posteriorDraws": 20
+      },
+      "yield_target": {
+        "sigma2Mean": 376.8039797652617,
+        "tauSource2Mean": 187.05240207736927,
+        "tauStage2Mean": 419.33229981200213,
+        "iccSourceMean": 0.1901227045797341,
+        "iccStageMean": 0.3939190982518826,
+        "posteriorDraws": 20
+      }
+    },
+    "backend": "pymc_nuts"
+  },
+  "student_t": {
+    "metrics": {
+      "purity": {
+        "rmse": 34.07519335184744,
+        "mae": 25.155488647370817,
+        "r2": -2.247047967489277,
+        "accuracyWithinTolerance": 0.12389380530973451
+      },
+      "yield": {
+        "rmse": 38.885479989057295,
+        "mae": 32.29689100038891,
+        "r2": -0.6142319291227405,
+        "accuracyWithinTolerance": 0.20353982300884957
+      },
+      "combined": {
+        "rmse": 36.48033667045237,
+        "mae": 28.726189823879864,
+        "r2": -1.4306399483060086,
+        "jointToleranceAccuracy": 0.02654867256637168
+      }
+    },
+    "intervalMetrics": {
+      "purity": {
+        "coverage": 0.6194690265486725,
+        "meanWidth": 53.16872257043662
+      },
+      "yield": {
+        "coverage": 0.7345132743362832,
+        "meanWidth": 98.05520221068234
+      }
+    },
+    "heterogeneityDecomposition": {
+      "purity_target": {
+        "sigma2Mean": 125.2278861340124,
+        "tauSource2Mean": 32.401758745659265,
+        "tauStage2Mean": 1299.6000291075493,
+        "iccSourceMean": 0.0228621528609816,
+        "iccStageMean": 0.8868870035672026,
+        "posteriorDraws": 20
+      },
+      "yield_target": {
+        "sigma2Mean": 187.79431500695435,
+        "tauSource2Mean": 351.7447131521779,
+        "tauStage2Mean": 351.962488504099,
+        "iccSourceMean": 0.3860697695452008,
+        "iccStageMean": 0.38487244416587785,
+        "posteriorDraws": 20
+      }
+    },
+    "backend": "pymc_nuts"
+  },
+  "delta_student_t_minus_normal": {
+    "purity_r2": -0.5236138894349578,
+    "yield_r2": -0.1577525601551848,
+    "purity_rmse": 2.868165370127574,
+    "yield_rmse": 1.948901271217295,
+    "joint_acc": 0.0
+  }
+}

@@ -1,0 +1,330 @@
+{
+  "dataset_summary": {
+    "total_rows": 135,
+    "sequence_isolated_rows": 29,
+    "unique_sources": 5,
+    "canonical_linear_rows": 19,
+    "modified_rows": 10,
+    "stapled_rows": 4
+  },
+  "study_summary": [
+    {
+      "source_id": "amyloid_hydrophobic_2008",
+      "publication_year": 2008,
+      "chemistry_family": "canonical_or_simple_modified",
+      "n": 14,
+      "mean_yield": 7.814285714285715,
+      "std_yield": 6.610580929069715,
+      "mean_purity": 96.21428571428571,
+      "mean_length": 9.785714285714286
+    },
+    {
+      "source_id": "ram_spps_2025",
+      "publication_year": 2025,
+      "chemistry_family": "canonical_or_simple_modified",
+      "n": 3,
+      "mean_yield": 69.33333333333333,
+      "std_yield": 12.013880860626733,
+      "mean_purity": 94.33333333333333,
+      "mean_length": 6.333333333333333
+    },
+    {
+      "source_id": "stapled_bcl9_2025",
+      "publication_year": 2025,
+      "chemistry_family": "stapled",
+      "n": 4,
+      "mean_yield": 8.549999999999999,
+      "std_yield": 3.1838132273528026,
+      "mean_purity": 96.85000000000001,
+      "mean_length": 23.25
+    },
+    {
+      "source_id": "sulfotyrosine_psc_2016",
+      "publication_year": 2016,
+      "chemistry_family": "sulfated",
+      "n": 6,
+      "mean_yield": 21.95,
+      "std_yield": 5.558686895301804,
+      "mean_purity": 98.78333333333335,
+      "mean_length": 6.166666666666667
+    },
+    {
+      "source_id": "trityl_anchor_2013",
+      "publication_year": 2013,
+      "chemistry_family": "canonical_or_simple_modified",
+      "n": 2,
+      "mean_yield": 49.5,
+      "std_yield": 3.5355339059327378,
+      "mean_purity": 59.0,
+      "mean_length": 6.0
+    }
+  ],
+  "meta_summary": {
+    "study_count": 5,
+    "fixed_effect_mean": 17.89153441039115,
+    "random_effect_mean": 30.53016321435511,
+    "random_effect_se": 8.555579824033401,
+    "random_effect_ci95": [
+      13.761226759249642,
+      47.299099669460574
+    ],
+    "tau2": 353.7442526179168,
+    "q": 285.02540544824205,
+    "i2": 0.9859661632839029
+  },
+  "grouped_ridge": {
+    "overall": {
+      "rmse": 47.2178770049557,
+      "mae": 38.656849784929044,
+      "r2": -4.082273021809911
+    },
+    "per_source": [
+      {
+        "source_id": "amyloid_hydrophobic_2008",
+        "n_test": 14,
+        "alpha": 0.03,
+        "rmse": 63.802261071005454,
+        "mae": 62.794006469173084,
+        "r2": -99.31770088157165
+      },
+      {
+        "source_id": "ram_spps_2025",
+        "n_test": 3,
+        "alpha": 0.03,
+        "rmse": 40.32362115862029,
+        "mae": 35.81371971949944,
+        "r2": -15.898325415814519
+      },
+      {
+        "source_id": "stapled_bcl9_2025",
+        "n_test": 4,
+        "alpha": 0.03,
+        "rmse": 10.076944562791128,
+        "mae": 8.522994879516165,
+        "r2": -12.356765764099396
+      },
+      {
+        "source_id": "sulfotyrosine_psc_2016",
+        "n_test": 6,
+        "alpha": 0.03,
+        "rmse": 19.463275780354046,
+        "mae": 14.417432959029279,
+        "r2": -13.711897631720754
+      },
+      {
+        "source_id": "trityl_anchor_2013",
+        "n_test": 2,
+        "alpha": 0.03,
+        "rmse": 7.383527830567158,
+        "mae": 6.9474083818903125,
+        "r2": -7.722637315961563
+      }
+    ]
+  },
+  "grouped_mixedlm": {
+    "overall": {
+      "rmse": 48.42781755839052,
+      "mae": 40.290378205473885,
+      "r2": -4.3460728674743345
+    },
+    "per_source": [
+      {
+        "source_id": "amyloid_hydrophobic_2008",
+        "n_test": 14,
+        "rmse": 65.88187427940322,
+        "mae": 64.86130275723953,
+        "r2": -105.96392295572566
+      },
+      {
+        "source_id": "ram_spps_2025",
+        "n_test": 3,
+        "rmse": 40.20230137558325,
+        "mae": 35.63054316513664,
+        "r2": -15.796795985033487
+      },
+      {
+        "source_id": "stapled_bcl9_2025",
+        "n_test": 4,
+        "rmse": 12.459421756139609,
+        "mae": 12.076575214901059,
+        "r2": -19.419229266341993
+      },
+      {
+        "source_id": "sulfotyrosine_psc_2016",
+        "n_test": 6,
+        "rmse": 12.232739783265984,
+        "mae": 10.589289244744979,
+        "r2": -4.811447203020096
+      },
+      {
+        "source_id": "trityl_anchor_2013",
+        "n_test": 2,
+        "rmse": 20.964129666587112,
+        "mae": 20.814531766952577,
+        "r2": -69.31915722839648
+      }
+    ]
+  },
+  "full_mixedlm": {
+    "full_fit_metrics": {
+      "rmse": 28.448388450415862,
+      "mae": 24.71437803892795,
+      "r2": -0.8448472684904336
+    },
+    "fixed_effect_coefficients": {
+      "intercept": 35.03521850278291,
+      "length": -5.2129762760912275,
+      "avg_hydrophobicity": 15.649104744341539,
+      "total_charge": 2.890882806135795,
+      "max_coupling_difficulty": 0.40257786369718396,
+      "hydrophobic_ratio": -6.810962675601295,
+      "aromatic_ratio": 5.440602102961263
+    },
+    "fixed_effect_ranking": [
+      {
+        "feature": "avg_hydrophobicity",
+        "coefficient": 15.649104744341539
+      },
+      {
+        "feature": "hydrophobic_ratio",
+        "coefficient": -6.810962675601295
+      },
+      {
+        "feature": "aromatic_ratio",
+        "coefficient": 5.440602102961263
+      },
+      {
+        "feature": "length",
+        "coefficient": -5.2129762760912275
+      },
+      {
+        "feature": "total_charge",
+        "coefficient": 2.890882806135795
+      },
+      {
+        "feature": "max_coupling_difficulty",
+        "coefficient": 0.40257786369718396
+      }
+    ],
+    "random_intercepts": {
+      "amyloid_hydrophobic_2008": -35.3300775259704,
+      "ram_spps_2025": 36.61900278012337,
+      "stapled_bcl9_2025": -8.67050952559935,
+      "sulfotyrosine_psc_2016": -7.2595974994967545,
+      "trityl_anchor_2013": 14.641181770943222
+    },
+    "random_effect_variance": 593.3114503228753,
+    "residual_variance": 27.29780032890575,
+    "intraclass_correlation": 0.9560145126740589
+  },
+  "sensitivity": {
+    "all_sequence_isolated": {
+      "rows": 29,
+      "sources": 5,
+      "grouped_ridge": {
+        "rmse": 47.2178770049557,
+        "mae": 38.656849784929044,
+        "r2": -4.082273021809911
+      },
+      "grouped_mixedlm": {
+        "rmse": 48.42781755839052,
+        "mae": 40.290378205473885,
+        "r2": -4.3460728674743345
+      },
+      "meta_summary": {
+        "study_count": 5,
+        "fixed_effect_mean": 17.89153441039115,
+        "random_effect_mean": 30.53016321435511,
+        "random_effect_se": 8.555579824033401,
+        "random_effect_ci95": [
+          13.761226759249642,
+          47.299099669460574
+        ],
+        "tau2": 353.7442526179168,
+        "q": 285.02540544824205,
+        "i2": 0.9859661632839029
+      }
+    },
+    "purity_observed_only": {
+      "rows": 29,
+      "sources": 5,
+      "grouped_ridge": {
+        "rmse": 47.2178770049557,
+        "mae": 38.656849784929044,
+        "r2": -4.082273021809911
+      },
+      "grouped_mixedlm": {
+        "rmse": 48.42781755839052,
+        "mae": 40.290378205473885,
+        "r2": -4.3460728674743345
+      },
+      "meta_summary": {
+        "study_count": 5,
+        "fixed_effect_mean": 17.89153441039115,
+        "random_effect_mean": 30.53016321435511,
+        "random_effect_se": 8.555579824033401,
+        "random_effect_ci95": [
+          13.761226759249642,
+          47.299099669460574
+        ],
+        "tau2": 353.7442526179168,
+        "q": 285.02540544824205,
+        "i2": 0.9859661632839029
+      }
+    },
+    "canonical_linear_only": {
+      "rows": 19,
+      "sources": 3,
+      "grouped_ridge": {
+        "rmse": 63.27227016692397,
+        "mae": 61.328107127127815,
+        "r2": -5.381095488407535
+      },
+      "grouped_mixedlm": {
+        "rmse": 205.39300393505272,
+        "mae": 174.34177679618494,
+        "r2": -66.24185765884859
+      },
+      "meta_summary": {
+        "study_count": 3,
+        "fixed_effect_mean": 23.674515562367606,
+        "random_effect_mean": 41.7873295827392,
+        "random_effect_se": 17.83415308157586,
+        "random_effect_ci95": [
+          6.832389542850514,
+          76.74226962262787
+        ],
+        "tau2": 935.4444241518763,
+        "q": 230.63193473427984,
+        "i2": 0.9913281740349432
+      }
+    },
+    "exclude_stapled": {
+      "rows": 25,
+      "sources": 4,
+      "grouped_ridge": {
+        "rmse": 50.63964900495256,
+        "mae": 43.2795147562897,
+        "r2": -4.309374905887858
+      },
+      "grouped_mixedlm": {
+        "rmse": 50.74813637704147,
+        "mae": 43.280413849535115,
+        "r2": -4.332148251932529
+      },
+      "meta_summary": {
+        "study_count": 4,
+        "fixed_effect_mean": 23.192922219317072,
+        "random_effect_mean": 36.46951842877221,
+        "random_effect_se": 11.34724061963729,
+        "random_effect_ci95": [
+          14.228926814283124,
+          58.710110043261295
+        ],
+        "tau2": 500.03733976279574,
+        "q": 231.04814989529308,
+        "i2": 0.9870156934761887
+      }
+    }
+  }
+}

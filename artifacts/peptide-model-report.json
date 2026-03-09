@@ -1,0 +1,56 @@
+{
+  "datasetSeed": 20260301,
+  "splitSeed": 20260302,
+  "scenarioCounts": {
+    "easy_linear": 180,
+    "hydrophobic_long": 180,
+    "steric_rich": 180,
+    "charged_difficult": 180,
+    "cysteine_rich": 180,
+    "cyclized": 180
+  },
+  "splitSizes": {
+    "train": 750,
+    "validation": 162,
+    "test": 168
+  },
+  "bestConfig": {
+    "hiddenSize": 8,
+    "learningRate": 0.12,
+    "l2": 0.0015,
+    "loss": "huber",
+    "huberDelta": 1.0,
+    "maxEpochs": 420,
+    "patience": 55,
+    "bestEpoch": 420
+  },
+  "parallelJobs": 5,
+  "validation": {
+    "purity": {
+      "mae": 2.8395886403263586,
+      "rmse": 3.5252674676970313,
+      "r2": 0.7664287995392265
+    },
+    "yield": {
+      "mae": 3.548334745912365,
+      "rmse": 4.551420759131167,
+      "r2": 0.7770092092314911
+    },
+    "combinedMae": 3.1939616931193617,
+    "combinedRmse": 4.038344113414099
+  },
+  "test": {
+    "purity": {
+      "mae": 2.7649115993413687,
+      "rmse": 3.571788173114253,
+      "r2": 0.7490289385862225
+    },
+    "yield": {
+      "mae": 3.5798560272018007,
+      "rmse": 4.6491812872687905,
+      "r2": 0.7488444166485425
+    },
+    "combinedMae": 3.1723838132715847,
+    "combinedRmse": 4.110484730191522
+  }
+}

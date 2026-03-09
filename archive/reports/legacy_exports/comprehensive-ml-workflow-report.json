@@ -1,0 +1,1450 @@
+{
+  "dataset": "data/real/final_purity_yield_literature.csv",
+  "initialRowsWithTargets": 120,
+  "initialUniqueSources": 8,
+  "imputationStrategy": "mean",
+  "imputationJustification": "Mean imputation was selected because the literature dataset is small and highly heterogeneous across sources; KNN neighbors are unstable under grouped cross-validation.",
+  "sequenceSimilarityThreshold": 0.97,
+  "proteinEmbedding": {
+    "modelName": "facebook/esm2_t6_8M_UR50D",
+    "requestedComponents": 8,
+    "cacheDir": "/Users/zhuhangcheng/Downloads/\u661f\u8fb0\u8ba1\u5212/\u673a\u5668\u5b66\u4e60\u591a\u80bd/peptide-synthesis-predictor/data/cache/protein_embeddings",
+    "maxRandomSearchIterationsForEmbeddingStage": 2
+  },
+  "stageResults": [
+    {
+      "stage": "baseline_raw",
+      "description": "Raw literature subset with exact label parsing only.",
+      "cleaningSummary": {
+        "initial_rows": 120,
+        "exact_duplicates_removed": 0,
+        "near_duplicates_removed": 0,
+        "outliers_removed": 0,
+        "final_rows": 120,
+        "unique_sources": 8
+      },
+      "metrics": {
+        "purity": {
+          "rmse": 17.512023665761433,
+          "mae": 13.043789556078583,
+          "r2": 0.13503433259647346,
+          "accuracyWithinTolerance": 0.25
+        },
+        "yield": {
+          "rmse": 37.9072020499277,
+          "mae": 30.382315591452652,
+          "r2": -0.6272566345966291,
+          "accuracyWithinTolerance": 0.225
+        },
+        "combined": {
+          "rmse": 27.709612857844565,
+          "mae": 21.713052573765616,
+          "r2": -0.2461111510000778,
+          "jointToleranceAccuracy": 0.008333333333333333
+        }
+      },
+      "usesProteinEmbeddings": false,
+      "features": {
+        "standardized": [
+          "publication_year",
+          "length",
+          "avg_hydrophobicity",
+          "total_charge",
+          "molecular_weight",
+          "avg_volume",
+          "max_coupling_difficulty"
+        ],
+        "normalized": [
+          "unique_ratio",
+          "hydrophobic_ratio",
+          "bulky_ratio",
+          "polar_ratio",
+          "charged_ratio",
+          "aromatic_ratio",
+          "sulfur_ratio",
+          "longest_hydrophobic_run_norm"
+        ],
+        "binary": [
+          "n_term_basic",
+          "c_term_acidic"
+        ],
+        "categorical": [
+          "topology",
+          "purity_stage",
+          "yield_stage",
+          "yield_basis_class"
+        ]
+      }
+    },
+    {
+      "stage": "after_exact_dedup",
+      "description": "Remove exact duplicate records after target parsing.",
+      "cleaningSummary": {
+        "initial_rows": 120,
+        "exact_duplicates_removed": 0,
+        "near_duplicates_removed": 0,
+        "outliers_removed": 0,
+        "final_rows": 120,
+        "unique_sources": 8
+      },
+      "metrics": {
+        "purity": {
+          "rmse": 17.512023665761433,
+          "mae": 13.043789556078583,
+          "r2": 0.13503433259647346,
+          "accuracyWithinTolerance": 0.25
+        },
+        "yield": {
+          "rmse": 37.9072020499277,
+          "mae": 30.382315591452652,
+          "r2": -0.6272566345966291,
+          "accuracyWithinTolerance": 0.225
+        },
+        "combined": {
+          "rmse": 27.709612857844565,
+          "mae": 21.713052573765616,
+          "r2": -0.2461111510000778,
+          "jointToleranceAccuracy": 0.008333333333333333
+        }
+      },
+      "usesProteinEmbeddings": false,
+      "features": {
+        "standardized": [
+          "publication_year",
+          "length",
+          "avg_hydrophobicity",
+          "total_charge",
+          "molecular_weight",
+          "avg_volume",
+          "max_coupling_difficulty"
+        ],
+        "normalized": [
+          "unique_ratio",
+          "hydrophobic_ratio",
+          "bulky_ratio",
+          "polar_ratio",
+          "charged_ratio",
+          "aromatic_ratio",
+          "sulfur_ratio",
+          "longest_hydrophobic_run_norm"
+        ],
+        "binary": [
+          "n_term_basic",
+          "c_term_acidic"
+        ],
+        "categorical": [
+          "topology",
+          "purity_stage",
+          "yield_stage",
+          "yield_basis_class"
+        ]
+      }
+    },
+    {
+      "stage": "after_sequence_dedup",
+      "description": "Remove near-duplicate records using sequence similarity inside source-stage groups.",
+      "cleaningSummary": {
+        "initial_rows": 120,
+        "exact_duplicates_removed": 0,
+        "near_duplicates_removed": 1,
+        "outliers_removed": 0,
+        "final_rows": 119,
+        "unique_sources": 8
+      },
+      "metrics": {
+        "purity": {
+          "rmse": 17.427358853450734,
+          "mae": 12.98514865531673,
+          "r2": 0.1423745642021027,
+          "accuracyWithinTolerance": 0.2689075630252101
+        },
+        "yield": {
+          "rmse": 38.149131158269704,
+          "mae": 30.6566710590311,
+          "r2": -0.6493809583835164,
+          "accuracyWithinTolerance": 0.226890756302521
+        },
+        "combined": {
+          "rmse": 27.78824500586022,
+          "mae": 21.820909857173916,
+          "r2": -0.25350319709070684,
+          "jointToleranceAccuracy": 0.008403361344537815
+        }
+      },
+      "usesProteinEmbeddings": false,
+      "features": {
+        "standardized": [
+          "publication_year",
+          "length",
+          "avg_hydrophobicity",
+          "total_charge",
+          "molecular_weight",
+          "avg_volume",
+          "max_coupling_difficulty"
+        ],
+        "normalized": [
+          "unique_ratio",
+          "hydrophobic_ratio",
+          "bulky_ratio",
+          "polar_ratio",
+          "charged_ratio",
+          "aromatic_ratio",
+          "sulfur_ratio",
+          "longest_hydrophobic_run_norm"
+        ],
+        "binary": [
+          "n_term_basic",
+          "c_term_acidic"
+        ],
+        "categorical": [
+          "topology",
+          "purity_stage",
+          "yield_stage",
+          "yield_basis_class"
+        ]
+      }
+    },
+    {
+      "stage": "after_outlier_removal",
+      "description": "Apply IQR and modified z-score outlier removal after de-duplication.",
+      "cleaningSummary": {
+        "initial_rows": 120,
+        "exact_duplicates_removed": 0,
+        "near_duplicates_removed": 1,
+        "outliers_removed": 11,
+        "final_rows": 108,
+        "unique_sources": 8
+      },
+      "metrics": {
+        "purity": {
+          "rmse": 18.331751889641478,
+          "mae": 13.233972943989677,
+          "r2": 0.08717314609679061,
+          "accuracyWithinTolerance": 0.28703703703703703
+        },
+        "yield": {
+          "rmse": 37.59024917233202,
+          "mae": 29.671215818525184,
+          "r2": -0.709828979788123,
+          "accuracyWithinTolerance": 0.2777777777777778
+        },
+        "combined": {
+          "rmse": 27.96100053098675,
+          "mae": 21.45259438125743,
+          "r2": -0.3113279168456662,
+          "jointToleranceAccuracy": 0.08333333333333333
+        }
+      },
+      "usesProteinEmbeddings": false,
+      "features": {
+        "standardized": [
+          "publication_year",
+          "length",
+          "avg_hydrophobicity",
+          "total_charge",
+          "molecular_weight",
+          "avg_volume",
+          "max_coupling_difficulty"
+        ],
+        "normalized": [
+          "unique_ratio",
+          "hydrophobic_ratio",
+          "bulky_ratio",
+          "polar_ratio",
+          "charged_ratio",
+          "aromatic_ratio",
+          "sulfur_ratio",
+          "longest_hydrophobic_run_norm"
+        ],
+        "binary": [
+          "n_term_basic",
+          "c_term_acidic"
+        ],
+        "categorical": [
+          "topology",
+          "purity_stage",
+          "yield_stage",
+          "yield_basis_class"
+        ]
+      }
+    },
+    {
+      "stage": "after_imputation_and_scaling",
+      "description": "Add context variables and apply mean/KNN imputation with standardization and normalization.",
+      "cleaningSummary": {
+        "initial_rows": 120,
+        "exact_duplicates_removed": 0,
+        "near_duplicates_removed": 1,
+        "outliers_removed": 11,
+        "final_rows": 108,
+        "unique_sources": 8
+      },
+      "metrics": {
+        "purity": {
+          "rmse": 18.843703983419434,
+          "mae": 13.649849975201327,
+          "r2": 0.03547605665710718,
+          "accuracyWithinTolerance": 0.26851851851851855
+        },
+        "yield": {
+          "rmse": 37.494047530801765,
+          "mae": 29.798527001838693,
+          "r2": -0.7010885283449175,
+          "accuracyWithinTolerance": 0.25925925925925924
+        },
+        "combined": {
+          "rmse": 28.168875757110598,
+          "mae": 21.72418848852001,
+          "r2": -0.3328062358439052,
+          "jointToleranceAccuracy": 0.05555555555555555
+        }
+      },
+      "usesProteinEmbeddings": false,
+      "features": {
+        "standardized": [
+          "publication_year",
+          "length",
+          "avg_hydrophobicity",
+          "total_charge",
+          "molecular_weight",
+          "avg_volume",
+          "max_coupling_difficulty"
+        ],
+        "normalized": [
+          "unique_ratio",
+          "hydrophobic_ratio",
+          "bulky_ratio",
+          "polar_ratio",
+          "charged_ratio",
+          "aromatic_ratio",
+          "sulfur_ratio",
+          "longest_hydrophobic_run_norm",
+          "reagent_score",
+          "solvent_score"
+        ],
+        "binary": [
+          "n_term_basic",
+          "c_term_acidic"
+        ],
+        "categorical": [
+          "topology",
+          "purity_stage",
+          "yield_stage",
+          "yield_basis_class",
+          "coupling_reagent",
+          "solvent"
+        ]
+      }
+    },
+    {
+      "stage": "after_feature_selection",
+      "description": "Apply model-based feature selection before the ensemble regressor.",
+      "cleaningSummary": {
+        "initial_rows": 120,
+        "exact_duplicates_removed": 0,
+        "near_duplicates_removed": 1,
+        "outliers_removed": 11,
+        "final_rows": 108,
+        "unique_sources": 8
+      },
+      "metrics": {
+        "purity": {
+          "rmse": 20.125335463418374,
+          "mae": 15.434013352359534,
+          "r2": -0.10018754216507575,
+          "accuracyWithinTolerance": 0.21296296296296297
+        },
+        "yield": {
+          "rmse": 38.78099554244334,
+          "mae": 31.04488123655996,
+          "r2": -0.8198691870675703,
+          "accuracyWithinTolerance": 0.23148148148148148
+        },
+        "combined": {
+          "rmse": 29.453165502930858,
+          "mae": 23.239447294459747,
+          "r2": -0.460028364616323,
+          "jointToleranceAccuracy": 0.037037037037037035
+        }
+      },
+      "usesProteinEmbeddings": false,
+      "features": {
+        "standardized": [
+          "publication_year",
+          "length",
+          "avg_hydrophobicity",
+          "total_charge",
+          "molecular_weight",
+          "avg_volume",
+          "max_coupling_difficulty"
+        ],
+        "normalized": [
+          "unique_ratio",
+          "hydrophobic_ratio",
+          "bulky_ratio",
+          "polar_ratio",
+          "charged_ratio",
+          "aromatic_ratio",
+          "sulfur_ratio",
+          "longest_hydrophobic_run_norm",
+          "reagent_score",
+          "solvent_score"
+        ],
+        "binary": [
+          "n_term_basic",
+          "c_term_acidic"
+        ],
+        "categorical": [
+          "topology",
+          "purity_stage",
+          "yield_stage",
+          "yield_basis_class",
+          "coupling_reagent",
+          "solvent"
+        ]
+      }
+    },
+    {
+      "stage": "final_tuned_ensemble",
+      "description": "Random-search tuned ensemble with grouped cross-validation and feature selection.",
+      "cleaningSummary": {
+        "initial_rows": 120,
+        "exact_duplicates_removed": 0,
+        "near_duplicates_removed": 1,
+        "outliers_removed": 11,
+        "final_rows": 108,
+        "unique_sources": 8
+      },
+      "metrics": {
+        "purity": {
+          "rmse": 20.04194335761699,
+          "mae": 15.391234443998549,
+          "r2": -0.09108887417067169,
+          "accuracyWithinTolerance": 0.2037037037037037
+        },
+        "yield": {
+          "rmse": 36.87102626607425,
+          "mae": 29.54082765671239,
+          "r2": -0.6450258104973399,
+          "accuracyWithinTolerance": 0.25925925925925924
+        },
+        "combined": {
+          "rmse": 28.45648481184562,
+          "mae": 22.46603105035547,
+          "r2": -0.3680573423340058,
+          "jointToleranceAccuracy": 0.046296296296296294
+        }
+      },
+      "usesProteinEmbeddings": false,
+      "features": {
+        "standardized": [
+          "publication_year",
+          "length",
+          "avg_hydrophobicity",
+          "total_charge",
+          "molecular_weight",
+          "avg_volume",
+          "max_coupling_difficulty"
+        ],
+        "normalized": [
+          "unique_ratio",
+          "hydrophobic_ratio",
+          "bulky_ratio",
+          "polar_ratio",
+          "charged_ratio",
+          "aromatic_ratio",
+          "sulfur_ratio",
+          "longest_hydrophobic_run_norm",
+          "reagent_score",
+          "solvent_score"
+        ],
+        "binary": [
+          "n_term_basic",
+          "c_term_acidic"
+        ],
+        "categorical": [
+          "topology",
+          "purity_stage",
+          "yield_stage",
+          "yield_basis_class",
+          "coupling_reagent",
+          "solvent"
+        ]
+      }
+    },
+    {
+      "stage": "final_tuned_ensemble_with_embeddings",
+      "description": "Random-search tuned ensemble plus ESM2 sequence embeddings reduced within each grouped fold.",
+      "cleaningSummary": {
+        "initial_rows": 120,
+        "exact_duplicates_removed": 0,
+        "near_duplicates_removed": 1,
+        "outliers_removed": 11,
+        "final_rows": 108,
+        "unique_sources": 8
+      },
+      "metrics": {
+        "purity": {
+          "rmse": 21.034112211594657,
+          "mae": 16.406511128266963,
+          "r2": -0.20179070126723353,
+          "accuracyWithinTolerance": 0.18518518518518517
+        },
+        "yield": {
+          "rmse": 37.809947911746164,
+          "mae": 30.145976519829787,
+          "r2": -0.7298738067121027,
+          "accuracyWithinTolerance": 0.28703703703703703
+        },
+        "combined": {
+          "rmse": 29.422030061670412,
+          "mae": 23.276243824048375,
+          "r2": -0.4658322539896681,
+          "jointToleranceAccuracy": 0.05555555555555555
+        }
+      },
+      "usesProteinEmbeddings": true,
+      "features": {
+        "standardized": [
+          "publication_year",
+          "length",
+          "avg_hydrophobicity",
+          "total_charge",
+          "molecular_weight",
+          "avg_volume",
+          "max_coupling_difficulty"
+        ],
+        "normalized": [
+          "unique_ratio",
+          "hydrophobic_ratio",
+          "bulky_ratio",
+          "polar_ratio",
+          "charged_ratio",
+          "aromatic_ratio",
+          "sulfur_ratio",
+          "longest_hydrophobic_run_norm",
+          "reagent_score",
+          "solvent_score"
+        ],
+        "binary": [
+          "n_term_basic",
+          "c_term_acidic"
+        ],
+        "categorical": [
+          "topology",
+          "purity_stage",
+          "yield_stage",
+          "yield_basis_class",
+          "coupling_reagent",
+          "solvent"
+        ]
+      }
+    }
+  ],
+  "finalDatasetRows": 108,
+  "finalUniqueSources": 8,
+  "scalingRationale": {
+    "standardization": "Large-magnitude continuous physicochemical variables were standardized to zero mean and unit variance.",
+    "normalization": "Ratios and bounded heuristic synthesis scores were scaled to the [0, 1] range to keep them comparable and interpretable."
+  },
+  "finalModelsByStage": {
+    "final_tuned_ensemble": {
+      "datasetRows": 108,
+      "uniqueSources": 8,
+      "searchIterations": 4,
+      "semanticSubgroups": {
+        "purityByStage": [
+          {
+            "label": "crude_hplc",
+            "n": 61,
+            "rmse": 24.79922419928385,
+            "mae": 19.72349524390355,
+            "r2": -0.7482242316894239,
+            "accuracyWithinTolerance": 0.19672131147540983
+          },
+          {
+            "label": "crude_hplc_214nm",
+            "n": 16,
+            "rmse": 14.057582895789448,
+            "mae": 12.686301720778435,
+            "r2": -4.504254492354473,
+            "accuracyWithinTolerance": 0.125
+          },
+          {
+            "label": "final_product",
+            "n": 13,
+            "rmse": 12.333417949206938,
+            "mae": 12.251218601751837,
+            "r2": -104.35709227196539,
+            "accuracyWithinTolerance": 0.0
+          },
+          {
+            "label": "purified_hplc",
+            "n": 18,
+            "rmse": 6.355097522398822,
+            "mae": 5.3818578176943035,
+            "r2": -15.703225264192039,
+            "accuracyWithinTolerance": 0.4444444444444444
+          }
+        ],
+        "yieldByStage": [
+          {
+            "label": "crude",
+            "n": 72,
+            "rmse": 37.17522802729071,
+            "mae": 28.52013360552423,
+            "r2": -1.358556400686147,
+            "accuracyWithinTolerance": 0.3055555555555556
+          },
+          {
+            "label": "isolated",
+            "n": 27,
+            "rmse": 38.37659325890097,
+            "mae": 34.70195983637897,
+            "r2": -2.1294099489165847,
+            "accuracyWithinTolerance": 0.1111111111111111
+          },
+          {
+            "label": "recovery",
+            "n": 9,
+            "rmse": 28.97242781398542,
+            "mae": 22.222983527217888,
+            "r2": -1.4816237480240995,
+            "accuracyWithinTolerance": 0.3333333333333333
+          }
+        ],
+        "yieldByBasis": [
+          {
+            "label": "crude",
+            "n": 25,
+            "rmse": 56.06961463130448,
+            "mae": 50.41619102007799,
+            "r2": -6.003657291264912,
+            "accuracyWithinTolerance": 0.16
+          },
+          {
+            "label": "isolated",
+            "n": 27,
+            "rmse": 38.37659325890097,
+            "mae": 34.70195983637897,
+            "r2": -2.1294099489165847,
+            "accuracyWithinTolerance": 0.1111111111111111
+          },
+          {
+            "label": "other",
+            "n": 47,
+            "rmse": 21.09188790156947,
+            "mae": 16.873294555229684,
+            "r2": -0.04925444560379244,
+            "accuracyWithinTolerance": 0.3829787234042553
+          },
+          {
+            "label": "recovery",
+            "n": 9,
+            "rmse": 28.97242781398542,
+            "mae": 22.222983527217888,
+            "r2": -1.4816237480240995,
+            "accuracyWithinTolerance": 0.3333333333333333
+          }
+        ]
+      },
+      "purity": {
+        "bestParams": {
+          "selector__threshold": "median",
+          "selector__estimator__max_depth": 4,
+          "regressor__weights": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "regressor__ridge__alpha": 0.1,
+          "regressor__rf__n_estimators": 300,
+          "regressor__rf__min_samples_leaf": 1,
+          "regressor__rf__max_depth": 4,
+          "regressor__gbr__n_estimators": 120,
+          "regressor__gbr__max_depth": 3,
+          "regressor__gbr__learning_rate": 0.08,
+          "regressor__et__n_estimators": 200,
+          "regressor__et__min_samples_leaf": 2,
+          "regressor__et__max_depth": 4
+        },
+        "cvRmseDuringSearch": 15.136535313918955,
+        "featureAnalysis": {
+          "transformedFeatureCount": 37,
+          "selectedFeatures": [
+            "std__publication_year",
+            "std__avg_hydrophobicity",
+            "std__total_charge",
+            "std__molecular_weight",
+            "std__avg_volume",
+            "std__max_coupling_difficulty",
+            "norm__unique_ratio",
+            "norm__hydrophobic_ratio",
+            "norm__bulky_ratio",
+            "norm__polar_ratio",
+            "norm__charged_ratio",
+            "norm__aromatic_ratio",
+            "norm__sulfur_ratio",
+            "norm__longest_hydrophobic_run_norm",
+            "cat__purity_stage_crude_hplc",
+            "cat__purity_stage_crude_hplc_214nm",
+            "cat__yield_stage_crude",
+            "cat__yield_basis_class_crude",
+            "cat__yield_basis_class_other"
+          ],
+          "selectorImportances": [
+            {
+              "feature": "cat__purity_stage_crude_hplc",
+              "importance": 0.6317792475036568
+            },
+            {
+              "feature": "norm__longest_hydrophobic_run_norm",
+              "importance": 0.05349277848682677
+            },
+            {
+              "feature": "std__publication_year",
+              "importance": 0.04149656608456916
+            },
+            {
+              "feature": "cat__yield_basis_class_other",
+              "importance": 0.03382048330589931
+            },
+            {
+              "feature": "norm__bulky_ratio",
+              "importance": 0.028674517896839634
+            },
+            {
+              "feature": "cat__yield_stage_crude",
+              "importance": 0.026566631598950154
+            },
+            {
+              "feature": "cat__purity_stage_crude_hplc_214nm",
+              "importance": 0.02277894766312205
+            },
+            {
+              "feature": "cat__yield_basis_class_crude",
+              "importance": 0.02205037032975395
+            },
+            {
+              "feature": "norm__polar_ratio",
+              "importance": 0.019102135375870733
+            },
+            {
+              "feature": "std__avg_hydrophobicity",
+              "importance": 0.018429214507862134
+            },
+            {
+              "feature": "norm__sulfur_ratio",
+              "importance": 0.017078874723795122
+            },
+            {
+              "feature": "std__max_coupling_difficulty",
+              "importance": 0.014434630319522964
+            },
+            {
+              "feature": "norm__hydrophobic_ratio",
+              "importance": 0.014170165281748042
+            },
+            {
+              "feature": "norm__unique_ratio",
+              "importance": 0.009654619487160813
+            },
+            {
+              "feature": "norm__charged_ratio",
+              "importance": 0.009305605495458693
+            }
+          ],
+          "permutationImportance": [
+            {
+              "feature": "purity_stage",
+              "importanceMean": 6.970995380520998,
+              "importanceStd": 0.9648925294555994
+            },
+            {
+              "feature": "yield_basis_class",
+              "importanceMean": 3.5092469273478977,
+              "importanceStd": 0.6259474514109626
+            },
+            {
+              "feature": "avg_hydrophobicity",
+              "importanceMean": 1.4680220919744653,
+              "importanceStd": 0.3851366664495527
+            },
+            {
+              "feature": "bulky_ratio",
+              "importanceMean": 1.1582884775888267,
+              "importanceStd": 0.28240708366840805
+            },
+            {
+              "feature": "longest_hydrophobic_run_norm",
+              "importanceMean": 1.1083988818086403,
+              "importanceStd": 0.25902970046425483
+            },
+            {
+              "feature": "max_coupling_difficulty",
+              "importanceMean": 0.9870702924948956,
+              "importanceStd": 0.26248261987441085
+            },
+            {
+              "feature": "molecular_weight",
+              "importanceMean": 0.8093849799034352,
+              "importanceStd": 0.09352259392348307
+            },
+            {
+              "feature": "yield_stage",
+              "importanceMean": 0.7964956280676254,
+              "importanceStd": 0.16831521654997572
+            },
+            {
+              "feature": "total_charge",
+              "importanceMean": 0.7660601867338197,
+              "importanceStd": 0.11956800882252863
+            },
+            {
+              "feature": "hydrophobic_ratio",
+              "importanceMean": 0.663143645667274,
+              "importanceStd": 0.11846759751109283
+            },
+            {
+              "feature": "publication_year",
+              "importanceMean": 0.5568355409702341,
+              "importanceStd": 0.2572870059646513
+            },
+            {
+              "feature": "charged_ratio",
+              "importanceMean": 0.5347989734056215,
+              "importanceStd": 0.05840419774083683
+            }
+          ],
+          "selectedFeatureCount": 19
+        }
+      },
+      "yield": {
+        "bestParams": {
+          "selector__threshold": "median",
+          "selector__estimator__max_depth": 4,
+          "regressor__weights": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "regressor__ridge__alpha": 0.1,
+          "regressor__rf__n_estimators": 300,
+          "regressor__rf__min_samples_leaf": 1,
+          "regressor__rf__max_depth": 4,
+          "regressor__gbr__n_estimators": 120,
+          "regressor__gbr__max_depth": 3,
+          "regressor__gbr__learning_rate": 0.08,
+          "regressor__et__n_estimators": 200,
+          "regressor__et__min_samples_leaf": 2,
+          "regressor__et__max_depth": 4
+        },
+        "cvRmseDuringSearch": 37.79693768822471,
+        "featureAnalysis": {
+          "transformedFeatureCount": 37,
+          "selectedFeatures": [
+            "std__length",
+            "std__avg_hydrophobicity",
+            "std__total_charge",
+            "std__molecular_weight",
+            "std__max_coupling_difficulty",
+            "norm__unique_ratio",
+            "norm__hydrophobic_ratio",
+            "norm__bulky_ratio",
+            "norm__polar_ratio",
+            "norm__charged_ratio",
+            "norm__aromatic_ratio",
+            "norm__sulfur_ratio",
+            "norm__longest_hydrophobic_run_norm",
+            "cat__purity_stage_crude_hplc",
+            "cat__purity_stage_crude_hplc_214nm",
+            "cat__yield_stage_isolated",
+            "cat__yield_stage_recovery",
+            "cat__yield_basis_class_isolated",
+            "cat__yield_basis_class_recovery"
+          ],
+          "selectorImportances": [
+            {
+              "feature": "cat__purity_stage_crude_hplc_214nm",
+              "importance": 0.50987519454926
+            },
+            {
+              "feature": "cat__purity_stage_crude_hplc",
+              "importance": 0.34591344801086954
+            },
+            {
+              "feature": "cat__yield_basis_class_isolated",
+              "importance": 0.020484172302954837
+            },
+            {
+              "feature": "cat__yield_basis_class_recovery",
+              "importance": 0.016125178297641058
+            },
+            {
+              "feature": "cat__yield_stage_recovery",
+              "importance": 0.014857098113109734
+            },
+            {
+              "feature": "cat__yield_stage_isolated",
+              "importance": 0.014149754846787717
+            },
+            {
+              "feature": "norm__polar_ratio",
+              "importance": 0.011324509211315305
+            },
+            {
+              "feature": "norm__aromatic_ratio",
+              "importance": 0.010462798554696047
+            },
+            {
+              "feature": "std__total_charge",
+              "importance": 0.009227101863610407
+            },
+            {
+              "feature": "norm__unique_ratio",
+              "importance": 0.007048170732539732
+            },
+            {
+              "feature": "std__avg_hydrophobicity",
+              "importance": 0.005586003041949054
+            },
+            {
+              "feature": "norm__bulky_ratio",
+              "importance": 0.005507110255393799
+            },
+            {
+              "feature": "norm__hydrophobic_ratio",
+              "importance": 0.004078749190002995
+            },
+            {
+              "feature": "std__length",
+              "importance": 0.0038928019218442363
+            },
+            {
+              "feature": "std__max_coupling_difficulty",
+              "importance": 0.0036712650562266465
+            }
+          ],
+          "permutationImportance": [
+            {
+              "feature": "purity_stage",
+              "importanceMean": 20.11910242833394,
+              "importanceStd": 1.3937418087463604
+            },
+            {
+              "feature": "avg_hydrophobicity",
+              "importanceMean": 1.7271307212714517,
+              "importanceStd": 0.39221835982153885
+            },
+            {
+              "feature": "length",
+              "importanceMean": 1.2554087104042995,
+              "importanceStd": 0.42692600322582586
+            },
+            {
+              "feature": "total_charge",
+              "importanceMean": 1.166909408071239,
+              "importanceStd": 0.16423087771055972
+            },
+            {
+              "feature": "hydrophobic_ratio",
+              "importanceMean": 0.8538837257691811,
+              "importanceStd": 0.354080634898769
+            },
+            {
+              "feature": "aromatic_ratio",
+              "importanceMean": 0.6883068108302204,
+              "importanceStd": 0.08826686422316965
+            },
+            {
+              "feature": "polar_ratio",
+              "importanceMean": 0.6696857947136028,
+              "importanceStd": 0.10562670109485404
+            },
+            {
+              "feature": "longest_hydrophobic_run_norm",
+              "importanceMean": 0.6189712284458614,
+              "importanceStd": 0.16651409263430508
+            },
+            {
+              "feature": "molecular_weight",
+              "importanceMean": 0.5851189151106142,
+              "importanceStd": 0.2465449961127658
+            },
+            {
+              "feature": "unique_ratio",
+              "importanceMean": 0.5492354472701046,
+              "importanceStd": 0.16092340720402215
+            },
+            {
+              "feature": "yield_stage",
+              "importanceMean": 0.5213701671326261,
+              "importanceStd": 0.1577170291189089
+            },
+            {
+              "feature": "charged_ratio",
+              "importanceMean": 0.4420873019956657,
+              "importanceStd": 0.07510411030353933
+            }
+          ],
+          "selectedFeatureCount": 19
+        }
+      }
+    },
+    "final_tuned_ensemble_with_embeddings": {
+      "datasetRows": 108,
+      "uniqueSources": 8,
+      "searchIterations": 2,
+      "semanticSubgroups": {
+        "purityByStage": [
+          {
+            "label": "crude_hplc",
+            "n": 61,
+            "rmse": 25.75499489634204,
+            "mae": 20.717186213064764,
+            "r2": -0.885575306885342,
+            "accuracyWithinTolerance": 0.14754098360655737
+          },
+          {
+            "label": "crude_hplc_214nm",
+            "n": 16,
+            "rmse": 14.450280287254246,
+            "mae": 13.185379648380945,
+            "r2": -4.816071558843805,
+            "accuracyWithinTolerance": 0.125
+          },
+          {
+            "label": "final_product",
+            "n": 13,
+            "rmse": 15.862192837879752,
+            "mae": 15.752756316371698,
+            "r2": -173.27027997872187,
+            "accuracyWithinTolerance": 0.0
+          },
+          {
+            "label": "purified_hplc",
+            "n": 18,
+            "rmse": 6.273686092038497,
+            "mae": 5.133496464941908,
+            "r2": -15.278015913488058,
+            "accuracyWithinTolerance": 0.5
+          }
+        ],
+        "yieldByStage": [
+          {
+            "label": "crude",
+            "n": 72,
+            "rmse": 37.369231216850565,
+            "mae": 28.43104101181882,
+            "r2": -1.3832374274327575,
+            "accuracyWithinTolerance": 0.3333333333333333
+          },
+          {
+            "label": "isolated",
+            "n": 27,
+            "rmse": 42.40809220650027,
+            "mae": 38.49939086532214,
+            "r2": -2.8214404075369277,
+            "accuracyWithinTolerance": 0.1111111111111111
+          },
+          {
+            "label": "recovery",
+            "n": 9,
+            "rmse": 24.250598866314554,
+            "mae": 18.805217547440336,
+            "r2": -0.7386457104666997,
+            "accuracyWithinTolerance": 0.4444444444444444
+          }
+        ],
+        "yieldByBasis": [
+          {
+            "label": "crude",
+            "n": 25,
+            "rmse": 56.68920656853756,
+            "mae": 50.98483161801096,
+            "r2": -6.159299013924259,
+            "accuracyWithinTolerance": 0.16
+          },
+          {
+            "label": "isolated",
+            "n": 27,
+            "rmse": 42.40809220650027,
+            "mae": 38.49939086532214,
+            "r2": -2.8214404075369277,
+            "accuracyWithinTolerance": 0.1111111111111111
+          },
+          {
+            "label": "other",
+            "n": 47,
+            "rmse": 20.733068596413975,
+            "mae": 16.434343880865562,
+            "r2": -0.01385787334451094,
+            "accuracyWithinTolerance": 0.425531914893617
+          },
+          {
+            "label": "recovery",
+            "n": 9,
+            "rmse": 24.250598866314554,
+            "mae": 18.805217547440336,
+            "r2": -0.7386457104666997,
+            "accuracyWithinTolerance": 0.4444444444444444
+          }
+        ]
+      },
+      "purity": {
+        "bestParams": {
+          "selector__threshold": "median",
+          "selector__estimator__max_depth": 4,
+          "regressor__weights": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "regressor__ridge__alpha": 0.1,
+          "regressor__rf__n_estimators": 300,
+          "regressor__rf__min_samples_leaf": 1,
+          "regressor__rf__max_depth": 4,
+          "regressor__gbr__n_estimators": 120,
+          "regressor__gbr__max_depth": 3,
+          "regressor__gbr__learning_rate": 0.08,
+          "regressor__et__n_estimators": 200,
+          "regressor__et__min_samples_leaf": 2,
+          "regressor__et__max_depth": 4
+        },
+        "cvRmseDuringSearch": 16.948449317060174,
+        "featureAnalysis": {
+          "transformedFeatureCount": 45,
+          "selectedFeatures": [
+            "std__publication_year",
+            "std__avg_hydrophobicity",
+            "std__molecular_weight",
+            "std__max_coupling_difficulty",
+            "norm__hydrophobic_ratio",
+            "norm__bulky_ratio",
+            "norm__polar_ratio",
+            "norm__charged_ratio",
+            "norm__sulfur_ratio",
+            "norm__longest_hydrophobic_run_norm",
+            "cat__purity_stage_crude_hplc",
+            "cat__purity_stage_crude_hplc_214nm",
+            "cat__yield_stage_crude",
+            "cat__yield_basis_class_crude",
+            "cat__yield_basis_class_other",
+            "embedding__esm2_pc1",
+            "embedding__esm2_pc2",
+            "embedding__esm2_pc3",
+            "embedding__esm2_pc4",
+            "embedding__esm2_pc5",
+            "embedding__esm2_pc6",
+            "embedding__esm2_pc7",
+            "embedding__esm2_pc8"
+          ],
+          "selectorImportances": [
+            {
+              "feature": "cat__purity_stage_crude_hplc",
+              "importance": 0.6223728268054493
+            },
+            {
+              "feature": "norm__longest_hydrophobic_run_norm",
+              "importance": 0.03868059520424784
+            },
+            {
+              "feature": "std__publication_year",
+              "importance": 0.03205372849612283
+            },
+            {
+              "feature": "cat__yield_basis_class_other",
+              "importance": 0.0302805794692363
+            },
+            {
+              "feature": "embedding__esm2_pc5",
+              "importance": 0.030261391637187506
+            },
+            {
+              "feature": "cat__yield_stage_crude",
+              "importance": 0.024087844801341685
+            },
+            {
+              "feature": "cat__yield_basis_class_crude",
+              "importance": 0.023783379728737824
+            },
+            {
+              "feature": "cat__purity_stage_crude_hplc_214nm",
+              "importance": 0.02260881161057555
+            },
+            {
+              "feature": "norm__bulky_ratio",
+              "importance": 0.018899496583517313
+            },
+            {
+              "feature": "embedding__esm2_pc3",
+              "importance": 0.01575836840046248
+            },
+            {
+              "feature": "std__max_coupling_difficulty",
+              "importance": 0.013690083839911427
+            },
+            {
+              "feature": "std__avg_hydrophobicity",
+              "importance": 0.012830547334454044
+            },
+            {
+              "feature": "norm__hydrophobic_ratio",
+              "importance": 0.011663403167831706
+            },
+            {
+              "feature": "embedding__esm2_pc7",
+              "importance": 0.010498126682356477
+            },
+            {
+              "feature": "embedding__esm2_pc4",
+              "importance": 0.009143907403209495
+            }
+          ],
+          "permutationImportance": [
+            {
+              "feature": "purity_stage",
+              "importanceMean": 6.353644965344197,
+              "importanceStd": 0.9123585216601545
+            },
+            {
+              "feature": "sequence_norm",
+              "importanceMean": 4.490943435233824,
+              "importanceStd": 0.5656032661437357
+            },
+            {
+              "feature": "yield_basis_class",
+              "importanceMean": 3.137608493277392,
+              "importanceStd": 0.5463844065728909
+            },
+            {
+              "feature": "bulky_ratio",
+              "importanceMean": 1.5007930172763608,
+              "importanceStd": 0.3534912517280558
+            },
+            {
+              "feature": "yield_stage",
+              "importanceMean": 1.0622868753999162,
+              "importanceStd": 0.19434048449602584
+            },
+            {
+              "feature": "longest_hydrophobic_run_norm",
+              "importanceMean": 0.706785432723147,
+              "importanceStd": 0.14586078182072518
+            },
+            {
+              "feature": "max_coupling_difficulty",
+              "importanceMean": 0.6773724621211101,
+              "importanceStd": 0.19268482755481534
+            },
+            {
+              "feature": "avg_hydrophobicity",
+              "importanceMean": 0.6744970641309862,
+              "importanceStd": 0.2391303714897558
+            },
+            {
+              "feature": "publication_year",
+              "importanceMean": 0.29682531389065153,
+              "importanceStd": 0.13254419441463566
+            },
+            {
+              "feature": "molecular_weight",
+              "importanceMean": 0.28919693912992217,
+              "importanceStd": 0.039920579984292756
+            },
+            {
+              "feature": "charged_ratio",
+              "importanceMean": 0.2830492726311232,
+              "importanceStd": 0.08980698593666123
+            },
+            {
+              "feature": "polar_ratio",
+              "importanceMean": 0.17930074746484329,
+              "importanceStd": 0.08212472972792426
+            }
+          ],
+          "selectedFeatureCount": 23
+        }
+      },
+      "yield": {
+        "bestParams": {
+          "selector__threshold": "median",
+          "selector__estimator__max_depth": 4,
+          "regressor__weights": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "regressor__ridge__alpha": 0.1,
+          "regressor__rf__n_estimators": 300,
+          "regressor__rf__min_samples_leaf": 1,
+          "regressor__rf__max_depth": 4,
+          "regressor__gbr__n_estimators": 120,
+          "regressor__gbr__max_depth": 3,
+          "regressor__gbr__learning_rate": 0.08,
+          "regressor__et__n_estimators": 200,
+          "regressor__et__min_samples_leaf": 2,
+          "regressor__et__max_depth": 4
+        },
+        "cvRmseDuringSearch": 39.40941771785795,
+        "featureAnalysis": {
+          "transformedFeatureCount": 45,
+          "selectedFeatures": [
+            "std__length",
+            "std__avg_hydrophobicity",
+            "std__total_charge",
+            "std__molecular_weight",
+            "std__max_coupling_difficulty",
+            "norm__unique_ratio",
+            "norm__hydrophobic_ratio",
+            "norm__bulky_ratio",
+            "norm__polar_ratio",
+            "norm__aromatic_ratio",
+            "norm__sulfur_ratio",
+            "norm__longest_hydrophobic_run_norm",
+            "cat__purity_stage_crude_hplc",
+            "cat__purity_stage_crude_hplc_214nm",
+            "cat__yield_stage_isolated",
+            "cat__yield_stage_recovery",
+            "cat__yield_basis_class_isolated",
+            "cat__yield_basis_class_recovery",
+            "embedding__esm2_pc1",
+            "embedding__esm2_pc4",
+            "embedding__esm2_pc6",
+            "embedding__esm2_pc7",
+            "embedding__esm2_pc8"
+          ],
+          "selectorImportances": [
+            {
+              "feature": "cat__purity_stage_crude_hplc_214nm",
+              "importance": 0.5063227162850543
+            },
+            {
+              "feature": "cat__purity_stage_crude_hplc",
+              "importance": 0.3435033484051386
+            },
+            {
+              "feature": "cat__yield_basis_class_recovery",
+              "importance": 0.018842918013105756
+            },
+            {
+              "feature": "cat__yield_basis_class_isolated",
+              "importance": 0.017158848179753546
+            },
+            {
+              "feature": "cat__yield_stage_recovery",
+              "importance": 0.014945456692325115
+            },
+            {
+              "feature": "cat__yield_stage_isolated",
+              "importance": 0.013784009176101234
+            },
+            {
+              "feature": "norm__aromatic_ratio",
+              "importance": 0.009508236766110815
+            },
+            {
+              "feature": "norm__polar_ratio",
+              "importance": 0.008059303572753012
+            },
+            {
+              "feature": "norm__unique_ratio",
+              "importance": 0.007243616892717115
+            },
+            {
+              "feature": "std__total_charge",
+              "importance": 0.007240395129434707
+            },
+            {
+              "feature": "std__avg_hydrophobicity",
+              "importance": 0.004651972520438943
+            },
+            {
+              "feature": "embedding__esm2_pc6",
+              "importance": 0.004514590276518191
+            },
+            {
+              "feature": "embedding__esm2_pc7",
+              "importance": 0.00440801130705187
+            },
+            {
+              "feature": "embedding__esm2_pc8",
+              "importance": 0.004088933020675051
+            },
+            {
+              "feature": "norm__bulky_ratio",
+              "importance": 0.003917242264220804
+            }
+          ],
+          "permutationImportance": [
+            {
+              "feature": "purity_stage",
+              "importanceMean": 18.588721324502153,
+              "importanceStd": 1.3153918184530098
+            },
+            {
+              "feature": "sequence_norm",
+              "importanceMean": 3.150326767590726,
+              "importanceStd": 0.42782323492239294
+            },
+            {
+              "feature": "molecular_weight",
+              "importanceMean": 1.7936732703789737,
+              "importanceStd": 0.4913266199872918
+            },
+            {
+              "feature": "avg_hydrophobicity",
+              "importanceMean": 1.1476980828831167,
+              "importanceStd": 0.3139635586183759
+            },
+            {
+              "feature": "hydrophobic_ratio",
+              "importanceMean": 0.8428899182389389,
+              "importanceStd": 0.3553344934189228
+            },
+            {
+              "feature": "total_charge",
+              "importanceMean": 0.7401758300339775,
+              "importanceStd": 0.10048768895196948
+            },
+            {
+              "feature": "length",
+              "importanceMean": 0.5442066273466052,
+              "importanceStd": 0.3148879862750165
+            },
+            {
+              "feature": "unique_ratio",
+              "importanceMean": 0.4987614591204942,
+              "importanceStd": 0.12742126874129042
+            },
+            {
+              "feature": "longest_hydrophobic_run_norm",
+              "importanceMean": 0.47953279574147345,
+              "importanceStd": 0.12093734705074347
+            },
+            {
+              "feature": "yield_stage",
+              "importanceMean": 0.4722469314955551,
+              "importanceStd": 0.1399969000551408
+            },
+            {
+              "feature": "yield_basis_class",
+              "importanceMean": 0.45222138471565376,
+              "importanceStd": 0.14242075962164616
+            },
+            {
+              "feature": "polar_ratio",
+              "importanceMean": 0.43418229785979284,
+              "importanceStd": 0.06481098394799993
+            }
+          ],
+          "selectedFeatureCount": 23
+        }
+      }
+    }
+  }
+}

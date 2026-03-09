@@ -1,0 +1,688 @@
+{
+  "primaryHead": "yield_target/isolated|isolated",
+  "primaryRmse": 24.549335105938574,
+  "primaryR2": 0.09244478134295542,
+  "primaryAccuracyWithinTolerance": 0.12698412698412698,
+  "primaryDecision": "low",
+  "acceptedHighConfidenceHeads": 0,
+  "acceptedWarningHeads": 1,
+  "rejectedHeads": 4,
+  "weightedR2": -0.6871441377355625,
+  "weightedRmse": 23.074400988713492,
+  "strictCleaning": {
+    "initial_rows": 199,
+    "exact_duplicates_removed": 1,
+    "near_duplicates_removed": 4,
+    "outliers_removed": 9,
+    "final_rows": 185,
+    "unique_sources": 17
+  },
+  "strictSemanticFilter": {
+    "inputRows": 185,
+    "outputRows": 182,
+    "outputUniqueSources": 16,
+    "inputPurityRows": 166,
+    "inputYieldRows": 177,
+    "outputPurityRows": 166,
+    "outputYieldRows": 174,
+    "purityEligibility": [
+      {
+        "head": "crude_hplc",
+        "nRows": 97,
+        "nSources": 8,
+        "maxSourceShare": 0.4845360824742268,
+        "eligible": true,
+        "reasons": []
+      },
+      {
+        "head": "purified_hplc",
+        "nRows": 41,
+        "nSources": 4,
+        "maxSourceShare": 0.4878048780487805,
+        "eligible": true,
+        "reasons": []
+      },
+      {
+        "head": "final_product",
+        "nRows": 28,
+        "nSources": 3,
+        "maxSourceShare": 0.4642857142857143,
+        "eligible": true,
+        "reasons": []
+      }
+    ],
+    "yieldEligibility": [
+      {
+        "head": "isolated|isolated",
+        "nRows": 63,
+        "nSources": 10,
+        "maxSourceShare": 0.20634920634920634,
+        "eligible": true,
+        "reasons": []
+      },
+      {
+        "head": "crude|crude",
+        "nRows": 33,
+        "nSources": 3,
+        "maxSourceShare": 0.48484848484848486,
+        "eligible": true,
+        "reasons": []
+      },
+      {
+        "head": "recovery|recovery",
+        "nRows": 31,
+        "nSources": 2,
+        "maxSourceShare": 0.6451612903225806,
+        "eligible": false,
+        "reasons": [
+          "sources<3"
+        ]
+      }
+    ],
+    "allowedPurityHeads": [
+      "crude_hplc",
+      "final_product",
+      "purified_hplc"
+    ],
+    "allowedYieldHeads": [
+      "crude|crude",
+      "isolated|isolated"
+    ]
+  },
+  "predictionPolicy": {
+    "acceptedHighConfidenceHeads": [],
+    "acceptedWarningHeads": [
+      {
+        "target": "yield_target",
+        "head": "isolated|isolated",
+        "confidenceTier": "low",
+        "servePrediction": true,
+        "reasons": [
+          "weak_signal"
+        ],
+        "rmse": 24.549335105938574,
+        "r2": 0.09244478134295542,
+        "nRows": 63,
+        "nSources": 10,
+        "excludedSources": []
+      }
+    ],
+    "rejectedHeads": [
+      {
+        "target": "purity_target",
+        "head": "crude_hplc",
+        "confidenceTier": "reject",
+        "servePrediction": false,
+        "reasons": [
+          "negative_r2",
+          "interval_too_wide"
+        ],
+        "rmse": 26.143214097567622,
+        "r2": -1.0908999856856334,
+        "nRows": 89,
+        "nSources": 7,
+        "excludedSources": [
+          "amps_multiphosphorylated_2022"
+        ]
+      },
+      {
+        "target": "purity_target",
+        "head": "purified_hplc",
+        "confidenceTier": "reject",
+        "servePrediction": false,
+        "reasons": [
+          "negative_r2"
+        ],
+        "rmse": 1.743126855959571,
+        "r2": -0.30107256535747773,
+        "nRows": 21,
+        "nSources": 3,
+        "excludedSources": [
+          "parallel_pec_2021"
+        ]
+      },
+      {
+        "target": "purity_target",
+        "head": "final_product",
+        "confidenceTier": "reject",
+        "servePrediction": false,
+        "reasons": [
+          "negative_r2"
+        ],
+        "rmse": 3.275465353900165,
+        "r2": -1.0932590032841651,
+        "nRows": 28,
+        "nSources": 3,
+        "excludedSources": []
+      },
+      {
+        "target": "yield_target",
+        "head": "crude|crude",
+        "confidenceTier": "reject",
+        "servePrediction": false,
+        "reasons": [
+          "negative_r2"
+        ],
+        "rmse": 41.769674572282774,
+        "r2": -2.778341816262173,
+        "nRows": 33,
+        "nSources": 3,
+        "excludedSources": []
+      }
+    ]
+  },
+  "headLevelMetrics": [
+    {
+      "target": "purity_target",
+      "head": "crude_hplc",
+      "nRows": 97,
+      "nSources": 8,
+      "modelingRows": 89,
+      "modelingSources": 7,
+      "excludedSources": [
+        "amps_multiphosphorylated_2022"
+      ],
+      "usedCompatibleSubset": true,
+      "metrics": {
+        "rmse": 26.143214097567622,
+        "mae": 21.945064267459603,
+        "r2": -1.0908999856856334,
+        "accuracyWithinTolerance": 0.12359550561797752
+      },
+      "intervalMetrics": {
+        "coverage": 0.25842696629213485,
+        "meanWidth": 21.238037730342306
+      },
+      "decision": {
+        "confidenceTier": "reject",
+        "servePrediction": false,
+        "reasons": [
+          "negative_r2",
+          "interval_too_wide"
+        ]
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "purity_target",
+      "head": "purified_hplc",
+      "nRows": 41,
+      "nSources": 4,
+      "modelingRows": 21,
+      "modelingSources": 3,
+      "excludedSources": [
+        "parallel_pec_2021"
+      ],
+      "usedCompatibleSubset": true,
+      "metrics": {
+        "rmse": 1.743126855959571,
+        "mae": 1.4192202398017937,
+        "r2": -0.30107256535747773,
+        "accuracyWithinTolerance": 1.0
+      },
+      "intervalMetrics": {
+        "coverage": 0.5238095238095238,
+        "meanWidth": 2.9834106578218376
+      },
+      "decision": {
+        "confidenceTier": "reject",
+        "servePrediction": false,
+        "reasons": [
+          "negative_r2"
+        ]
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "purity_target",
+      "head": "final_product",
+      "nRows": 28,
+      "nSources": 3,
+      "modelingRows": 28,
+      "modelingSources": 3,
+      "excludedSources": [],
+      "usedCompatibleSubset": false,
+      "metrics": {
+        "rmse": 3.275465353900165,
+        "mae": 2.932602644218256,
+        "r2": -1.0932590032841651,
+        "accuracyWithinTolerance": 0.8928571428571429
+      },
+      "intervalMetrics": {
+        "coverage": 0.17857142857142858,
+        "meanWidth": 2.5810241994784704
+      },
+      "decision": {
+        "confidenceTier": "reject",
+        "servePrediction": false,
+        "reasons": [
+          "negative_r2"
+        ]
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "yield_target",
+      "head": "isolated|isolated",
+      "nRows": 63,
+      "nSources": 10,
+      "modelingRows": 63,
+      "modelingSources": 10,
+      "excludedSources": [],
+      "usedCompatibleSubset": false,
+      "metrics": {
+        "rmse": 24.549335105938574,
+        "mae": 21.79215558742278,
+        "r2": 0.09244478134295542,
+        "accuracyWithinTolerance": 0.12698412698412698
+      },
+      "intervalMetrics": {
+        "coverage": 0.1111111111111111,
+        "meanWidth": 14.70202993441026
+      },
+      "decision": {
+        "confidenceTier": "low",
+        "servePrediction": true,
+        "reasons": [
+          "weak_signal"
+        ]
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "yield_target",
+      "head": "crude|crude",
+      "nRows": 33,
+      "nSources": 3,
+      "modelingRows": 33,
+      "modelingSources": 3,
+      "excludedSources": [],
+      "usedCompatibleSubset": false,
+      "metrics": {
+        "rmse": 41.769674572282774,
+        "mae": 38.34677594714199,
+        "r2": -2.778341816262173,
+        "accuracyWithinTolerance": 0.06060606060606061
+      },
+      "intervalMetrics": {
+        "coverage": 0.06060606060606061,
+        "meanWidth": 28.605985776644115
+      },
+      "decision": {
+        "confidenceTier": "reject",
+        "servePrediction": false,
+        "reasons": [
+          "negative_r2"
+        ]
+      },
+      "usedBayesianCalibration": false
+    }
+  ],
+  "sourceDiagnostics": [
+    {
+      "target": "purity_target",
+      "head": "crude_hplc",
+      "medianSourceMean": 79.05208333333334,
+      "madSourceMean": 14.408156028368793,
+      "sources": [
+        {
+          "sourceId": "amps_multiphosphorylated_2022",
+          "nRows": 8,
+          "sourceMean": 20.5875,
+          "sourceStd": 10.447752663337974,
+          "sourceMin": 7.7,
+          "sourceMax": 37.2,
+          "driftZ": 2.736909645990776,
+          "isDriftOutlier": true
+        },
+        {
+          "sourceId": "trityl_anchor_2013",
+          "nRows": 2,
+          "sourceMean": 59.0,
+          "sourceStd": 12.727922061357855,
+          "sourceMin": 50.0,
+          "sourceMax": 68.0,
+          "driftZ": 0.938700614426869,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "continuous_flow_oprd_2024",
+          "nRows": 5,
+          "sourceMean": 96.24,
+          "sourceStd": 0.3646916505762109,
+          "sourceMin": 95.8,
+          "sourceMax": 96.6,
+          "driftZ": 0.8046200321189138,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "ram_spps_2025",
+          "nRows": 3,
+          "sourceMean": 94.33333333333333,
+          "sourceStd": 0.5773502691896247,
+          "sourceMin": 94.0,
+          "sourceMax": 95.0,
+          "driftZ": 0.7153630136956961,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "teabags_fmoc_2021",
+          "nRows": 47,
+          "sourceMean": 65.51702127659574,
+          "sourceStd": 19.319930227042708,
+          "sourceMin": 19.1,
+          "sourceMax": 98.8,
+          "driftZ": 0.6336185052574943,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "universal_peptide_platform_2025",
+          "nRows": 4,
+          "sourceMean": 85.0,
+          "sourceStd": 4.0,
+          "sourceMin": 79.0,
+          "sourceMax": 87.0,
+          "driftZ": 0.27844054588973566,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "pdac_pegylation_2024",
+          "nRows": 12,
+          "sourceMean": 73.91666666666667,
+          "sourceStd": 11.579435795121167,
+          "sourceMin": 55.0,
+          "sourceMax": 86.0,
+          "driftZ": 0.2404048846298424,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "thioester_support_2008",
+          "nRows": 16,
+          "sourceMean": 84.1875,
+          "sourceStd": 6.188362734466475,
+          "sourceMin": 70.0,
+          "sourceMax": 93.0,
+          "driftZ": 0.24040488462984175,
+          "isDriftOutlier": false
+        }
+      ],
+      "compatibility": {
+        "usedCompatibleSubset": true,
+        "excludedSources": [
+          "amps_multiphosphorylated_2022"
+        ],
+        "originalRows": 97,
+        "originalSources": 8,
+        "modelingRows": 89,
+        "modelingSources": 7
+      }
+    },
+    {
+      "target": "purity_target",
+      "head": "purified_hplc",
+      "medianSourceMean": 97.10681818181817,
+      "madSourceMean": 0.9666666666666828,
+      "sources": [
+        {
+          "sourceId": "parallel_pec_2021",
+          "nRows": 20,
+          "sourceMean": 88.65,
+          "sourceStd": 11.35677400450822,
+          "sourceMin": 66.0,
+          "sourceMax": 99.0,
+          "driftZ": 5.9007369498723286,
+          "isDriftOutlier": true
+        },
+        {
+          "sourceId": "sulfotyrosine_psc_2016",
+          "nRows": 6,
+          "sourceMean": 98.78333333333335,
+          "sourceStd": 0.6853223086013358,
+          "sourceMin": 97.7,
+          "sourceMax": 99.5,
+          "driftZ": 1.1697868736063495,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "pdac_pegylation_2024",
+          "nRows": 11,
+          "sourceMean": 97.36363636363636,
+          "sourceStd": 1.8040358795061295,
+          "sourceMin": 95.0,
+          "sourceMax": 99.0,
+          "driftZ": 0.17919464534684099,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "stapled_bcl9_2025",
+          "nRows": 4,
+          "sourceMean": 96.85,
+          "sourceStd": 0.9983319421247936,
+          "sourceMin": 96.1,
+          "sourceMax": 98.3,
+          "driftZ": 0.17919464534683105,
+          "isDriftOutlier": false
+        }
+      ],
+      "compatibility": {
+        "usedCompatibleSubset": true,
+        "excludedSources": [
+          "parallel_pec_2021"
+        ],
+        "originalRows": 41,
+        "originalSources": 4,
+        "modelingRows": 21,
+        "modelingSources": 3
+      }
+    },
+    {
+      "target": "purity_target",
+      "head": "final_product",
+      "medianSourceMean": 94.625,
+      "madSourceMean": 1.6107142857142804,
+      "sources": [
+        {
+          "sourceId": "amyloid_hydrophobic_2008",
+          "nRows": 13,
+          "sourceMean": 96.3076923076923,
+          "sourceStd": 1.2506408613597098,
+          "sourceMin": 95.0,
+          "sourceMax": 98.0,
+          "driftZ": 0.7046317417353158,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "peptide_purification_transfer_2026",
+          "nRows": 7,
+          "sourceMean": 93.01428571428572,
+          "sourceStd": 1.285079208231375,
+          "sourceMin": 91.1,
+          "sourceMax": 95.5,
+          "driftZ": 0.6744907594765952,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "elisa_peptides_2024",
+          "nRows": 8,
+          "sourceMean": 94.625,
+          "sourceStd": 3.0207614933986435,
+          "sourceMin": 90.0,
+          "sourceMax": 98.0,
+          "driftZ": 0.0,
+          "isDriftOutlier": false
+        }
+      ],
+      "compatibility": {
+        "usedCompatibleSubset": false,
+        "excludedSources": [],
+        "originalRows": 28,
+        "originalSources": 3,
+        "modelingRows": 28,
+        "modelingSources": 3
+      }
+    },
+    {
+      "target": "yield_target",
+      "head": "isolated|isolated",
+      "medianSourceMean": 27.167857142857144,
+      "madSourceMean": 19.56978021978022,
+      "sources": [
+        {
+          "sourceId": "continuous_flow_oprd_2024",
+          "nRows": 5,
+          "sourceMean": 84.84,
+          "sourceStd": 1.3974977638622488,
+          "sourceMin": 82.8,
+          "sourceMax": 86.6,
+          "driftZ": 1.9877242871148528,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "ram_spps_2025",
+          "nRows": 3,
+          "sourceMean": 69.33333333333333,
+          "sourceStd": 12.013880860626731,
+          "sourceMin": 57.0,
+          "sourceMax": 81.0,
+          "driftZ": 1.4532725324457412,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "universal_peptide_platform_2025",
+          "nRows": 4,
+          "sourceMean": 57.25,
+          "sourceStd": 11.324751652906127,
+          "sourceMin": 41.0,
+          "sourceMax": 67.0,
+          "driftZ": 1.0368091595576228,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "trityl_anchor_2013",
+          "nRows": 2,
+          "sourceMean": 49.5,
+          "sourceStd": 3.5355339059327378,
+          "sourceMin": 47.0,
+          "sourceMax": 52.0,
+          "driftZ": 0.7696981686707604,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "amyloid_hydrophobic_2008",
+          "nRows": 13,
+          "sourceMean": 6.6461538461538465,
+          "sourceStd": 5.161978849339238,
+          "sourceMin": 0.7,
+          "sourceMax": 18.0,
+          "driftZ": 0.7072996777120784,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "stapled_bcl9_2025",
+          "nRows": 4,
+          "sourceMean": 8.549999999999999,
+          "sourceStd": 3.183813227352803,
+          "sourceMin": 4.3,
+          "sourceMax": 12.0,
+          "driftZ": 0.6416818412411123,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "hbd3_fmoc_2022",
+          "nRows": 11,
+          "sourceMean": 8.562727272727273,
+          "sourceStd": 8.822673167367235,
+          "sourceMin": 0.44,
+          "sourceMax": 25.5,
+          "driftZ": 0.6412431838953743,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "amps_multiphosphorylated_2022",
+          "nRows": 8,
+          "sourceMean": 14.825000000000001,
+          "sourceStd": 11.710892365656855,
+          "sourceMin": 3.6,
+          "sourceMax": 33.6,
+          "driftZ": 0.42540810345852365,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "sulfotyrosine_psc_2016",
+          "nRows": 6,
+          "sourceMean": 21.95,
+          "sourceStd": 5.558686895301804,
+          "sourceMin": 16.7,
+          "sourceMax": 29.1,
+          "driftZ": 0.17983832151415025,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "peptide_purification_transfer_2026",
+          "nRows": 7,
+          "sourceMean": 32.385714285714286,
+          "sourceStd": 4.694119928672669,
+          "sourceMin": 25.3,
+          "sourceMax": 41.4,
+          "driftZ": 0.17983832151415013,
+          "isDriftOutlier": false
+        }
+      ],
+      "compatibility": {
+        "usedCompatibleSubset": false,
+        "excludedSources": [],
+        "originalRows": 63,
+        "originalSources": 10,
+        "modelingRows": 63,
+        "modelingSources": 10
+      }
+    },
+    {
+      "target": "yield_target",
+      "head": "crude|crude",
+      "medianSourceMean": 79.0,
+      "madSourceMean": 10.75,
+      "sources": [
+        {
+          "sourceId": "pdac_pegylation_2024",
+          "nRows": 12,
+          "sourceMean": 49.5,
+          "sourceStd": 17.191435499848595,
+          "sourceMin": 27.0,
+          "sourceMax": 78.0,
+          "driftZ": 1.8509281306567031,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "thioester_support_2008",
+          "nRows": 16,
+          "sourceMean": 89.75,
+          "sourceStd": 5.471136384091823,
+          "sourceMin": 82.0,
+          "sourceMax": 100.0,
+          "driftZ": 0.6744907594765952,
+          "isDriftOutlier": false
+        },
+        {
+          "sourceId": "segetalins_bjoc_2025",
+          "nRows": 5,
+          "sourceMean": 79.0,
+          "sourceStd": 7.905694150420948,
+          "sourceMin": 69.0,
+          "sourceMax": 89.0,
+          "driftZ": 0.0,
+          "isDriftOutlier": false
+        }
+      ],
+      "compatibility": {
+        "usedCompatibleSubset": false,
+        "excludedSources": [],
+        "originalRows": 33,
+        "originalSources": 3,
+        "modelingRows": 33,
+        "modelingSources": 3
+      }
+    }
+  ],
+  "totalSeconds": 12.218212624895386
+}

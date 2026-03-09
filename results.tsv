@@ -1,0 +1,4 @@
+commit	primary_r2	primary_rmse	high_conf_heads	status	description
+unknown	0.092445	24.549335	0	warning	baseline strict-head run
+unknown	0.092445	24.549335	0	warning	baseline organic autoresearch run
+unknown	0.092445	24.549335	0	warning	baseline organic autoresearch run

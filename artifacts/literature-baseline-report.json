@@ -1,0 +1,205 @@
+{
+  "dataset": "data/real/final_purity_yield_literature.csv",
+  "tasks": [
+    {
+      "task": "isolated_yield_sequence_only",
+      "rows": 31,
+      "bestAlpha": 10.0,
+      "modelMetrics": {
+        "mae": 8.192981324163068,
+        "rmse": 12.413869981575035,
+        "r2": 0.8435480103072357
+      },
+      "baselineMetrics": {
+        "mae": 29.075053763440863,
+        "rmse": 32.43075700627415,
+        "r2": -0.06777777777777749
+      },
+      "leaveOneSourceOut": {
+        "bestAlpha": 10.0,
+        "sources": [
+          "amyloid_hydrophobic_2008",
+          "continuous_flow_oprd_2024",
+          "ram_spps_2025",
+          "sulfotyrosine_psc_2016",
+          "trityl_anchor_2013"
+        ],
+        "metrics": {
+          "mae": 20.56403874878317,
+          "rmse": 24.511632096293695,
+          "r2": 0.39002622306154267
+        }
+      },
+      "improvement": {
+        "rmseDelta": 20.016887024699116,
+        "maeDelta": 20.882072439277795
+      },
+      "targetMean": 33.86129032258064,
+      "targetStd": 31.384603554458856,
+      "sources": [
+        "amyloid_hydrophobic_2008",
+        "continuous_flow_oprd_2024",
+        "ram_spps_2025",
+        "sulfotyrosine_psc_2016",
+        "trityl_anchor_2013"
+      ]
+    },
+    {
+      "task": "crude_yield_sequence_only",
+      "rows": 89,
+      "bestAlpha": 100.0,
+      "modelMetrics": {
+        "mae": 16.92904822195283,
+        "rmse": 22.593670158489203,
+        "r2": 0.2027609718146084
+      },
+      "baselineMetrics": {
+        "mae": 21.69279877425945,
+        "rmse": 25.59174167061588,
+        "r2": -0.02285640495867769
+      },
+      "leaveOneSourceOut": {
+        "bestAlpha": 100.0,
+        "sources": [
+          "pdac_pegylation_2024",
+          "segetalins_bjoc_2025",
+          "teabags_fmoc_2021",
+          "thioester_support_2008"
+        ],
+        "metrics": {
+          "mae": 19.934112069206012,
+          "rmse": 25.87941416417435,
+          "r2": -0.04598116533899854
+        }
+      },
+      "improvement": {
+        "rmseDelta": 2.9980715121266748,
+        "maeDelta": 4.763750552306622
+      },
+      "targetMean": 63.03370786516854,
+      "targetStd": 25.304194011395474,
+      "sources": [
+        "pdac_pegylation_2024",
+        "segetalins_bjoc_2025",
+        "teabags_fmoc_2021",
+        "thioester_support_2008"
+      ]
+    },
+    {
+      "task": "recovery_yield_sequence_only",
+      "rows": 12,
+      "bestAlpha": 100.0,
+      "modelMetrics": {
+        "mae": 16.482182328213135,
+        "rmse": 19.301673337638583,
+        "r2": -0.234078521419276
+      },
+      "baselineMetrics": {
+        "mae": 15.696969696969695,
+        "rmse": 18.954490952614034,
+        "r2": -0.19008264462809876
+      },
+      "leaveOneSourceOut": {
+        "status": "single_source_only",
+        "sources": [
+          "pdac_pegylation_2024"
+        ]
+      },
+      "improvement": {
+        "rmseDelta": -0.34718238502454923,
+        "maeDelta": -0.7852126312434393
+      },
+      "targetMean": 36.333333333333336,
+      "targetStd": 17.3749500398962,
+      "sources": [
+        "pdac_pegylation_2024"
+      ]
+    },
+    {
+      "task": "purified_purity_sequence_only",
+      "rows": 18,
+      "bestAlpha": 100.0,
+      "modelMetrics": {
+        "mae": 3.3389739011333948,
+        "rmse": 6.298048966431324,
+        "r2": -0.13940167421376426
+      },
+      "baselineMetrics": {
+        "mae": 3.3431372549019596,
+        "rmse": 6.247283146520796,
+        "r2": -0.12110726643598646
+      },
+      "leaveOneSourceOut": {
+        "bestAlpha": 10.0,
+        "sources": [
+          "pdac_pegylation_2024",
+          "sulfotyrosine_psc_2016"
+        ],
+        "metrics": {
+          "mae": 2.929995122242642,
+          "rmse": 6.417581229581888,
+          "r2": -0.18306208512119992
+        }
+      },
+      "improvement": {
+        "rmseDelta": -0.05076581991052809,
+        "maeDelta": 0.004163353768564804
+      },
+      "targetMean": 96.48333333333333,
+      "targetStd": 5.900211860602973,
+      "sources": [
+        "pdac_pegylation_2024",
+        "sulfotyrosine_psc_2016"
+      ]
+    },
+    {
+      "task": "purity_mixed_sequence_plus_stage",
+      "rows": 122,
+      "bestAlpha": 100.0,
+      "modelMetrics": {
+        "mae": 11.558144439521987,
+        "rmse": 15.764293353390922,
+        "r2": 0.295053376214388
+      },
+      "baselineMetrics": {
+        "mae": 15.643435848800975,
+        "rmse": 18.93088210431452,
+        "r2": -0.016597226965370915
+      },
+      "leaveOneSourceOut": {
+        "bestAlpha": 100.0,
+        "sources": [
+          "amyloid_hydrophobic_2008",
+          "continuous_flow_oprd_2024",
+          "pdac_pegylation_2024",
+          "ram_spps_2025",
+          "sulfotyrosine_psc_2016",
+          "teabags_fmoc_2021",
+          "thioester_support_2008",
+          "trityl_anchor_2013"
+        ],
+        "metrics": {
+          "mae": 16.565721835339282,
+          "rmse": 20.813554460781713,
+          "r2": -0.22885241266787926
+        }
+      },
+      "improvement": {
+        "rmseDelta": 3.166588750923598,
+        "maeDelta": 4.085291409278987
+      },
+      "targetMean": 79.64016393442623,
+      "targetStd": 18.77571093952506,
+      "sources": [
+        "amyloid_hydrophobic_2008",
+        "continuous_flow_oprd_2024",
+        "pdac_pegylation_2024",
+        "ram_spps_2025",
+        "sulfotyrosine_psc_2016",
+        "teabags_fmoc_2021",
+        "thioester_support_2008",
+        "trityl_anchor_2013"
+      ]
+    }
+  ]
+}

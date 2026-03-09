@@ -1,0 +1,5 @@
+{
+  "name": "Peptide Synthesis Predictor",
+  "description": "A deep learning-based local model for predicting peptide and cyclic peptide synthesis outcomes, including purity, yield, and simulated mass spectra.",
+  "requestFramePermissions": []
+}

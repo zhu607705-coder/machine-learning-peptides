@@ -1,0 +1,3756 @@
+{
+  "dataset": "data/real/final_purity_yield_literature.csv",
+  "initialRowsWithTargets": 199,
+  "initialRowsWithBothTargets": 166,
+  "initialUniqueSources": 17,
+  "targetAvailability": {
+    "purityRows": 174,
+    "yieldRows": 191,
+    "purityOnlyRows": 8,
+    "yieldOnlyRows": 25,
+    "bothTargetRows": 166
+  },
+  "imputationStrategy": "mean",
+  "strictSemanticHeads": true,
+  "headEligibilityThresholds": {
+    "minRows": 20,
+    "minSources": 3,
+    "maxSourceShare": 0.7
+  },
+  "imputationJustification": "Mean imputation was selected because the literature dataset is small and highly heterogeneous across sources; KNN neighbors are unstable under grouped cross-validation.",
+  "sequenceSimilarityThreshold": 0.97,
+  "proteinEmbedding": {
+    "modelName": "facebook/esm2_t6_8M_UR50D",
+    "requestedComponents": 8,
+    "cacheDir": "/Users/zhuhangcheng/Downloads/星辰计划/机器学习多肽/peptide-synthesis-predictor/data/cache/protein_embeddings",
+    "maxRandomSearchIterationsForEmbeddingStage": 2
+  },
+  "bayesianCalibration": {
+    "enabled": false,
+    "draws": 1500,
+    "tune": 1500,
+    "chains": 4,
+    "targetAccept": 0.9,
+    "likelihood": "normal",
+    "studentTNu": 4.0,
+    "residualModel": "voting",
+    "unseenSourcePolicy": "population_mean"
+  },
+  "stageResults": [
+    {
+      "stage": "baseline_raw",
+      "description": "Raw literature subset with exact label parsing only.",
+      "cleaningSummary": {
+        "initial_rows": 166,
+        "exact_duplicates_removed": 0,
+        "near_duplicates_removed": 0,
+        "outliers_removed": 0,
+        "final_rows": 166,
+        "unique_sources": 13
+      },
+      "metrics": {
+        "purity": {
+          "rmse": 22.59080335066876,
+          "mae": 16.6672990696736,
+          "r2": -0.07555376459776242,
+          "accuracyWithinTolerance": 0.20481927710843373
+        },
+        "yield": {
+          "rmse": 33.422277403436006,
+          "mae": 29.69131046776085,
+          "r2": -0.3020962961841387,
+          "accuracyWithinTolerance": 0.14457831325301204
+        },
+        "combined": {
+          "rmse": 28.00654037705238,
+          "mae": 23.179304768717223,
+          "r2": -0.18882503039095055,
+          "jointToleranceAccuracy": 0.03614457831325301
+        }
+      },
+      "usesProteinEmbeddings": false,
+      "features": {
+        "standardized": [
+          "publication_year",
+          "length",
+          "avg_hydrophobicity",
+          "total_charge",
+          "molecular_weight",
+          "avg_volume",
+          "max_coupling_difficulty",
+          "source_size_log"
+        ],
+        "normalized": [
+          "unique_ratio",
+          "hydrophobic_ratio",
+          "bulky_ratio",
+          "polar_ratio",
+          "charged_ratio",
+          "aromatic_ratio",
+          "sulfur_ratio",
+          "longest_hydrophobic_run_norm",
+          "source_stage_freq",
+          "source_basis_freq"
+        ],
+        "binary": [
+          "n_term_basic",
+          "c_term_acidic",
+          "has_hatu",
+          "has_hbtu",
+          "has_dic_oxyma",
+          "has_microwave",
+          "has_flow",
+          "has_tfa",
+          "has_dmf"
+        ],
+        "categorical": [
+          "topology",
+          "purity_stage",
+          "yield_stage",
+          "yield_basis_class",
+          "chemistry_family",
+          "purity_stage_canon",
+          "yield_stage_canon",
+          "yield_basis_canon"
+        ]
+      }
+    },
+    {
+      "stage": "after_exact_dedup",
+      "description": "Remove exact duplicate records after target parsing.",
+      "cleaningSummary": {
+        "initial_rows": 166,
+        "exact_duplicates_removed": 0,
+        "near_duplicates_removed": 0,
+        "outliers_removed": 0,
+        "final_rows": 166,
+        "unique_sources": 13
+      },
+      "metrics": {
+        "purity": {
+          "rmse": 22.59080335066876,
+          "mae": 16.6672990696736,
+          "r2": -0.07555376459776242,
+          "accuracyWithinTolerance": 0.20481927710843373
+        },
+        "yield": {
+          "rmse": 33.422277403436006,
+          "mae": 29.69131046776085,
+          "r2": -0.3020962961841387,
+          "accuracyWithinTolerance": 0.14457831325301204
+        },
+        "combined": {
+          "rmse": 28.00654037705238,
+          "mae": 23.179304768717223,
+          "r2": -0.18882503039095055,
+          "jointToleranceAccuracy": 0.03614457831325301
+        }
+      },
+      "usesProteinEmbeddings": false,
+      "features": {
+        "standardized": [
+          "publication_year",
+          "length",
+          "avg_hydrophobicity",
+          "total_charge",
+          "molecular_weight",
+          "avg_volume",
+          "max_coupling_difficulty",
+          "source_size_log"
+        ],
+        "normalized": [
+          "unique_ratio",
+          "hydrophobic_ratio",
+          "bulky_ratio",
+          "polar_ratio",
+          "charged_ratio",
+          "aromatic_ratio",
+          "sulfur_ratio",
+          "longest_hydrophobic_run_norm",
+          "source_stage_freq",
+          "source_basis_freq"
+        ],
+        "binary": [
+          "n_term_basic",
+          "c_term_acidic",
+          "has_hatu",
+          "has_hbtu",
+          "has_dic_oxyma",
+          "has_microwave",
+          "has_flow",
+          "has_tfa",
+          "has_dmf"
+        ],
+        "categorical": [
+          "topology",
+          "purity_stage",
+          "yield_stage",
+          "yield_basis_class",
+          "chemistry_family",
+          "purity_stage_canon",
+          "yield_stage_canon",
+          "yield_basis_canon"
+        ]
+      }
+    },
+    {
+      "stage": "after_sequence_dedup",
+      "description": "Remove near-duplicate records using sequence similarity inside source-stage groups.",
+      "cleaningSummary": {
+        "initial_rows": 166,
+        "exact_duplicates_removed": 0,
+        "near_duplicates_removed": 0,
+        "outliers_removed": 0,
+        "final_rows": 166,
+        "unique_sources": 13
+      },
+      "metrics": {
+        "purity": {
+          "rmse": 22.59080335066876,
+          "mae": 16.6672990696736,
+          "r2": -0.07555376459776242,
+          "accuracyWithinTolerance": 0.20481927710843373
+        },
+        "yield": {
+          "rmse": 33.422277403436006,
+          "mae": 29.69131046776085,
+          "r2": -0.3020962961841387,
+          "accuracyWithinTolerance": 0.14457831325301204
+        },
+        "combined": {
+          "rmse": 28.00654037705238,
+          "mae": 23.179304768717223,
+          "r2": -0.18882503039095055,
+          "jointToleranceAccuracy": 0.03614457831325301
+        }
+      },
+      "usesProteinEmbeddings": false,
+      "features": {
+        "standardized": [
+          "publication_year",
+          "length",
+          "avg_hydrophobicity",
+          "total_charge",
+          "molecular_weight",
+          "avg_volume",
+          "max_coupling_difficulty",
+          "source_size_log"
+        ],
+        "normalized": [
+          "unique_ratio",
+          "hydrophobic_ratio",
+          "bulky_ratio",
+          "polar_ratio",
+          "charged_ratio",
+          "aromatic_ratio",
+          "sulfur_ratio",
+          "longest_hydrophobic_run_norm",
+          "source_stage_freq",
+          "source_basis_freq"
+        ],
+        "binary": [
+          "n_term_basic",
+          "c_term_acidic",
+          "has_hatu",
+          "has_hbtu",
+          "has_dic_oxyma",
+          "has_microwave",
+          "has_flow",
+          "has_tfa",
+          "has_dmf"
+        ],
+        "categorical": [
+          "topology",
+          "purity_stage",
+          "yield_stage",
+          "yield_basis_class",
+          "chemistry_family",
+          "purity_stage_canon",
+          "yield_stage_canon",
+          "yield_basis_canon"
+        ]
+      }
+    },
+    {
+      "stage": "after_outlier_removal",
+      "description": "Apply IQR and modified z-score outlier removal after de-duplication.",
+      "cleaningSummary": {
+        "initial_rows": 166,
+        "exact_duplicates_removed": 0,
+        "near_duplicates_removed": 0,
+        "outliers_removed": 8,
+        "final_rows": 158,
+        "unique_sources": 13
+      },
+      "metrics": {
+        "purity": {
+          "rmse": 24.191025033978303,
+          "mae": 17.174958578640297,
+          "r2": -0.2027965771949931,
+          "accuracyWithinTolerance": 0.23417721518987342
+        },
+        "yield": {
+          "rmse": 34.020889407078286,
+          "mae": 29.941500075012886,
+          "r2": -0.4502862339556122,
+          "accuracyWithinTolerance": 0.14556962025316456
+        },
+        "combined": {
+          "rmse": 29.105957220528296,
+          "mae": 23.55822932682659,
+          "r2": -0.32654140557530265,
+          "jointToleranceAccuracy": 0.04430379746835443
+        }
+      },
+      "usesProteinEmbeddings": false,
+      "features": {
+        "standardized": [
+          "publication_year",
+          "length",
+          "avg_hydrophobicity",
+          "total_charge",
+          "molecular_weight",
+          "avg_volume",
+          "max_coupling_difficulty",
+          "source_size_log"
+        ],
+        "normalized": [
+          "unique_ratio",
+          "hydrophobic_ratio",
+          "bulky_ratio",
+          "polar_ratio",
+          "charged_ratio",
+          "aromatic_ratio",
+          "sulfur_ratio",
+          "longest_hydrophobic_run_norm",
+          "source_stage_freq",
+          "source_basis_freq"
+        ],
+        "binary": [
+          "n_term_basic",
+          "c_term_acidic",
+          "has_hatu",
+          "has_hbtu",
+          "has_dic_oxyma",
+          "has_microwave",
+          "has_flow",
+          "has_tfa",
+          "has_dmf"
+        ],
+        "categorical": [
+          "topology",
+          "purity_stage",
+          "yield_stage",
+          "yield_basis_class",
+          "chemistry_family",
+          "purity_stage_canon",
+          "yield_stage_canon",
+          "yield_basis_canon"
+        ]
+      }
+    },
+    {
+      "stage": "after_imputation_and_scaling",
+      "description": "Add context variables and apply mean/KNN imputation with standardization and normalization.",
+      "cleaningSummary": {
+        "initial_rows": 166,
+        "exact_duplicates_removed": 0,
+        "near_duplicates_removed": 0,
+        "outliers_removed": 8,
+        "final_rows": 158,
+        "unique_sources": 13
+      },
+      "metrics": {
+        "purity": {
+          "rmse": 22.685115209106165,
+          "mae": 15.971759545041833,
+          "r2": -0.05770758855764724,
+          "accuracyWithinTolerance": 0.27848101265822783
+        },
+        "yield": {
+          "rmse": 35.62286711319264,
+          "mae": 31.407319816166375,
+          "r2": -0.5900842650271172,
+          "accuracyWithinTolerance": 0.13924050632911392
+        },
+        "combined": {
+          "rmse": 29.153991161149403,
+          "mae": 23.689539680604103,
+          "r2": -0.3238959267923822,
+          "jointToleranceAccuracy": 0.0379746835443038
+        }
+      },
+      "usesProteinEmbeddings": false,
+      "features": {
+        "standardized": [
+          "publication_year",
+          "length",
+          "avg_hydrophobicity",
+          "total_charge",
+          "molecular_weight",
+          "avg_volume",
+          "max_coupling_difficulty",
+          "source_size_log"
+        ],
+        "normalized": [
+          "unique_ratio",
+          "hydrophobic_ratio",
+          "bulky_ratio",
+          "polar_ratio",
+          "charged_ratio",
+          "aromatic_ratio",
+          "sulfur_ratio",
+          "longest_hydrophobic_run_norm",
+          "source_stage_freq",
+          "source_basis_freq",
+          "reagent_score",
+          "solvent_score",
+          "temperature_score"
+        ],
+        "binary": [
+          "n_term_basic",
+          "c_term_acidic",
+          "has_hatu",
+          "has_hbtu",
+          "has_dic_oxyma",
+          "has_microwave",
+          "has_flow",
+          "has_tfa",
+          "has_dmf"
+        ],
+        "categorical": [
+          "topology",
+          "purity_stage",
+          "yield_stage",
+          "yield_basis_class",
+          "chemistry_family",
+          "purity_stage_canon",
+          "yield_stage_canon",
+          "yield_basis_canon",
+          "coupling_reagent",
+          "solvent",
+          "temperature"
+        ]
+      }
+    },
+    {
+      "stage": "after_feature_selection",
+      "description": "Apply model-based feature selection before the ensemble regressor.",
+      "cleaningSummary": {
+        "initial_rows": 166,
+        "exact_duplicates_removed": 0,
+        "near_duplicates_removed": 0,
+        "outliers_removed": 8,
+        "final_rows": 158,
+        "unique_sources": 13
+      },
+      "metrics": {
+        "purity": {
+          "rmse": 21.92922906921638,
+          "mae": 15.00767833297568,
+          "r2": 0.011605386195278289,
+          "accuracyWithinTolerance": 0.2468354430379747
+        },
+        "yield": {
+          "rmse": 38.18562060723548,
+          "mae": 33.82929625427556,
+          "r2": -0.8270991054362284,
+          "accuracyWithinTolerance": 0.10759493670886076
+        },
+        "combined": {
+          "rmse": 30.057424838225927,
+          "mae": 24.41848729362562,
+          "r2": -0.4077468596204751,
+          "jointToleranceAccuracy": 0.04430379746835443
+        }
+      },
+      "usesProteinEmbeddings": false,
+      "features": {
+        "standardized": [
+          "publication_year",
+          "length",
+          "avg_hydrophobicity",
+          "total_charge",
+          "molecular_weight",
+          "avg_volume",
+          "max_coupling_difficulty",
+          "source_size_log"
+        ],
+        "normalized": [
+          "unique_ratio",
+          "hydrophobic_ratio",
+          "bulky_ratio",
+          "polar_ratio",
+          "charged_ratio",
+          "aromatic_ratio",
+          "sulfur_ratio",
+          "longest_hydrophobic_run_norm",
+          "source_stage_freq",
+          "source_basis_freq",
+          "reagent_score",
+          "solvent_score",
+          "temperature_score"
+        ],
+        "binary": [
+          "n_term_basic",
+          "c_term_acidic",
+          "has_hatu",
+          "has_hbtu",
+          "has_dic_oxyma",
+          "has_microwave",
+          "has_flow",
+          "has_tfa",
+          "has_dmf"
+        ],
+        "categorical": [
+          "topology",
+          "purity_stage",
+          "yield_stage",
+          "yield_basis_class",
+          "chemistry_family",
+          "purity_stage_canon",
+          "yield_stage_canon",
+          "yield_basis_canon",
+          "coupling_reagent",
+          "solvent",
+          "temperature"
+        ]
+      }
+    },
+    {
+      "stage": "final_tuned_ensemble",
+      "description": "Random-search tuned ensemble with grouped cross-validation and feature selection.",
+      "cleaningSummary": {
+        "initial_rows": 166,
+        "exact_duplicates_removed": 0,
+        "near_duplicates_removed": 0,
+        "outliers_removed": 8,
+        "final_rows": 158,
+        "unique_sources": 13
+      },
+      "metrics": {
+        "purity": {
+          "rmse": 22.914061154632254,
+          "mae": 16.22741876727629,
+          "r2": -0.0791648156180953,
+          "accuracyWithinTolerance": 0.1962025316455696
+        },
+        "yield": {
+          "rmse": 35.35599782304738,
+          "mae": 30.88599687254173,
+          "r2": -0.566349220609305,
+          "accuracyWithinTolerance": 0.1518987341772152
+        },
+        "combined": {
+          "rmse": 29.13502948883982,
+          "mae": 23.55670781990901,
+          "r2": -0.32275701811370017,
+          "jointToleranceAccuracy": 0.04430379746835443
+        }
+      },
+      "usesProteinEmbeddings": false,
+      "features": {
+        "standardized": [
+          "publication_year",
+          "length",
+          "avg_hydrophobicity",
+          "total_charge",
+          "molecular_weight",
+          "avg_volume",
+          "max_coupling_difficulty",
+          "source_size_log"
+        ],
+        "normalized": [
+          "unique_ratio",
+          "hydrophobic_ratio",
+          "bulky_ratio",
+          "polar_ratio",
+          "charged_ratio",
+          "aromatic_ratio",
+          "sulfur_ratio",
+          "longest_hydrophobic_run_norm",
+          "source_stage_freq",
+          "source_basis_freq",
+          "reagent_score",
+          "solvent_score",
+          "temperature_score"
+        ],
+        "binary": [
+          "n_term_basic",
+          "c_term_acidic",
+          "has_hatu",
+          "has_hbtu",
+          "has_dic_oxyma",
+          "has_microwave",
+          "has_flow",
+          "has_tfa",
+          "has_dmf"
+        ],
+        "categorical": [
+          "topology",
+          "purity_stage",
+          "yield_stage",
+          "yield_basis_class",
+          "chemistry_family",
+          "purity_stage_canon",
+          "yield_stage_canon",
+          "yield_basis_canon",
+          "coupling_reagent",
+          "solvent",
+          "temperature"
+        ]
+      }
+    },
+    {
+      "stage": "strict_semantic_head_loso",
+      "description": "Strict semantic head LOSO with eligible purity/yield heads and source-aware shrinkage calibration.",
+      "cleaningSummary": {
+        "initial_rows": 199,
+        "exact_duplicates_removed": 1,
+        "near_duplicates_removed": 4,
+        "outliers_removed": 9,
+        "final_rows": 182,
+        "unique_sources": 16
+      },
+      "metrics": {
+        "purity": {
+          "rmse": 26.268523712528758,
+          "mae": 21.086299632937763,
+          "r2": -0.9434176813448223,
+          "accuracyWithinTolerance": 0.2373046875
+        },
+        "yield": {
+          "rmse": 26.887899724824823,
+          "mae": 24.04031390787847,
+          "r2": -0.29741512697379047,
+          "accuracyWithinTolerance": 0.11796982167352538
+        },
+        "combined": {
+          "rmse": 26.57821171867679,
+          "mae": 22.56330677040812,
+          "r2": -0.6204164041593063,
+          "jointToleranceAccuracy": 0.0625
+        }
+      },
+      "usesProteinEmbeddings": false,
+      "features": {
+        "standardized": [
+          "publication_year",
+          "length",
+          "avg_hydrophobicity",
+          "total_charge",
+          "molecular_weight",
+          "avg_volume",
+          "max_coupling_difficulty",
+          "source_size_log"
+        ],
+        "normalized": [
+          "unique_ratio",
+          "hydrophobic_ratio",
+          "bulky_ratio",
+          "polar_ratio",
+          "charged_ratio",
+          "aromatic_ratio",
+          "sulfur_ratio",
+          "longest_hydrophobic_run_norm",
+          "source_stage_freq",
+          "source_basis_freq",
+          "reagent_score",
+          "solvent_score",
+          "temperature_score"
+        ],
+        "binary": [
+          "n_term_basic",
+          "c_term_acidic",
+          "has_hatu",
+          "has_hbtu",
+          "has_dic_oxyma",
+          "has_microwave",
+          "has_flow",
+          "has_tfa",
+          "has_dmf"
+        ],
+        "categorical": [
+          "topology",
+          "purity_stage",
+          "yield_stage",
+          "yield_basis_class",
+          "chemistry_family",
+          "purity_stage_canon",
+          "yield_stage_canon",
+          "yield_basis_canon",
+          "coupling_reagent",
+          "solvent",
+          "temperature"
+        ]
+      }
+    }
+  ],
+  "headEligibility": {
+    "purity": [
+      {
+        "head": "crude_hplc",
+        "nRows": 97,
+        "nSources": 8,
+        "maxSourceShare": 0.4845360824742268,
+        "eligible": true,
+        "reasons": []
+      },
+      {
+        "head": "purified_hplc",
+        "nRows": 41,
+        "nSources": 4,
+        "maxSourceShare": 0.4878048780487805,
+        "eligible": true,
+        "reasons": []
+      },
+      {
+        "head": "final_product",
+        "nRows": 28,
+        "nSources": 3,
+        "maxSourceShare": 0.4642857142857143,
+        "eligible": true,
+        "reasons": []
+      }
+    ],
+    "yield": [
+      {
+        "head": "isolated|isolated",
+        "nRows": 63,
+        "nSources": 10,
+        "maxSourceShare": 0.20634920634920634,
+        "eligible": true,
+        "reasons": []
+      },
+      {
+        "head": "crude|crude",
+        "nRows": 33,
+        "nSources": 3,
+        "maxSourceShare": 0.48484848484848486,
+        "eligible": true,
+        "reasons": []
+      },
+      {
+        "head": "recovery|recovery",
+        "nRows": 31,
+        "nSources": 2,
+        "maxSourceShare": 0.6451612903225806,
+        "eligible": false,
+        "reasons": [
+          "sources<3"
+        ]
+      }
+    ]
+  },
+  "headLevelMetrics": [
+    {
+      "target": "purity_target",
+      "head": "crude_hplc",
+      "nRows": 97,
+      "nSources": 8,
+      "metrics": {
+        "rmse": 31.667446473987095,
+        "mae": 25.545167659951257,
+        "r2": -0.9317904114401456,
+        "accuracyWithinTolerance": 0.14432989690721648
+      },
+      "intervalMetrics": {
+        "coverage": 0.2268041237113402,
+        "meanWidth": 21.416888619223098
+      },
+      "decision": {
+        "confidenceTier": "reject",
+        "servePrediction": false,
+        "reasons": [
+          "negative_r2",
+          "interval_too_wide"
+        ]
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "purity_target",
+      "head": "purified_hplc",
+      "nRows": 41,
+      "nSources": 4,
+      "metrics": {
+        "rmse": 12.499333707852736,
+        "mae": 9.286476206657081,
+        "r2": -0.9216865252663122,
+        "accuracyWithinTolerance": 0.34146341463414637
+      },
+      "intervalMetrics": {
+        "coverage": 0.2926829268292683,
+        "meanWidth": 6.628051498290325
+      },
+      "decision": {
+        "confidenceTier": "reject",
+        "servePrediction": false,
+        "reasons": [
+          "negative_r2"
+        ]
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "purity_target",
+      "head": "final_product",
+      "nRows": 28,
+      "nSources": 3,
+      "metrics": {
+        "rmse": 3.275465353900165,
+        "mae": 2.932602644218256,
+        "r2": -1.0932590032841651,
+        "accuracyWithinTolerance": 0.8928571428571429
+      },
+      "intervalMetrics": {
+        "coverage": 0.17857142857142858,
+        "meanWidth": 2.5810241994784704
+      },
+      "decision": {
+        "confidenceTier": "reject",
+        "servePrediction": false,
+        "reasons": [
+          "negative_r2"
+        ]
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "yield_target",
+      "head": "isolated|isolated",
+      "nRows": 63,
+      "nSources": 10,
+      "metrics": {
+        "rmse": 24.549335105938574,
+        "mae": 21.79215558742278,
+        "r2": 0.09244478134295542,
+        "accuracyWithinTolerance": 0.12698412698412698
+      },
+      "intervalMetrics": {
+        "coverage": 0.1111111111111111,
+        "meanWidth": 14.70202993441026
+      },
+      "decision": {
+        "confidenceTier": "low",
+        "servePrediction": true,
+        "reasons": [
+          "weak_signal"
+        ]
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "yield_target",
+      "head": "crude|crude",
+      "nRows": 33,
+      "nSources": 3,
+      "metrics": {
+        "rmse": 41.769674572282774,
+        "mae": 38.34677594714199,
+        "r2": -2.778341816262173,
+        "accuracyWithinTolerance": 0.06060606060606061
+      },
+      "intervalMetrics": {
+        "coverage": 0.06060606060606061,
+        "meanWidth": 28.605985776644115
+      },
+      "decision": {
+        "confidenceTier": "reject",
+        "servePrediction": false,
+        "reasons": [
+          "negative_r2"
+        ]
+      },
+      "usedBayesianCalibration": false
+    }
+  ],
+  "sourceCalibrationStats": [
+    {
+      "target": "purity_target",
+      "head": "crude_hplc",
+      "source_id": "amps_multiphosphorylated_2022",
+      "foldIndex": 0,
+      "nTrain": 89,
+      "nTest": 8,
+      "winsorizeBounds": [
+        29.483999999999998,
+        97.656
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": -0.07462731436895617,
+        "residualStd": 6.2008471530311775,
+        "sourceOffsets": {
+          "continuous_flow_oprd_2024": 0.20333333705709283,
+          "pdac_pegylation_2024": 0.165454893838479,
+          "ram_spps_2025": 1.2795458391307646,
+          "teabags_fmoc_2021": -0.22926253770979474,
+          "thioester_support_2008": 0.09986200210466036,
+          "trityl_anchor_2013": -1.4885297119256133,
+          "universal_peptide_platform_2025": 0.573536069035507
+        },
+        "sourceCounts": {
+          "continuous_flow_oprd_2024": 5,
+          "pdac_pegylation_2024": 12,
+          "ram_spps_2025": 3,
+          "teabags_fmoc_2021": 47,
+          "thioester_support_2008": 16,
+          "trityl_anchor_2013": 2,
+          "universal_peptide_platform_2025": 4
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "purity_target",
+      "head": "crude_hplc",
+      "source_id": "continuous_flow_oprd_2024",
+      "foldIndex": 1,
+      "nTrain": 92,
+      "nTest": 5,
+      "winsorizeBounds": [
+        12.25,
+        97.617
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": 0.0012680624568672226,
+        "residualStd": 6.298753399735851,
+        "sourceOffsets": {
+          "amps_multiphosphorylated_2022": -1.0145866811880473,
+          "pdac_pegylation_2024": -0.25076730541101716,
+          "ram_spps_2025": 1.554895541621463,
+          "teabags_fmoc_2021": -0.09231519508467143,
+          "thioester_support_2008": 0.4635439966240875,
+          "trityl_anchor_2013": -1.5098205866127392,
+          "universal_peptide_platform_2025": 1.1831352262273838
+        },
+        "sourceCounts": {
+          "amps_multiphosphorylated_2022": 8,
+          "pdac_pegylation_2024": 12,
+          "ram_spps_2025": 3,
+          "teabags_fmoc_2021": 47,
+          "thioester_support_2008": 16,
+          "trityl_anchor_2013": 2,
+          "universal_peptide_platform_2025": 4
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "purity_target",
+      "head": "crude_hplc",
+      "source_id": "pdac_pegylation_2024",
+      "foldIndex": 2,
+      "nTrain": 85,
+      "nTest": 12,
+      "winsorizeBounds": [
+        11.899999999999999,
+        97.708
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": -0.07045362397788466,
+        "residualStd": 5.8554095390312195,
+        "sourceOffsets": {
+          "amps_multiphosphorylated_2022": -1.1312175031940028,
+          "continuous_flow_oprd_2024": 0.1830731246734878,
+          "ram_spps_2025": 1.3307463330593206,
+          "teabags_fmoc_2021": -0.009920838053089796,
+          "thioester_support_2008": 0.30866071660891753,
+          "trityl_anchor_2013": -1.0814249550446446,
+          "universal_peptide_platform_2025": 0.4259009828442787
+        },
+        "sourceCounts": {
+          "amps_multiphosphorylated_2022": 8,
+          "continuous_flow_oprd_2024": 5,
+          "ram_spps_2025": 3,
+          "teabags_fmoc_2021": 47,
+          "thioester_support_2008": 16,
+          "trityl_anchor_2013": 2,
+          "universal_peptide_platform_2025": 4
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "purity_target",
+      "head": "crude_hplc",
+      "source_id": "ram_spps_2025",
+      "foldIndex": 3,
+      "nTrain": 94,
+      "nTest": 3,
+      "winsorizeBounds": [
+        12.35,
+        97.591
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": -0.06425331645995205,
+        "residualStd": 6.132044972085119,
+        "sourceOffsets": {
+          "amps_multiphosphorylated_2022": -0.9674229547085115,
+          "continuous_flow_oprd_2024": 0.20887892733161983,
+          "pdac_pegylation_2024": 0.12944546587159464,
+          "teabags_fmoc_2021": -0.16159707604344367,
+          "thioester_support_2008": 0.5432721511042911,
+          "trityl_anchor_2013": -1.0310989663705767,
+          "universal_peptide_platform_2025": 1.3887957515267042
+        },
+        "sourceCounts": {
+          "amps_multiphosphorylated_2022": 8,
+          "continuous_flow_oprd_2024": 5,
+          "pdac_pegylation_2024": 12,
+          "teabags_fmoc_2021": 47,
+          "thioester_support_2008": 16,
+          "trityl_anchor_2013": 2,
+          "universal_peptide_platform_2025": 4
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "purity_target",
+      "head": "crude_hplc",
+      "source_id": "teabags_fmoc_2021",
+      "foldIndex": 4,
+      "nTrain": 50,
+      "nTest": 47,
+      "winsorizeBounds": [
+        10.15,
+        96.551
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": -0.06154443915044944,
+        "residualStd": 4.7248640290793755,
+        "sourceOffsets": {
+          "amps_multiphosphorylated_2022": -0.956068737533413,
+          "continuous_flow_oprd_2024": 0.15192818417767162,
+          "pdac_pegylation_2024": -0.09721137601473631,
+          "ram_spps_2025": 1.0588988827430643,
+          "thioester_support_2008": 0.21281401397580205,
+          "trityl_anchor_2013": -1.2132278333797257,
+          "universal_peptide_platform_2025": 0.9016127351810991
+        },
+        "sourceCounts": {
+          "amps_multiphosphorylated_2022": 8,
+          "continuous_flow_oprd_2024": 5,
+          "pdac_pegylation_2024": 12,
+          "ram_spps_2025": 3,
+          "thioester_support_2008": 16,
+          "trityl_anchor_2013": 2,
+          "universal_peptide_platform_2025": 4
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "purity_target",
+      "head": "crude_hplc",
+      "source_id": "thioester_support_2008",
+      "foldIndex": 5,
+      "nTrain": 81,
+      "nTest": 16,
+      "winsorizeBounds": [
+        11.7,
+        97.76
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": -0.0023705592418678213,
+        "residualStd": 6.355571869400854,
+        "sourceOffsets": {
+          "amps_multiphosphorylated_2022": -1.0372363811658452,
+          "continuous_flow_oprd_2024": 0.4395856541166082,
+          "pdac_pegylation_2024": 0.39623828764832025,
+          "ram_spps_2025": 0.6716338866985812,
+          "teabags_fmoc_2021": -0.09473690122812273,
+          "trityl_anchor_2013": 0.05957893895401864,
+          "universal_peptide_platform_2025": 0.16537341350711812
+        },
+        "sourceCounts": {
+          "amps_multiphosphorylated_2022": 8,
+          "continuous_flow_oprd_2024": 5,
+          "pdac_pegylation_2024": 12,
+          "ram_spps_2025": 3,
+          "teabags_fmoc_2021": 47,
+          "trityl_anchor_2013": 2,
+          "universal_peptide_platform_2025": 4
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "purity_target",
+      "head": "crude_hplc",
+      "source_id": "trityl_anchor_2013",
+      "foldIndex": 6,
+      "nTrain": 95,
+      "nTest": 2,
+      "winsorizeBounds": [
+        12.4,
+        97.578
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": -0.09094734016228397,
+        "residualStd": 5.850535438456106,
+        "sourceOffsets": {
+          "amps_multiphosphorylated_2022": -0.8659242387869363,
+          "continuous_flow_oprd_2024": 0.3910315484045707,
+          "pdac_pegylation_2024": -0.22140406577535585,
+          "ram_spps_2025": 0.2514523324559943,
+          "teabags_fmoc_2021": -0.0690959247372321,
+          "thioester_support_2008": 0.3192634903460106,
+          "universal_peptide_platform_2025": 0.6652672075319338
+        },
+        "sourceCounts": {
+          "amps_multiphosphorylated_2022": 8,
+          "continuous_flow_oprd_2024": 5,
+          "pdac_pegylation_2024": 12,
+          "ram_spps_2025": 3,
+          "teabags_fmoc_2021": 47,
+          "thioester_support_2008": 16,
+          "universal_peptide_platform_2025": 4
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "purity_target",
+      "head": "crude_hplc",
+      "source_id": "universal_peptide_platform_2025",
+      "foldIndex": 7,
+      "nTrain": 93,
+      "nTest": 4,
+      "winsorizeBounds": [
+        12.299999999999999,
+        97.604
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": -0.07166573234909783,
+        "residualStd": 6.184574931065655,
+        "sourceOffsets": {
+          "amps_multiphosphorylated_2022": -0.8089049743456654,
+          "continuous_flow_oprd_2024": 0.5216129004583934,
+          "pdac_pegylation_2024": 0.19002145548555305,
+          "ram_spps_2025": 1.302892869451266,
+          "teabags_fmoc_2021": -0.01053299370070023,
+          "thioester_support_2008": 0.16870991843724878,
+          "trityl_anchor_2013": -1.6212949502429466
+        },
+        "sourceCounts": {
+          "amps_multiphosphorylated_2022": 8,
+          "continuous_flow_oprd_2024": 5,
+          "pdac_pegylation_2024": 12,
+          "ram_spps_2025": 3,
+          "teabags_fmoc_2021": 47,
+          "thioester_support_2008": 16,
+          "trityl_anchor_2013": 2
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "purity_target",
+      "head": "purified_hplc",
+      "source_id": "parallel_pec_2021",
+      "foldIndex": 0,
+      "nTrain": 21,
+      "nTest": 20,
+      "winsorizeBounds": [
+        95.0,
+        99.48
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": 0.00907808956915801,
+        "residualStd": 1.1266306951037368,
+        "sourceOffsets": {
+          "pdac_pegylation_2024": -0.0038563892238627777,
+          "stapled_bcl9_2025": -0.02328658273763848,
+          "sulfotyrosine_psc_2016": 0.024661952020050067
+        },
+        "sourceCounts": {
+          "pdac_pegylation_2024": 11,
+          "stapled_bcl9_2025": 4,
+          "sulfotyrosine_psc_2016": 6
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "purity_target",
+      "head": "purified_hplc",
+      "source_id": "pdac_pegylation_2024",
+      "foldIndex": 1,
+      "nTrain": 30,
+      "nTest": 11,
+      "winsorizeBounds": [
+        66.0,
+        99.471
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": 0.06500787962963651,
+        "residualStd": 2.2359603156316097,
+        "sourceOffsets": {
+          "parallel_pec_2021": -0.19712864211362802,
+          "stapled_bcl9_2025": 0.2199105049094229,
+          "sulfotyrosine_psc_2016": 0.26809286442326313
+        },
+        "sourceCounts": {
+          "parallel_pec_2021": 20,
+          "stapled_bcl9_2025": 4,
+          "sulfotyrosine_psc_2016": 6
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "purity_target",
+      "head": "purified_hplc",
+      "source_id": "stapled_bcl9_2025",
+      "foldIndex": 2,
+      "nTrain": 37,
+      "nTest": 4,
+      "winsorizeBounds": [
+        66.0,
+        99.464
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": 0.0186039886314746,
+        "residualStd": 2.3049107674291056,
+        "sourceOffsets": {
+          "parallel_pec_2021": -0.14197361800144628,
+          "pdac_pegylation_2024": 0.09205615859627206,
+          "sulfotyrosine_psc_2016": 0.18876744659052758
+        },
+        "sourceCounts": {
+          "parallel_pec_2021": 20,
+          "pdac_pegylation_2024": 11,
+          "sulfotyrosine_psc_2016": 6
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "purity_target",
+      "head": "purified_hplc",
+      "source_id": "sulfotyrosine_psc_2016",
+      "foldIndex": 3,
+      "nTrain": 35,
+      "nTest": 6,
+      "winsorizeBounds": [
+        66.0,
+        99.0
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": -0.08294031557066514,
+        "residualStd": 2.1626979290155948,
+        "sourceOffsets": {
+          "parallel_pec_2021": -0.09057645715604273,
+          "pdac_pegylation_2024": 0.1289168825952784,
+          "stapled_bcl9_2025": 0.022415700819623775
+        },
+        "sourceCounts": {
+          "parallel_pec_2021": 20,
+          "pdac_pegylation_2024": 11,
+          "stapled_bcl9_2025": 4
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "purity_target",
+      "head": "final_product",
+      "source_id": "amyloid_hydrophobic_2008",
+      "foldIndex": 0,
+      "nTrain": 15,
+      "nTest": 13,
+      "winsorizeBounds": [
+        90.154,
+        98.0
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": 0.0033041111110719613,
+        "residualStd": 0.7780955436533823,
+        "sourceOffsets": {
+          "elisa_peptides_2024": -0.007631624858023237,
+          "peptide_purification_transfer_2026": 0.008267593596191839
+        },
+        "sourceCounts": {
+          "elisa_peptides_2024": 8,
+          "peptide_purification_transfer_2026": 7
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "purity_target",
+      "head": "final_product",
+      "source_id": "elisa_peptides_2024",
+      "foldIndex": 1,
+      "nTrain": 20,
+      "nTest": 8,
+      "winsorizeBounds": [
+        91.442,
+        98.0
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": -0.002482861111148793,
+        "residualStd": 0.4375419957105335,
+        "sourceOffsets": {
+          "amyloid_hydrophobic_2008": 0.013616220252197705,
+          "peptide_purification_transfer_2026": -0.020424330378296555
+        },
+        "sourceCounts": {
+          "amyloid_hydrophobic_2008": 13,
+          "peptide_purification_transfer_2026": 7
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "purity_target",
+      "head": "final_product",
+      "source_id": "peptide_purification_transfer_2026",
+      "foldIndex": 2,
+      "nTrain": 21,
+      "nTest": 7,
+      "winsorizeBounds": [
+        90.4,
+        98.0
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": -0.0055628306878381705,
+        "residualStd": 0.6886155865648177,
+        "sourceOffsets": {
+          "amyloid_hydrophobic_2008": 0.009566510533716831,
+          "elisa_peptides_2024": -0.013245937662069461
+        },
+        "sourceCounts": {
+          "amyloid_hydrophobic_2008": 13,
+          "elisa_peptides_2024": 8
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "yield_target",
+      "head": "isolated|isolated",
+      "source_id": "amps_multiphosphorylated_2022",
+      "foldIndex": 0,
+      "nTrain": 55,
+      "nTest": 8,
+      "winsorizeBounds": [
+        0.5804,
+        86.006
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": 0.03048087729874486,
+        "residualStd": 3.717609997149805,
+        "sourceOffsets": {
+          "amyloid_hydrophobic_2008": -0.15285844516205851,
+          "continuous_flow_oprd_2024": 0.30326756232538415,
+          "hbd3_fmoc_2022": -0.05708472790907294,
+          "peptide_purification_transfer_2026": 0.05738028964122529,
+          "ram_spps_2025": 0.5790129457134113,
+          "stapled_bcl9_2025": -0.29512866006354066,
+          "sulfotyrosine_psc_2016": 0.03408474406421729,
+          "trityl_anchor_2013": -0.34754591922145855,
+          "universal_peptide_platform_2025": 0.002834687246897304
+        },
+        "sourceCounts": {
+          "amyloid_hydrophobic_2008": 13,
+          "continuous_flow_oprd_2024": 5,
+          "hbd3_fmoc_2022": 11,
+          "peptide_purification_transfer_2026": 7,
+          "ram_spps_2025": 3,
+          "stapled_bcl9_2025": 4,
+          "sulfotyrosine_psc_2016": 6,
+          "trityl_anchor_2013": 2,
+          "universal_peptide_platform_2025": 4
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "yield_target",
+      "head": "isolated|isolated",
+      "source_id": "amyloid_hydrophobic_2008",
+      "foldIndex": 1,
+      "nTrain": 50,
+      "nTest": 13,
+      "winsorizeBounds": [
+        0.5821,
+        86.06099999999999
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": -0.039320973441791765,
+        "residualStd": 3.8711508283899807,
+        "sourceOffsets": {
+          "amps_multiphosphorylated_2022": -0.5469856094098464,
+          "continuous_flow_oprd_2024": 0.33742653956480784,
+          "hbd3_fmoc_2022": 0.027480778253479197,
+          "peptide_purification_transfer_2026": 0.007380592775958667,
+          "ram_spps_2025": 0.661426125719319,
+          "stapled_bcl9_2025": -0.3835491076233532,
+          "sulfotyrosine_psc_2016": -0.38284974859291926,
+          "trityl_anchor_2013": -0.152533884015253,
+          "universal_peptide_platform_2025": 0.7386561496441402
+        },
+        "sourceCounts": {
+          "amps_multiphosphorylated_2022": 8,
+          "continuous_flow_oprd_2024": 5,
+          "hbd3_fmoc_2022": 11,
+          "peptide_purification_transfer_2026": 7,
+          "ram_spps_2025": 3,
+          "stapled_bcl9_2025": 4,
+          "sulfotyrosine_psc_2016": 6,
+          "trityl_anchor_2013": 2,
+          "universal_peptide_platform_2025": 4
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "yield_target",
+      "head": "isolated|isolated",
+      "source_id": "continuous_flow_oprd_2024",
+      "foldIndex": 2,
+      "nTrain": 58,
+      "nTest": 5,
+      "winsorizeBounds": [
+        0.5882,
+        74.72999999999999
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": 0.2010984014289017,
+        "residualStd": 4.12956045700789,
+        "sourceOffsets": {
+          "amps_multiphosphorylated_2022": -0.16927411335649437,
+          "amyloid_hydrophobic_2008": -0.28479188037252356,
+          "hbd3_fmoc_2022": -0.16990101127495255,
+          "peptide_purification_transfer_2026": -0.12663347096166577,
+          "ram_spps_2025": 1.844020419399572,
+          "stapled_bcl9_2025": -0.3466018744748901,
+          "sulfotyrosine_psc_2016": -0.19028403905835473,
+          "trityl_anchor_2013": -0.28512344798600175,
+          "universal_peptide_platform_2025": 0.4467863592111586
+        },
+        "sourceCounts": {
+          "amps_multiphosphorylated_2022": 8,
+          "amyloid_hydrophobic_2008": 13,
+          "hbd3_fmoc_2022": 11,
+          "peptide_purification_transfer_2026": 7,
+          "ram_spps_2025": 3,
+          "stapled_bcl9_2025": 4,
+          "sulfotyrosine_psc_2016": 6,
+          "trityl_anchor_2013": 2,
+          "universal_peptide_platform_2025": 4
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "yield_target",
+      "head": "isolated|isolated",
+      "source_id": "hbd3_fmoc_2022",
+      "foldIndex": 3,
+      "nTrain": 52,
+      "nTest": 11,
+      "winsorizeBounds": [
+        0.7,
+        86.039
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": 0.03941316609199804,
+        "residualStd": 3.061731378533982,
+        "sourceOffsets": {
+          "amps_multiphosphorylated_2022": -0.29040589385355486,
+          "amyloid_hydrophobic_2008": -0.12645304815840874,
+          "continuous_flow_oprd_2024": 0.3334900641442929,
+          "peptide_purification_transfer_2026": -0.1480609718445645,
+          "ram_spps_2025": 1.217984557405702,
+          "stapled_bcl9_2025": -0.45721569904267223,
+          "sulfotyrosine_psc_2016": -0.266122661071481,
+          "trityl_anchor_2013": -0.41556219478897394,
+          "universal_peptide_platform_2025": 0.5222902194541066
+        },
+        "sourceCounts": {
+          "amps_multiphosphorylated_2022": 8,
+          "amyloid_hydrophobic_2008": 13,
+          "continuous_flow_oprd_2024": 5,
+          "peptide_purification_transfer_2026": 7,
+          "ram_spps_2025": 3,
+          "stapled_bcl9_2025": 4,
+          "sulfotyrosine_psc_2016": 6,
+          "trityl_anchor_2013": 2,
+          "universal_peptide_platform_2025": 4
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "yield_target",
+      "head": "isolated|isolated",
+      "source_id": "peptide_purification_transfer_2026",
+      "foldIndex": 4,
+      "nTrain": 56,
+      "nTest": 7,
+      "winsorizeBounds": [
+        0.583,
+        85.995
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": 0.008163315284000414,
+        "residualStd": 3.914479335304374,
+        "sourceOffsets": {
+          "amps_multiphosphorylated_2022": -0.07825738214920096,
+          "amyloid_hydrophobic_2008": -0.17378114739413977,
+          "continuous_flow_oprd_2024": 0.3991078649775102,
+          "hbd3_fmoc_2022": -0.028252952269816497,
+          "ram_spps_2025": 0.5900034483697189,
+          "stapled_bcl9_2025": -0.16514411205062304,
+          "sulfotyrosine_psc_2016": -0.5432002072876618,
+          "trityl_anchor_2013": -0.1519878206743537,
+          "universal_peptide_platform_2025": 0.4901957393287447
+        },
+        "sourceCounts": {
+          "amps_multiphosphorylated_2022": 8,
+          "amyloid_hydrophobic_2008": 13,
+          "continuous_flow_oprd_2024": 5,
+          "hbd3_fmoc_2022": 11,
+          "ram_spps_2025": 3,
+          "stapled_bcl9_2025": 4,
+          "sulfotyrosine_psc_2016": 6,
+          "trityl_anchor_2013": 2,
+          "universal_peptide_platform_2025": 4
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "yield_target",
+      "head": "isolated|isolated",
+      "source_id": "ram_spps_2025",
+      "foldIndex": 5,
+      "nTrain": 60,
+      "nTest": 3,
+      "winsorizeBounds": [
+        0.5933999999999999,
+        85.951
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": 0.012572031937717299,
+        "residualStd": 3.6827871148797393,
+        "sourceOffsets": {
+          "amps_multiphosphorylated_2022": -0.0848782717196168,
+          "amyloid_hydrophobic_2008": -0.09867614036010894,
+          "continuous_flow_oprd_2024": 0.32693854772112696,
+          "hbd3_fmoc_2022": -0.05719790444343311,
+          "peptide_purification_transfer_2026": -0.059866036289549035,
+          "stapled_bcl9_2025": -0.2524352718411282,
+          "sulfotyrosine_psc_2016": -0.25823976156168643,
+          "trityl_anchor_2013": -0.08140064479306637,
+          "universal_peptide_platform_2025": 0.7695689806106001
+        },
+        "sourceCounts": {
+          "amps_multiphosphorylated_2022": 8,
+          "amyloid_hydrophobic_2008": 13,
+          "continuous_flow_oprd_2024": 5,
+          "hbd3_fmoc_2022": 11,
+          "peptide_purification_transfer_2026": 7,
+          "stapled_bcl9_2025": 4,
+          "sulfotyrosine_psc_2016": 6,
+          "trityl_anchor_2013": 2,
+          "universal_peptide_platform_2025": 4
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "yield_target",
+      "head": "isolated|isolated",
+      "source_id": "stapled_bcl9_2025",
+      "foldIndex": 6,
+      "nTrain": 59,
+      "nTest": 4,
+      "winsorizeBounds": [
+        0.5908,
+        85.962
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": 0.06528798161476722,
+        "residualStd": 3.890884339427565,
+        "sourceOffsets": {
+          "amps_multiphosphorylated_2022": -0.21872484276469878,
+          "amyloid_hydrophobic_2008": -0.13264977751624754,
+          "continuous_flow_oprd_2024": 0.40081474429366903,
+          "hbd3_fmoc_2022": -0.007507418893070962,
+          "peptide_purification_transfer_2026": 0.03711710886462209,
+          "ram_spps_2025": 0.696838750496442,
+          "sulfotyrosine_psc_2016": -0.19164382724524356,
+          "trityl_anchor_2013": -0.34340387152515695,
+          "universal_peptide_platform_2025": -0.018346211043027045
+        },
+        "sourceCounts": {
+          "amps_multiphosphorylated_2022": 8,
+          "amyloid_hydrophobic_2008": 13,
+          "continuous_flow_oprd_2024": 5,
+          "hbd3_fmoc_2022": 11,
+          "peptide_purification_transfer_2026": 7,
+          "ram_spps_2025": 3,
+          "sulfotyrosine_psc_2016": 6,
+          "trityl_anchor_2013": 2,
+          "universal_peptide_platform_2025": 4
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "yield_target",
+      "head": "isolated|isolated",
+      "source_id": "sulfotyrosine_psc_2016",
+      "foldIndex": 7,
+      "nTrain": 57,
+      "nTest": 6,
+      "winsorizeBounds": [
+        0.5856,
+        85.984
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": 0.10156611706585282,
+        "residualStd": 4.105816168140336,
+        "sourceOffsets": {
+          "amps_multiphosphorylated_2022": -0.21663370490759581,
+          "amyloid_hydrophobic_2008": -0.2542619638449356,
+          "continuous_flow_oprd_2024": 0.2612584891030844,
+          "hbd3_fmoc_2022": -0.02932456990161012,
+          "peptide_purification_transfer_2026": -0.13918624702482146,
+          "ram_spps_2025": 1.2361646228092908,
+          "stapled_bcl9_2025": -0.42588442697945417,
+          "trityl_anchor_2013": -0.2895061930672587,
+          "universal_peptide_platform_2025": 0.32110921294577077
+        },
+        "sourceCounts": {
+          "amps_multiphosphorylated_2022": 8,
+          "amyloid_hydrophobic_2008": 13,
+          "continuous_flow_oprd_2024": 5,
+          "hbd3_fmoc_2022": 11,
+          "peptide_purification_transfer_2026": 7,
+          "ram_spps_2025": 3,
+          "stapled_bcl9_2025": 4,
+          "trityl_anchor_2013": 2,
+          "universal_peptide_platform_2025": 4
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "yield_target",
+      "head": "isolated|isolated",
+      "source_id": "trityl_anchor_2013",
+      "foldIndex": 8,
+      "nTrain": 61,
+      "nTest": 2,
+      "winsorizeBounds": [
+        0.596,
+        85.94
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": 0.0732047899585252,
+        "residualStd": 3.8376519558354643,
+        "sourceOffsets": {
+          "amps_multiphosphorylated_2022": -0.24911076573015023,
+          "amyloid_hydrophobic_2008": -0.17990329194507781,
+          "continuous_flow_oprd_2024": 0.3254153185934322,
+          "hbd3_fmoc_2022": 0.004986517889596969,
+          "peptide_purification_transfer_2026": -0.07775218933037517,
+          "ram_spps_2025": 0.8205926302710521,
+          "stapled_bcl9_2025": -0.2117683905945822,
+          "sulfotyrosine_psc_2016": -0.3007283374960995,
+          "universal_peptide_platform_2025": 0.3027749105488776
+        },
+        "sourceCounts": {
+          "amps_multiphosphorylated_2022": 8,
+          "amyloid_hydrophobic_2008": 13,
+          "continuous_flow_oprd_2024": 5,
+          "hbd3_fmoc_2022": 11,
+          "peptide_purification_transfer_2026": 7,
+          "ram_spps_2025": 3,
+          "stapled_bcl9_2025": 4,
+          "sulfotyrosine_psc_2016": 6,
+          "universal_peptide_platform_2025": 4
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "yield_target",
+      "head": "isolated|isolated",
+      "source_id": "universal_peptide_platform_2025",
+      "foldIndex": 9,
+      "nTrain": 59,
+      "nTest": 4,
+      "winsorizeBounds": [
+        0.5908,
+        85.962
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": -0.005360771639230555,
+        "residualStd": 3.891620195176188,
+        "sourceOffsets": {
+          "amps_multiphosphorylated_2022": -0.21816833517358486,
+          "amyloid_hydrophobic_2008": -0.12433709156547924,
+          "continuous_flow_oprd_2024": 0.46493095047470584,
+          "hbd3_fmoc_2022": -0.021960198917560184,
+          "peptide_purification_transfer_2026": -0.09669776074732897,
+          "ram_spps_2025": 1.180453412124208,
+          "stapled_bcl9_2025": -0.20127830636620458,
+          "sulfotyrosine_psc_2016": -0.33564842167708603,
+          "trityl_anchor_2013": -0.28618672698754205
+        },
+        "sourceCounts": {
+          "amps_multiphosphorylated_2022": 8,
+          "amyloid_hydrophobic_2008": 13,
+          "continuous_flow_oprd_2024": 5,
+          "hbd3_fmoc_2022": 11,
+          "peptide_purification_transfer_2026": 7,
+          "ram_spps_2025": 3,
+          "stapled_bcl9_2025": 4,
+          "sulfotyrosine_psc_2016": 6,
+          "trityl_anchor_2013": 2
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "yield_target",
+      "head": "crude|crude",
+      "source_id": "pdac_pegylation_2024",
+      "foldIndex": 0,
+      "nTrain": 21,
+      "nTest": 12,
+      "winsorizeBounds": [
+        70.0,
+        99.4
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": -0.021240473041111214,
+        "residualStd": 3.797523556930041,
+        "sourceOffsets": {
+          "segetalins_bjoc_2025": -0.11407713685339954,
+          "thioester_support_2008": 0.05432244612066644
+        },
+        "sourceCounts": {
+          "segetalins_bjoc_2025": 5,
+          "thioester_support_2008": 16
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "yield_target",
+      "head": "crude|crude",
+      "source_id": "segetalins_bjoc_2025",
+      "foldIndex": 1,
+      "nTrain": 28,
+      "nTest": 5,
+      "winsorizeBounds": [
+        27.27,
+        99.19
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": 0.029774129818606658,
+        "residualStd": 7.227970014945506,
+        "sourceOffsets": {
+          "pdac_pegylation_2024": -0.13557872403798782,
+          "thioester_support_2008": 0.10975420517360916
+        },
+        "sourceCounts": {
+          "pdac_pegylation_2024": 12,
+          "thioester_support_2008": 16
+        }
+      },
+      "usedBayesianCalibration": false
+    },
+    {
+      "target": "yield_target",
+      "head": "crude|crude",
+      "source_id": "thioester_support_2008",
+      "foldIndex": 2,
+      "nTrain": 17,
+      "nTest": 16,
+      "winsorizeBounds": [
+        27.16,
+        88.2
+      ],
+      "sourceShrinkage": {
+        "priorStrength": 5.0,
+        "globalMean": 0.06398002723312815,
+        "residualStd": 9.944097739450491,
+        "sourceOffsets": {
+          "pdac_pegylation_2024": -0.050235895980572653,
+          "segetalins_bjoc_2025": 0.0854010231669735
+        },
+        "sourceCounts": {
+          "pdac_pegylation_2024": 12,
+          "segetalins_bjoc_2025": 5
+        }
+      },
+      "usedBayesianCalibration": false
+    }
+  ],
+  "weightedHeadSummary": {
+    "totalWeightedSupport": 1753.0,
+    "weightedRmse": 26.526096509427692,
+    "weightedMae": 22.314751661706605,
+    "weightedR2": -0.6747720098465438,
+    "weightedAccuracyWithinTolerance": 0.1876782658300057
+  },
+  "strictSemanticFilter": {
+    "inputRows": 185,
+    "outputRows": 182,
+    "outputUniqueSources": 16,
+    "inputPurityRows": 166,
+    "inputYieldRows": 177,
+    "outputPurityRows": 166,
+    "outputYieldRows": 174,
+    "purityEligibility": [
+      {
+        "head": "crude_hplc",
+        "nRows": 97,
+        "nSources": 8,
+        "maxSourceShare": 0.4845360824742268,
+        "eligible": true,
+        "reasons": []
+      },
+      {
+        "head": "purified_hplc",
+        "nRows": 41,
+        "nSources": 4,
+        "maxSourceShare": 0.4878048780487805,
+        "eligible": true,
+        "reasons": []
+      },
+      {
+        "head": "final_product",
+        "nRows": 28,
+        "nSources": 3,
+        "maxSourceShare": 0.4642857142857143,
+        "eligible": true,
+        "reasons": []
+      }
+    ],
+    "yieldEligibility": [
+      {
+        "head": "isolated|isolated",
+        "nRows": 63,
+        "nSources": 10,
+        "maxSourceShare": 0.20634920634920634,
+        "eligible": true,
+        "reasons": []
+      },
+      {
+        "head": "crude|crude",
+        "nRows": 33,
+        "nSources": 3,
+        "maxSourceShare": 0.48484848484848486,
+        "eligible": true,
+        "reasons": []
+      },
+      {
+        "head": "recovery|recovery",
+        "nRows": 31,
+        "nSources": 2,
+        "maxSourceShare": 0.6451612903225806,
+        "eligible": false,
+        "reasons": [
+          "sources<3"
+        ]
+      }
+    ],
+    "allowedPurityHeads": [
+      "crude_hplc",
+      "final_product",
+      "purified_hplc"
+    ],
+    "allowedYieldHeads": [
+      "crude|crude",
+      "isolated|isolated"
+    ]
+  },
+  "predictionPolicy": {
+    "acceptedHighConfidenceHeads": [],
+    "acceptedWarningHeads": [
+      {
+        "target": "yield_target",
+        "head": "isolated|isolated",
+        "confidenceTier": "low",
+        "servePrediction": true,
+        "reasons": [
+          "weak_signal"
+        ],
+        "rmse": 24.549335105938574,
+        "r2": 0.09244478134295542,
+        "nRows": 63,
+        "nSources": 10
+      }
+    ],
+    "rejectedHeads": [
+      {
+        "target": "purity_target",
+        "head": "crude_hplc",
+        "confidenceTier": "reject",
+        "servePrediction": false,
+        "reasons": [
+          "negative_r2",
+          "interval_too_wide"
+        ],
+        "rmse": 31.667446473987095,
+        "r2": -0.9317904114401456,
+        "nRows": 97,
+        "nSources": 8
+      },
+      {
+        "target": "purity_target",
+        "head": "purified_hplc",
+        "confidenceTier": "reject",
+        "servePrediction": false,
+        "reasons": [
+          "negative_r2"
+        ],
+        "rmse": 12.499333707852736,
+        "r2": -0.9216865252663122,
+        "nRows": 41,
+        "nSources": 4
+      },
+      {
+        "target": "purity_target",
+        "head": "final_product",
+        "confidenceTier": "reject",
+        "servePrediction": false,
+        "reasons": [
+          "negative_r2"
+        ],
+        "rmse": 3.275465353900165,
+        "r2": -1.0932590032841651,
+        "nRows": 28,
+        "nSources": 3
+      },
+      {
+        "target": "yield_target",
+        "head": "crude|crude",
+        "confidenceTier": "reject",
+        "servePrediction": false,
+        "reasons": [
+          "negative_r2"
+        ],
+        "rmse": 41.769674572282774,
+        "r2": -2.778341816262173,
+        "nRows": 33,
+        "nSources": 3
+      }
+    ]
+  },
+  "isolatedYieldPrimaryHead": {
+    "baseline": {
+      "rmse": 25.769334621854547,
+      "mae": 20.602237339380203,
+      "r2": 0.0,
+      "accuracyWithinTolerance": 0.2857142857142857
+    },
+    "final": {
+      "rmse": 24.549335105938574,
+      "mae": 21.79215558742278,
+      "r2": 0.09244478134295542,
+      "accuracyWithinTolerance": 0.12698412698412698
+    },
+    "rmseChangePct": 0.04734307399933063
+  },
+  "finalDatasetRows": 182,
+  "finalUniqueSources": 16,
+  "scalingRationale": {
+    "standardization": "Large-magnitude continuous physicochemical variables were standardized to zero mean and unit variance.",
+    "normalization": "Ratios and bounded heuristic synthesis scores were scaled to the [0, 1] range to keep them comparable and interpretable."
+  },
+  "finalModelsByStage": {
+    "final_tuned_ensemble": {
+      "datasetRows": 158,
+      "uniqueSources": 13,
+      "searchIterations": 2,
+      "semanticSubgroups": {
+        "purityByStage": [
+          {
+            "label": "crude_hplc",
+            "n": 81,
+            "rmse": 29.53993741827201,
+            "mae": 21.99609686261796,
+            "r2": -0.5567341250640279,
+            "accuracyWithinTolerance": 0.14814814814814814
+          },
+          {
+            "label": "crude_hplc_214nm",
+            "n": 16,
+            "rmse": 16.980885991914512,
+            "mae": 15.798355261451878,
+            "r2": -7.031522707215974,
+            "accuracyWithinTolerance": 0.0625
+          },
+          {
+            "label": "final_product",
+            "n": 20,
+            "rmse": 10.349724426780146,
+            "mae": 9.618245946207718,
+            "r2": -26.455461257675545,
+            "accuracyWithinTolerance": 0.0
+          },
+          {
+            "label": "purified_hplc",
+            "n": 41,
+            "rmse": 11.604645329831209,
+            "mae": 8.222188201224748,
+            "r2": -0.6564279969824305,
+            "accuracyWithinTolerance": 0.43902439024390244
+          }
+        ],
+        "yieldByStage": [
+          {
+            "label": "crude",
+            "n": 75,
+            "rmse": 30.53984618103404,
+            "mae": 25.59131766567352,
+            "r2": -0.6092299326295201,
+            "accuracyWithinTolerance": 0.26666666666666666
+          },
+          {
+            "label": "isolated",
+            "n": 52,
+            "rmse": 40.4653555866064,
+            "mae": 37.35334253614007,
+            "r2": -1.3074313497290104,
+            "accuracyWithinTolerance": 0.019230769230769232
+          },
+          {
+            "label": "recovery",
+            "n": 31,
+            "rmse": 36.9869438454798,
+            "mae": 32.84725384054182,
+            "r2": -1.5744836827045847,
+            "accuracyWithinTolerance": 0.0967741935483871
+          }
+        ],
+        "yieldByBasis": [
+          {
+            "label": "crude",
+            "n": 28,
+            "rmse": 38.84442870458665,
+            "mae": 35.10284328690684,
+            "r2": -1.8529211937875631,
+            "accuracyWithinTolerance": 0.17857142857142858
+          },
+          {
+            "label": "isolated",
+            "n": 52,
+            "rmse": 40.4653555866064,
+            "mae": 37.35334253614007,
+            "r2": -1.3074313497290104,
+            "accuracyWithinTolerance": 0.019230769230769232
+          },
+          {
+            "label": "other",
+            "n": 47,
+            "rmse": 24.277761209084947,
+            "mae": 19.924876870045168,
+            "r2": -0.3901676561365661,
+            "accuracyWithinTolerance": 0.3191489361702128
+          },
+          {
+            "label": "recovery",
+            "n": 31,
+            "rmse": 36.9869438454798,
+            "mae": 32.84725384054182,
+            "r2": -1.5744836827045847,
+            "accuracyWithinTolerance": 0.0967741935483871
+          }
+        ]
+      },
+      "purity": {
+        "bestParams": {
+          "selector__threshold": "median",
+          "selector__estimator__max_depth": 4,
+          "regressor__weights": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "regressor__ridge__alpha": 0.1,
+          "regressor__rf__n_estimators": 300,
+          "regressor__rf__min_samples_leaf": 1,
+          "regressor__rf__max_depth": 4,
+          "regressor__gbr__n_estimators": 120,
+          "regressor__gbr__max_depth": 3,
+          "regressor__gbr__learning_rate": 0.08,
+          "regressor__et__n_estimators": 200,
+          "regressor__et__min_samples_leaf": 2,
+          "regressor__et__max_depth": 4
+        },
+        "cvRmseDuringSearch": 20.546516952478413,
+        "featureAnalysis": {
+          "transformedFeatureCount": 65,
+          "selectedFeatures": [
+            "std__publication_year",
+            "std__length",
+            "std__avg_hydrophobicity",
+            "std__total_charge",
+            "std__molecular_weight",
+            "std__avg_volume",
+            "std__max_coupling_difficulty",
+            "std__source_size_log",
+            "norm__unique_ratio",
+            "norm__hydrophobic_ratio",
+            "norm__bulky_ratio",
+            "norm__polar_ratio",
+            "norm__charged_ratio",
+            "norm__aromatic_ratio",
+            "norm__sulfur_ratio",
+            "norm__longest_hydrophobic_run_norm",
+            "norm__source_stage_freq",
+            "norm__source_basis_freq",
+            "norm__reagent_score",
+            "norm__solvent_score",
+            "norm__temperature_score",
+            "binary__n_term_basic",
+            "binary__c_term_acidic",
+            "binary__has_hatu",
+            "binary__has_hbtu",
+            "binary__has_dic_oxyma",
+            "binary__has_microwave",
+            "binary__has_flow",
+            "binary__has_tfa",
+            "binary__has_dmf",
+            "cat__topology_linear",
+            "cat__topology_stapled",
+            "cat__purity_stage_crude_hplc",
+            "cat__purity_stage_crude_hplc_214nm",
+            "cat__purity_stage_final_product",
+            "cat__purity_stage_purified_hplc",
+            "cat__yield_stage_crude",
+            "cat__yield_stage_isolated",
+            "cat__yield_stage_recovery",
+            "cat__yield_basis_class_crude",
+            "cat__yield_basis_class_isolated",
+            "cat__yield_basis_class_other",
+            "cat__yield_basis_class_recovery",
+            "cat__chemistry_family_canonical_or_simple_modified",
+            "cat__chemistry_family_flow",
+            "cat__chemistry_family_stapled",
+            "cat__chemistry_family_sulfated",
+            "cat__purity_stage_canon_crude_hplc",
+            "cat__purity_stage_canon_final_product",
+            "cat__purity_stage_canon_purified_hplc",
+            "cat__yield_stage_canon_crude",
+            "cat__yield_stage_canon_isolated",
+            "cat__yield_stage_canon_recovery",
+            "cat__yield_basis_canon_crude",
+            "cat__yield_basis_canon_isolated",
+            "cat__yield_basis_canon_other",
+            "cat__yield_basis_canon_recovery",
+            "cat__coupling_reagent_HATU",
+            "cat__coupling_reagent_HBTU",
+            "cat__coupling_reagent_PyBOP",
+            "cat__coupling_reagent_unknown",
+            "cat__solvent_NMP",
+            "cat__solvent_unknown",
+            "cat__temperature_Microwave 90°C",
+            "cat__temperature_unknown"
+          ],
+          "selectorImportances": [
+            {
+              "feature": "cat__temperature_unknown",
+              "importance": 0.5053430525724532
+            },
+            {
+              "feature": "cat__yield_basis_canon_other",
+              "importance": 0.14537774268272208
+            },
+            {
+              "feature": "cat__yield_basis_class_other",
+              "importance": 0.14234409040051096
+            },
+            {
+              "feature": "std__source_size_log",
+              "importance": 0.04092893249318103
+            },
+            {
+              "feature": "norm__longest_hydrophobic_run_norm",
+              "importance": 0.028738471105983234
+            },
+            {
+              "feature": "cat__yield_basis_class_crude",
+              "importance": 0.01623279788228705
+            },
+            {
+              "feature": "norm__bulky_ratio",
+              "importance": 0.016160521763817833
+            },
+            {
+              "feature": "cat__yield_stage_crude",
+              "importance": 0.01484086961308313
+            },
+            {
+              "feature": "cat__yield_basis_canon_crude",
+              "importance": 0.01478623108275262
+            },
+            {
+              "feature": "cat__yield_stage_canon_crude",
+              "importance": 0.014231338306846694
+            },
+            {
+              "feature": "norm__unique_ratio",
+              "importance": 0.012699764692758296
+            },
+            {
+              "feature": "std__avg_hydrophobicity",
+              "importance": 0.0077737962065510605
+            },
+            {
+              "feature": "norm__hydrophobic_ratio",
+              "importance": 0.007576465610919012
+            },
+            {
+              "feature": "norm__aromatic_ratio",
+              "importance": 0.0055321842773202795
+            },
+            {
+              "feature": "norm__sulfur_ratio",
+              "importance": 0.005507711279506679
+            }
+          ],
+          "permutationImportance": [
+            {
+              "feature": "temperature",
+              "importanceMean": 8.599867746022543,
+              "importanceStd": 0.4754561872692139
+            },
+            {
+              "feature": "purity_stage",
+              "importanceMean": 3.8485026976096064,
+              "importanceStd": 0.3884807279430963
+            },
+            {
+              "feature": "publication_year",
+              "importanceMean": 2.2275960162095427,
+              "importanceStd": 0.362622100280258
+            },
+            {
+              "feature": "molecular_weight",
+              "importanceMean": 1.2186683191565755,
+              "importanceStd": 0.1838256110767437
+            },
+            {
+              "feature": "yield_basis_class",
+              "importanceMean": 1.0768974979551598,
+              "importanceStd": 0.2130096580991993
+            },
+            {
+              "feature": "total_charge",
+              "importanceMean": 0.7931537695281328,
+              "importanceStd": 0.15147625818592728
+            },
+            {
+              "feature": "longest_hydrophobic_run_norm",
+              "importanceMean": 0.7648271831987928,
+              "importanceStd": 0.2332338023286184
+            },
+            {
+              "feature": "yield_basis_canon",
+              "importanceMean": 0.7420908773748426,
+              "importanceStd": 0.1709647422345954
+            },
+            {
+              "feature": "bulky_ratio",
+              "importanceMean": 0.7292599807811142,
+              "importanceStd": 0.18748635563664376
+            },
+            {
+              "feature": "avg_hydrophobicity",
+              "importanceMean": 0.6779679762718731,
+              "importanceStd": 0.22762433196914061
+            },
+            {
+              "feature": "max_coupling_difficulty",
+              "importanceMean": 0.6240866221755972,
+              "importanceStd": 0.15367269803366154
+            },
+            {
+              "feature": "source_size_log",
+              "importanceMean": 0.5562828523571759,
+              "importanceStd": 0.14061595165524407
+            }
+          ],
+          "selectedFeatureCount": 65
+        }
+      },
+      "yield": {
+        "bestParams": {
+          "selector__threshold": "median",
+          "selector__estimator__max_depth": 4,
+          "regressor__weights": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "regressor__ridge__alpha": 0.1,
+          "regressor__rf__n_estimators": 300,
+          "regressor__rf__min_samples_leaf": 1,
+          "regressor__rf__max_depth": 4,
+          "regressor__gbr__n_estimators": 120,
+          "regressor__gbr__max_depth": 3,
+          "regressor__gbr__learning_rate": 0.08,
+          "regressor__et__n_estimators": 200,
+          "regressor__et__min_samples_leaf": 2,
+          "regressor__et__max_depth": 4
+        },
+        "cvRmseDuringSearch": 35.65909317918775,
+        "featureAnalysis": {
+          "transformedFeatureCount": 65,
+          "selectedFeatures": [
+            "std__publication_year",
+            "std__length",
+            "std__avg_hydrophobicity",
+            "std__total_charge",
+            "std__molecular_weight",
+            "std__avg_volume",
+            "std__max_coupling_difficulty",
+            "std__source_size_log",
+            "norm__unique_ratio",
+            "norm__hydrophobic_ratio",
+            "norm__bulky_ratio",
+            "norm__polar_ratio",
+            "norm__charged_ratio",
+            "norm__aromatic_ratio",
+            "norm__sulfur_ratio",
+            "norm__longest_hydrophobic_run_norm",
+            "norm__reagent_score",
+            "binary__has_hatu",
+            "binary__has_hbtu",
+            "binary__has_microwave",
+            "binary__has_tfa",
+            "cat__topology_linear",
+            "cat__topology_stapled",
+            "cat__purity_stage_crude_hplc",
+            "cat__purity_stage_crude_hplc_214nm",
+            "cat__purity_stage_final_product",
+            "cat__chemistry_family_canonical_or_simple_modified",
+            "cat__chemistry_family_stapled",
+            "cat__chemistry_family_sulfated",
+            "cat__purity_stage_canon_crude_hplc",
+            "cat__purity_stage_canon_final_product",
+            "cat__solvent_NMP",
+            "cat__solvent_unknown"
+          ],
+          "selectorImportances": [
+            {
+              "feature": "binary__has_tfa",
+              "importance": 0.5027687413059422
+            },
+            {
+              "feature": "cat__purity_stage_crude_hplc_214nm",
+              "importance": 0.2460897798547395
+            },
+            {
+              "feature": "cat__chemistry_family_sulfated",
+              "importance": 0.0679121968889559
+            },
+            {
+              "feature": "std__publication_year",
+              "importance": 0.04135477800929121
+            },
+            {
+              "feature": "binary__has_microwave",
+              "importance": 0.02667097255241795
+            },
+            {
+              "feature": "cat__topology_linear",
+              "importance": 0.02549308419616025
+            },
+            {
+              "feature": "cat__topology_stapled",
+              "importance": 0.024138010088504552
+            },
+            {
+              "feature": "cat__chemistry_family_stapled",
+              "importance": 0.02315183861374548
+            },
+            {
+              "feature": "std__avg_hydrophobicity",
+              "importance": 0.012714748762438182
+            },
+            {
+              "feature": "norm__aromatic_ratio",
+              "importance": 0.004362724502998293
+            },
+            {
+              "feature": "std__source_size_log",
+              "importance": 0.004000146482319737
+            },
+            {
+              "feature": "std__avg_volume",
+              "importance": 0.0026384948106803535
+            },
+            {
+              "feature": "norm__charged_ratio",
+              "importance": 0.002464047852663942
+            },
+            {
+              "feature": "norm__polar_ratio",
+              "importance": 0.0023767826298443533
+            },
+            {
+              "feature": "std__molecular_weight",
+              "importance": 0.0018594996187882218
+            }
+          ],
+          "permutationImportance": [
+            {
+              "feature": "has_tfa",
+              "importanceMean": 5.756204222377231,
+              "importanceStd": 0.6439601098979975
+            },
+            {
+              "feature": "purity_stage",
+              "importanceMean": 4.222849465167071,
+              "importanceStd": 0.4946300733448446
+            },
+            {
+              "feature": "avg_hydrophobicity",
+              "importanceMean": 2.549640092316551,
+              "importanceStd": 0.41530486530359073
+            },
+            {
+              "feature": "chemistry_family",
+              "importanceMean": 2.0603382402343122,
+              "importanceStd": 0.3632580059730739
+            },
+            {
+              "feature": "length",
+              "importanceMean": 1.8689966615010207,
+              "importanceStd": 0.29676401697820465
+            },
+            {
+              "feature": "source_size_log",
+              "importanceMean": 1.6684641547261954,
+              "importanceStd": 0.22416520994518352
+            },
+            {
+              "feature": "purity_stage_canon",
+              "importanceMean": 1.1649470842852525,
+              "importanceStd": 0.2470161733808896
+            },
+            {
+              "feature": "molecular_weight",
+              "importanceMean": 1.1403931961598484,
+              "importanceStd": 0.26891394167731847
+            },
+            {
+              "feature": "polar_ratio",
+              "importanceMean": 1.0816003458929135,
+              "importanceStd": 0.21108180813472993
+            },
+            {
+              "feature": "hydrophobic_ratio",
+              "importanceMean": 1.0454355548865173,
+              "importanceStd": 0.3023232432016499
+            },
+            {
+              "feature": "has_microwave",
+              "importanceMean": 0.6147471784775456,
+              "importanceStd": 0.22177549987919765
+            },
+            {
+              "feature": "topology",
+              "importanceMean": 0.5446699283460469,
+              "importanceStd": 0.14763090536044707
+            }
+          ],
+          "selectedFeatureCount": 33
+        }
+      }
+    },
+    "strict_semantic_head_loso": {
+      "headLevelMetrics": [
+        {
+          "target": "purity_target",
+          "head": "crude_hplc",
+          "nRows": 97,
+          "nSources": 8,
+          "metrics": {
+            "rmse": 31.667446473987095,
+            "mae": 25.545167659951257,
+            "r2": -0.9317904114401456,
+            "accuracyWithinTolerance": 0.14432989690721648
+          },
+          "intervalMetrics": {
+            "coverage": 0.2268041237113402,
+            "meanWidth": 21.416888619223098
+          },
+          "decision": {
+            "confidenceTier": "reject",
+            "servePrediction": false,
+            "reasons": [
+              "negative_r2",
+              "interval_too_wide"
+            ]
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "purity_target",
+          "head": "purified_hplc",
+          "nRows": 41,
+          "nSources": 4,
+          "metrics": {
+            "rmse": 12.499333707852736,
+            "mae": 9.286476206657081,
+            "r2": -0.9216865252663122,
+            "accuracyWithinTolerance": 0.34146341463414637
+          },
+          "intervalMetrics": {
+            "coverage": 0.2926829268292683,
+            "meanWidth": 6.628051498290325
+          },
+          "decision": {
+            "confidenceTier": "reject",
+            "servePrediction": false,
+            "reasons": [
+              "negative_r2"
+            ]
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "purity_target",
+          "head": "final_product",
+          "nRows": 28,
+          "nSources": 3,
+          "metrics": {
+            "rmse": 3.275465353900165,
+            "mae": 2.932602644218256,
+            "r2": -1.0932590032841651,
+            "accuracyWithinTolerance": 0.8928571428571429
+          },
+          "intervalMetrics": {
+            "coverage": 0.17857142857142858,
+            "meanWidth": 2.5810241994784704
+          },
+          "decision": {
+            "confidenceTier": "reject",
+            "servePrediction": false,
+            "reasons": [
+              "negative_r2"
+            ]
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "yield_target",
+          "head": "isolated|isolated",
+          "nRows": 63,
+          "nSources": 10,
+          "metrics": {
+            "rmse": 24.549335105938574,
+            "mae": 21.79215558742278,
+            "r2": 0.09244478134295542,
+            "accuracyWithinTolerance": 0.12698412698412698
+          },
+          "intervalMetrics": {
+            "coverage": 0.1111111111111111,
+            "meanWidth": 14.70202993441026
+          },
+          "decision": {
+            "confidenceTier": "low",
+            "servePrediction": true,
+            "reasons": [
+              "weak_signal"
+            ]
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "yield_target",
+          "head": "crude|crude",
+          "nRows": 33,
+          "nSources": 3,
+          "metrics": {
+            "rmse": 41.769674572282774,
+            "mae": 38.34677594714199,
+            "r2": -2.778341816262173,
+            "accuracyWithinTolerance": 0.06060606060606061
+          },
+          "intervalMetrics": {
+            "coverage": 0.06060606060606061,
+            "meanWidth": 28.605985776644115
+          },
+          "decision": {
+            "confidenceTier": "reject",
+            "servePrediction": false,
+            "reasons": [
+              "negative_r2"
+            ]
+          },
+          "usedBayesianCalibration": false
+        }
+      ],
+      "sourceCalibrationStats": [
+        {
+          "target": "purity_target",
+          "head": "crude_hplc",
+          "source_id": "amps_multiphosphorylated_2022",
+          "foldIndex": 0,
+          "nTrain": 89,
+          "nTest": 8,
+          "winsorizeBounds": [
+            29.483999999999998,
+            97.656
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": -0.07462731436895617,
+            "residualStd": 6.2008471530311775,
+            "sourceOffsets": {
+              "continuous_flow_oprd_2024": 0.20333333705709283,
+              "pdac_pegylation_2024": 0.165454893838479,
+              "ram_spps_2025": 1.2795458391307646,
+              "teabags_fmoc_2021": -0.22926253770979474,
+              "thioester_support_2008": 0.09986200210466036,
+              "trityl_anchor_2013": -1.4885297119256133,
+              "universal_peptide_platform_2025": 0.573536069035507
+            },
+            "sourceCounts": {
+              "continuous_flow_oprd_2024": 5,
+              "pdac_pegylation_2024": 12,
+              "ram_spps_2025": 3,
+              "teabags_fmoc_2021": 47,
+              "thioester_support_2008": 16,
+              "trityl_anchor_2013": 2,
+              "universal_peptide_platform_2025": 4
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "purity_target",
+          "head": "crude_hplc",
+          "source_id": "continuous_flow_oprd_2024",
+          "foldIndex": 1,
+          "nTrain": 92,
+          "nTest": 5,
+          "winsorizeBounds": [
+            12.25,
+            97.617
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": 0.0012680624568672226,
+            "residualStd": 6.298753399735851,
+            "sourceOffsets": {
+              "amps_multiphosphorylated_2022": -1.0145866811880473,
+              "pdac_pegylation_2024": -0.25076730541101716,
+              "ram_spps_2025": 1.554895541621463,
+              "teabags_fmoc_2021": -0.09231519508467143,
+              "thioester_support_2008": 0.4635439966240875,
+              "trityl_anchor_2013": -1.5098205866127392,
+              "universal_peptide_platform_2025": 1.1831352262273838
+            },
+            "sourceCounts": {
+              "amps_multiphosphorylated_2022": 8,
+              "pdac_pegylation_2024": 12,
+              "ram_spps_2025": 3,
+              "teabags_fmoc_2021": 47,
+              "thioester_support_2008": 16,
+              "trityl_anchor_2013": 2,
+              "universal_peptide_platform_2025": 4
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "purity_target",
+          "head": "crude_hplc",
+          "source_id": "pdac_pegylation_2024",
+          "foldIndex": 2,
+          "nTrain": 85,
+          "nTest": 12,
+          "winsorizeBounds": [
+            11.899999999999999,
+            97.708
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": -0.07045362397788466,
+            "residualStd": 5.8554095390312195,
+            "sourceOffsets": {
+              "amps_multiphosphorylated_2022": -1.1312175031940028,
+              "continuous_flow_oprd_2024": 0.1830731246734878,
+              "ram_spps_2025": 1.3307463330593206,
+              "teabags_fmoc_2021": -0.009920838053089796,
+              "thioester_support_2008": 0.30866071660891753,
+              "trityl_anchor_2013": -1.0814249550446446,
+              "universal_peptide_platform_2025": 0.4259009828442787
+            },
+            "sourceCounts": {
+              "amps_multiphosphorylated_2022": 8,
+              "continuous_flow_oprd_2024": 5,
+              "ram_spps_2025": 3,
+              "teabags_fmoc_2021": 47,
+              "thioester_support_2008": 16,
+              "trityl_anchor_2013": 2,
+              "universal_peptide_platform_2025": 4
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "purity_target",
+          "head": "crude_hplc",
+          "source_id": "ram_spps_2025",
+          "foldIndex": 3,
+          "nTrain": 94,
+          "nTest": 3,
+          "winsorizeBounds": [
+            12.35,
+            97.591
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": -0.06425331645995205,
+            "residualStd": 6.132044972085119,
+            "sourceOffsets": {
+              "amps_multiphosphorylated_2022": -0.9674229547085115,
+              "continuous_flow_oprd_2024": 0.20887892733161983,
+              "pdac_pegylation_2024": 0.12944546587159464,
+              "teabags_fmoc_2021": -0.16159707604344367,
+              "thioester_support_2008": 0.5432721511042911,
+              "trityl_anchor_2013": -1.0310989663705767,
+              "universal_peptide_platform_2025": 1.3887957515267042
+            },
+            "sourceCounts": {
+              "amps_multiphosphorylated_2022": 8,
+              "continuous_flow_oprd_2024": 5,
+              "pdac_pegylation_2024": 12,
+              "teabags_fmoc_2021": 47,
+              "thioester_support_2008": 16,
+              "trityl_anchor_2013": 2,
+              "universal_peptide_platform_2025": 4
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "purity_target",
+          "head": "crude_hplc",
+          "source_id": "teabags_fmoc_2021",
+          "foldIndex": 4,
+          "nTrain": 50,
+          "nTest": 47,
+          "winsorizeBounds": [
+            10.15,
+            96.551
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": -0.06154443915044944,
+            "residualStd": 4.7248640290793755,
+            "sourceOffsets": {
+              "amps_multiphosphorylated_2022": -0.956068737533413,
+              "continuous_flow_oprd_2024": 0.15192818417767162,
+              "pdac_pegylation_2024": -0.09721137601473631,
+              "ram_spps_2025": 1.0588988827430643,
+              "thioester_support_2008": 0.21281401397580205,
+              "trityl_anchor_2013": -1.2132278333797257,
+              "universal_peptide_platform_2025": 0.9016127351810991
+            },
+            "sourceCounts": {
+              "amps_multiphosphorylated_2022": 8,
+              "continuous_flow_oprd_2024": 5,
+              "pdac_pegylation_2024": 12,
+              "ram_spps_2025": 3,
+              "thioester_support_2008": 16,
+              "trityl_anchor_2013": 2,
+              "universal_peptide_platform_2025": 4
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "purity_target",
+          "head": "crude_hplc",
+          "source_id": "thioester_support_2008",
+          "foldIndex": 5,
+          "nTrain": 81,
+          "nTest": 16,
+          "winsorizeBounds": [
+            11.7,
+            97.76
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": -0.0023705592418678213,
+            "residualStd": 6.355571869400854,
+            "sourceOffsets": {
+              "amps_multiphosphorylated_2022": -1.0372363811658452,
+              "continuous_flow_oprd_2024": 0.4395856541166082,
+              "pdac_pegylation_2024": 0.39623828764832025,
+              "ram_spps_2025": 0.6716338866985812,
+              "teabags_fmoc_2021": -0.09473690122812273,
+              "trityl_anchor_2013": 0.05957893895401864,
+              "universal_peptide_platform_2025": 0.16537341350711812
+            },
+            "sourceCounts": {
+              "amps_multiphosphorylated_2022": 8,
+              "continuous_flow_oprd_2024": 5,
+              "pdac_pegylation_2024": 12,
+              "ram_spps_2025": 3,
+              "teabags_fmoc_2021": 47,
+              "trityl_anchor_2013": 2,
+              "universal_peptide_platform_2025": 4
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "purity_target",
+          "head": "crude_hplc",
+          "source_id": "trityl_anchor_2013",
+          "foldIndex": 6,
+          "nTrain": 95,
+          "nTest": 2,
+          "winsorizeBounds": [
+            12.4,
+            97.578
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": -0.09094734016228397,
+            "residualStd": 5.850535438456106,
+            "sourceOffsets": {
+              "amps_multiphosphorylated_2022": -0.8659242387869363,
+              "continuous_flow_oprd_2024": 0.3910315484045707,
+              "pdac_pegylation_2024": -0.22140406577535585,
+              "ram_spps_2025": 0.2514523324559943,
+              "teabags_fmoc_2021": -0.0690959247372321,
+              "thioester_support_2008": 0.3192634903460106,
+              "universal_peptide_platform_2025": 0.6652672075319338
+            },
+            "sourceCounts": {
+              "amps_multiphosphorylated_2022": 8,
+              "continuous_flow_oprd_2024": 5,
+              "pdac_pegylation_2024": 12,
+              "ram_spps_2025": 3,
+              "teabags_fmoc_2021": 47,
+              "thioester_support_2008": 16,
+              "universal_peptide_platform_2025": 4
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "purity_target",
+          "head": "crude_hplc",
+          "source_id": "universal_peptide_platform_2025",
+          "foldIndex": 7,
+          "nTrain": 93,
+          "nTest": 4,
+          "winsorizeBounds": [
+            12.299999999999999,
+            97.604
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": -0.07166573234909783,
+            "residualStd": 6.184574931065655,
+            "sourceOffsets": {
+              "amps_multiphosphorylated_2022": -0.8089049743456654,
+              "continuous_flow_oprd_2024": 0.5216129004583934,
+              "pdac_pegylation_2024": 0.19002145548555305,
+              "ram_spps_2025": 1.302892869451266,
+              "teabags_fmoc_2021": -0.01053299370070023,
+              "thioester_support_2008": 0.16870991843724878,
+              "trityl_anchor_2013": -1.6212949502429466
+            },
+            "sourceCounts": {
+              "amps_multiphosphorylated_2022": 8,
+              "continuous_flow_oprd_2024": 5,
+              "pdac_pegylation_2024": 12,
+              "ram_spps_2025": 3,
+              "teabags_fmoc_2021": 47,
+              "thioester_support_2008": 16,
+              "trityl_anchor_2013": 2
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "purity_target",
+          "head": "purified_hplc",
+          "source_id": "parallel_pec_2021",
+          "foldIndex": 0,
+          "nTrain": 21,
+          "nTest": 20,
+          "winsorizeBounds": [
+            95.0,
+            99.48
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": 0.00907808956915801,
+            "residualStd": 1.1266306951037368,
+            "sourceOffsets": {
+              "pdac_pegylation_2024": -0.0038563892238627777,
+              "stapled_bcl9_2025": -0.02328658273763848,
+              "sulfotyrosine_psc_2016": 0.024661952020050067
+            },
+            "sourceCounts": {
+              "pdac_pegylation_2024": 11,
+              "stapled_bcl9_2025": 4,
+              "sulfotyrosine_psc_2016": 6
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "purity_target",
+          "head": "purified_hplc",
+          "source_id": "pdac_pegylation_2024",
+          "foldIndex": 1,
+          "nTrain": 30,
+          "nTest": 11,
+          "winsorizeBounds": [
+            66.0,
+            99.471
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": 0.06500787962963651,
+            "residualStd": 2.2359603156316097,
+            "sourceOffsets": {
+              "parallel_pec_2021": -0.19712864211362802,
+              "stapled_bcl9_2025": 0.2199105049094229,
+              "sulfotyrosine_psc_2016": 0.26809286442326313
+            },
+            "sourceCounts": {
+              "parallel_pec_2021": 20,
+              "stapled_bcl9_2025": 4,
+              "sulfotyrosine_psc_2016": 6
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "purity_target",
+          "head": "purified_hplc",
+          "source_id": "stapled_bcl9_2025",
+          "foldIndex": 2,
+          "nTrain": 37,
+          "nTest": 4,
+          "winsorizeBounds": [
+            66.0,
+            99.464
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": 0.0186039886314746,
+            "residualStd": 2.3049107674291056,
+            "sourceOffsets": {
+              "parallel_pec_2021": -0.14197361800144628,
+              "pdac_pegylation_2024": 0.09205615859627206,
+              "sulfotyrosine_psc_2016": 0.18876744659052758
+            },
+            "sourceCounts": {
+              "parallel_pec_2021": 20,
+              "pdac_pegylation_2024": 11,
+              "sulfotyrosine_psc_2016": 6
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "purity_target",
+          "head": "purified_hplc",
+          "source_id": "sulfotyrosine_psc_2016",
+          "foldIndex": 3,
+          "nTrain": 35,
+          "nTest": 6,
+          "winsorizeBounds": [
+            66.0,
+            99.0
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": -0.08294031557066514,
+            "residualStd": 2.1626979290155948,
+            "sourceOffsets": {
+              "parallel_pec_2021": -0.09057645715604273,
+              "pdac_pegylation_2024": 0.1289168825952784,
+              "stapled_bcl9_2025": 0.022415700819623775
+            },
+            "sourceCounts": {
+              "parallel_pec_2021": 20,
+              "pdac_pegylation_2024": 11,
+              "stapled_bcl9_2025": 4
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "purity_target",
+          "head": "final_product",
+          "source_id": "amyloid_hydrophobic_2008",
+          "foldIndex": 0,
+          "nTrain": 15,
+          "nTest": 13,
+          "winsorizeBounds": [
+            90.154,
+            98.0
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": 0.0033041111110719613,
+            "residualStd": 0.7780955436533823,
+            "sourceOffsets": {
+              "elisa_peptides_2024": -0.007631624858023237,
+              "peptide_purification_transfer_2026": 0.008267593596191839
+            },
+            "sourceCounts": {
+              "elisa_peptides_2024": 8,
+              "peptide_purification_transfer_2026": 7
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "purity_target",
+          "head": "final_product",
+          "source_id": "elisa_peptides_2024",
+          "foldIndex": 1,
+          "nTrain": 20,
+          "nTest": 8,
+          "winsorizeBounds": [
+            91.442,
+            98.0
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": -0.002482861111148793,
+            "residualStd": 0.4375419957105335,
+            "sourceOffsets": {
+              "amyloid_hydrophobic_2008": 0.013616220252197705,
+              "peptide_purification_transfer_2026": -0.020424330378296555
+            },
+            "sourceCounts": {
+              "amyloid_hydrophobic_2008": 13,
+              "peptide_purification_transfer_2026": 7
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "purity_target",
+          "head": "final_product",
+          "source_id": "peptide_purification_transfer_2026",
+          "foldIndex": 2,
+          "nTrain": 21,
+          "nTest": 7,
+          "winsorizeBounds": [
+            90.4,
+            98.0
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": -0.0055628306878381705,
+            "residualStd": 0.6886155865648177,
+            "sourceOffsets": {
+              "amyloid_hydrophobic_2008": 0.009566510533716831,
+              "elisa_peptides_2024": -0.013245937662069461
+            },
+            "sourceCounts": {
+              "amyloid_hydrophobic_2008": 13,
+              "elisa_peptides_2024": 8
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "yield_target",
+          "head": "isolated|isolated",
+          "source_id": "amps_multiphosphorylated_2022",
+          "foldIndex": 0,
+          "nTrain": 55,
+          "nTest": 8,
+          "winsorizeBounds": [
+            0.5804,
+            86.006
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": 0.03048087729874486,
+            "residualStd": 3.717609997149805,
+            "sourceOffsets": {
+              "amyloid_hydrophobic_2008": -0.15285844516205851,
+              "continuous_flow_oprd_2024": 0.30326756232538415,
+              "hbd3_fmoc_2022": -0.05708472790907294,
+              "peptide_purification_transfer_2026": 0.05738028964122529,
+              "ram_spps_2025": 0.5790129457134113,
+              "stapled_bcl9_2025": -0.29512866006354066,
+              "sulfotyrosine_psc_2016": 0.03408474406421729,
+              "trityl_anchor_2013": -0.34754591922145855,
+              "universal_peptide_platform_2025": 0.002834687246897304
+            },
+            "sourceCounts": {
+              "amyloid_hydrophobic_2008": 13,
+              "continuous_flow_oprd_2024": 5,
+              "hbd3_fmoc_2022": 11,
+              "peptide_purification_transfer_2026": 7,
+              "ram_spps_2025": 3,
+              "stapled_bcl9_2025": 4,
+              "sulfotyrosine_psc_2016": 6,
+              "trityl_anchor_2013": 2,
+              "universal_peptide_platform_2025": 4
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "yield_target",
+          "head": "isolated|isolated",
+          "source_id": "amyloid_hydrophobic_2008",
+          "foldIndex": 1,
+          "nTrain": 50,
+          "nTest": 13,
+          "winsorizeBounds": [
+            0.5821,
+            86.06099999999999
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": -0.039320973441791765,
+            "residualStd": 3.8711508283899807,
+            "sourceOffsets": {
+              "amps_multiphosphorylated_2022": -0.5469856094098464,
+              "continuous_flow_oprd_2024": 0.33742653956480784,
+              "hbd3_fmoc_2022": 0.027480778253479197,
+              "peptide_purification_transfer_2026": 0.007380592775958667,
+              "ram_spps_2025": 0.661426125719319,
+              "stapled_bcl9_2025": -0.3835491076233532,
+              "sulfotyrosine_psc_2016": -0.38284974859291926,
+              "trityl_anchor_2013": -0.152533884015253,
+              "universal_peptide_platform_2025": 0.7386561496441402
+            },
+            "sourceCounts": {
+              "amps_multiphosphorylated_2022": 8,
+              "continuous_flow_oprd_2024": 5,
+              "hbd3_fmoc_2022": 11,
+              "peptide_purification_transfer_2026": 7,
+              "ram_spps_2025": 3,
+              "stapled_bcl9_2025": 4,
+              "sulfotyrosine_psc_2016": 6,
+              "trityl_anchor_2013": 2,
+              "universal_peptide_platform_2025": 4
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "yield_target",
+          "head": "isolated|isolated",
+          "source_id": "continuous_flow_oprd_2024",
+          "foldIndex": 2,
+          "nTrain": 58,
+          "nTest": 5,
+          "winsorizeBounds": [
+            0.5882,
+            74.72999999999999
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": 0.2010984014289017,
+            "residualStd": 4.12956045700789,
+            "sourceOffsets": {
+              "amps_multiphosphorylated_2022": -0.16927411335649437,
+              "amyloid_hydrophobic_2008": -0.28479188037252356,
+              "hbd3_fmoc_2022": -0.16990101127495255,
+              "peptide_purification_transfer_2026": -0.12663347096166577,
+              "ram_spps_2025": 1.844020419399572,
+              "stapled_bcl9_2025": -0.3466018744748901,
+              "sulfotyrosine_psc_2016": -0.19028403905835473,
+              "trityl_anchor_2013": -0.28512344798600175,
+              "universal_peptide_platform_2025": 0.4467863592111586
+            },
+            "sourceCounts": {
+              "amps_multiphosphorylated_2022": 8,
+              "amyloid_hydrophobic_2008": 13,
+              "hbd3_fmoc_2022": 11,
+              "peptide_purification_transfer_2026": 7,
+              "ram_spps_2025": 3,
+              "stapled_bcl9_2025": 4,
+              "sulfotyrosine_psc_2016": 6,
+              "trityl_anchor_2013": 2,
+              "universal_peptide_platform_2025": 4
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "yield_target",
+          "head": "isolated|isolated",
+          "source_id": "hbd3_fmoc_2022",
+          "foldIndex": 3,
+          "nTrain": 52,
+          "nTest": 11,
+          "winsorizeBounds": [
+            0.7,
+            86.039
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": 0.03941316609199804,
+            "residualStd": 3.061731378533982,
+            "sourceOffsets": {
+              "amps_multiphosphorylated_2022": -0.29040589385355486,
+              "amyloid_hydrophobic_2008": -0.12645304815840874,
+              "continuous_flow_oprd_2024": 0.3334900641442929,
+              "peptide_purification_transfer_2026": -0.1480609718445645,
+              "ram_spps_2025": 1.217984557405702,
+              "stapled_bcl9_2025": -0.45721569904267223,
+              "sulfotyrosine_psc_2016": -0.266122661071481,
+              "trityl_anchor_2013": -0.41556219478897394,
+              "universal_peptide_platform_2025": 0.5222902194541066
+            },
+            "sourceCounts": {
+              "amps_multiphosphorylated_2022": 8,
+              "amyloid_hydrophobic_2008": 13,
+              "continuous_flow_oprd_2024": 5,
+              "peptide_purification_transfer_2026": 7,
+              "ram_spps_2025": 3,
+              "stapled_bcl9_2025": 4,
+              "sulfotyrosine_psc_2016": 6,
+              "trityl_anchor_2013": 2,
+              "universal_peptide_platform_2025": 4
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "yield_target",
+          "head": "isolated|isolated",
+          "source_id": "peptide_purification_transfer_2026",
+          "foldIndex": 4,
+          "nTrain": 56,
+          "nTest": 7,
+          "winsorizeBounds": [
+            0.583,
+            85.995
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": 0.008163315284000414,
+            "residualStd": 3.914479335304374,
+            "sourceOffsets": {
+              "amps_multiphosphorylated_2022": -0.07825738214920096,
+              "amyloid_hydrophobic_2008": -0.17378114739413977,
+              "continuous_flow_oprd_2024": 0.3991078649775102,
+              "hbd3_fmoc_2022": -0.028252952269816497,
+              "ram_spps_2025": 0.5900034483697189,
+              "stapled_bcl9_2025": -0.16514411205062304,
+              "sulfotyrosine_psc_2016": -0.5432002072876618,
+              "trityl_anchor_2013": -0.1519878206743537,
+              "universal_peptide_platform_2025": 0.4901957393287447
+            },
+            "sourceCounts": {
+              "amps_multiphosphorylated_2022": 8,
+              "amyloid_hydrophobic_2008": 13,
+              "continuous_flow_oprd_2024": 5,
+              "hbd3_fmoc_2022": 11,
+              "ram_spps_2025": 3,
+              "stapled_bcl9_2025": 4,
+              "sulfotyrosine_psc_2016": 6,
+              "trityl_anchor_2013": 2,
+              "universal_peptide_platform_2025": 4
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "yield_target",
+          "head": "isolated|isolated",
+          "source_id": "ram_spps_2025",
+          "foldIndex": 5,
+          "nTrain": 60,
+          "nTest": 3,
+          "winsorizeBounds": [
+            0.5933999999999999,
+            85.951
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": 0.012572031937717299,
+            "residualStd": 3.6827871148797393,
+            "sourceOffsets": {
+              "amps_multiphosphorylated_2022": -0.0848782717196168,
+              "amyloid_hydrophobic_2008": -0.09867614036010894,
+              "continuous_flow_oprd_2024": 0.32693854772112696,
+              "hbd3_fmoc_2022": -0.05719790444343311,
+              "peptide_purification_transfer_2026": -0.059866036289549035,
+              "stapled_bcl9_2025": -0.2524352718411282,
+              "sulfotyrosine_psc_2016": -0.25823976156168643,
+              "trityl_anchor_2013": -0.08140064479306637,
+              "universal_peptide_platform_2025": 0.7695689806106001
+            },
+            "sourceCounts": {
+              "amps_multiphosphorylated_2022": 8,
+              "amyloid_hydrophobic_2008": 13,
+              "continuous_flow_oprd_2024": 5,
+              "hbd3_fmoc_2022": 11,
+              "peptide_purification_transfer_2026": 7,
+              "stapled_bcl9_2025": 4,
+              "sulfotyrosine_psc_2016": 6,
+              "trityl_anchor_2013": 2,
+              "universal_peptide_platform_2025": 4
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "yield_target",
+          "head": "isolated|isolated",
+          "source_id": "stapled_bcl9_2025",
+          "foldIndex": 6,
+          "nTrain": 59,
+          "nTest": 4,
+          "winsorizeBounds": [
+            0.5908,
+            85.962
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": 0.06528798161476722,
+            "residualStd": 3.890884339427565,
+            "sourceOffsets": {
+              "amps_multiphosphorylated_2022": -0.21872484276469878,
+              "amyloid_hydrophobic_2008": -0.13264977751624754,
+              "continuous_flow_oprd_2024": 0.40081474429366903,
+              "hbd3_fmoc_2022": -0.007507418893070962,
+              "peptide_purification_transfer_2026": 0.03711710886462209,
+              "ram_spps_2025": 0.696838750496442,
+              "sulfotyrosine_psc_2016": -0.19164382724524356,
+              "trityl_anchor_2013": -0.34340387152515695,
+              "universal_peptide_platform_2025": -0.018346211043027045
+            },
+            "sourceCounts": {
+              "amps_multiphosphorylated_2022": 8,
+              "amyloid_hydrophobic_2008": 13,
+              "continuous_flow_oprd_2024": 5,
+              "hbd3_fmoc_2022": 11,
+              "peptide_purification_transfer_2026": 7,
+              "ram_spps_2025": 3,
+              "sulfotyrosine_psc_2016": 6,
+              "trityl_anchor_2013": 2,
+              "universal_peptide_platform_2025": 4
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "yield_target",
+          "head": "isolated|isolated",
+          "source_id": "sulfotyrosine_psc_2016",
+          "foldIndex": 7,
+          "nTrain": 57,
+          "nTest": 6,
+          "winsorizeBounds": [
+            0.5856,
+            85.984
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": 0.10156611706585282,
+            "residualStd": 4.105816168140336,
+            "sourceOffsets": {
+              "amps_multiphosphorylated_2022": -0.21663370490759581,
+              "amyloid_hydrophobic_2008": -0.2542619638449356,
+              "continuous_flow_oprd_2024": 0.2612584891030844,
+              "hbd3_fmoc_2022": -0.02932456990161012,
+              "peptide_purification_transfer_2026": -0.13918624702482146,
+              "ram_spps_2025": 1.2361646228092908,
+              "stapled_bcl9_2025": -0.42588442697945417,
+              "trityl_anchor_2013": -0.2895061930672587,
+              "universal_peptide_platform_2025": 0.32110921294577077
+            },
+            "sourceCounts": {
+              "amps_multiphosphorylated_2022": 8,
+              "amyloid_hydrophobic_2008": 13,
+              "continuous_flow_oprd_2024": 5,
+              "hbd3_fmoc_2022": 11,
+              "peptide_purification_transfer_2026": 7,
+              "ram_spps_2025": 3,
+              "stapled_bcl9_2025": 4,
+              "trityl_anchor_2013": 2,
+              "universal_peptide_platform_2025": 4
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "yield_target",
+          "head": "isolated|isolated",
+          "source_id": "trityl_anchor_2013",
+          "foldIndex": 8,
+          "nTrain": 61,
+          "nTest": 2,
+          "winsorizeBounds": [
+            0.596,
+            85.94
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": 0.0732047899585252,
+            "residualStd": 3.8376519558354643,
+            "sourceOffsets": {
+              "amps_multiphosphorylated_2022": -0.24911076573015023,
+              "amyloid_hydrophobic_2008": -0.17990329194507781,
+              "continuous_flow_oprd_2024": 0.3254153185934322,
+              "hbd3_fmoc_2022": 0.004986517889596969,
+              "peptide_purification_transfer_2026": -0.07775218933037517,
+              "ram_spps_2025": 0.8205926302710521,
+              "stapled_bcl9_2025": -0.2117683905945822,
+              "sulfotyrosine_psc_2016": -0.3007283374960995,
+              "universal_peptide_platform_2025": 0.3027749105488776
+            },
+            "sourceCounts": {
+              "amps_multiphosphorylated_2022": 8,
+              "amyloid_hydrophobic_2008": 13,
+              "continuous_flow_oprd_2024": 5,
+              "hbd3_fmoc_2022": 11,
+              "peptide_purification_transfer_2026": 7,
+              "ram_spps_2025": 3,
+              "stapled_bcl9_2025": 4,
+              "sulfotyrosine_psc_2016": 6,
+              "universal_peptide_platform_2025": 4
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "yield_target",
+          "head": "isolated|isolated",
+          "source_id": "universal_peptide_platform_2025",
+          "foldIndex": 9,
+          "nTrain": 59,
+          "nTest": 4,
+          "winsorizeBounds": [
+            0.5908,
+            85.962
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": -0.005360771639230555,
+            "residualStd": 3.891620195176188,
+            "sourceOffsets": {
+              "amps_multiphosphorylated_2022": -0.21816833517358486,
+              "amyloid_hydrophobic_2008": -0.12433709156547924,
+              "continuous_flow_oprd_2024": 0.46493095047470584,
+              "hbd3_fmoc_2022": -0.021960198917560184,
+              "peptide_purification_transfer_2026": -0.09669776074732897,
+              "ram_spps_2025": 1.180453412124208,
+              "stapled_bcl9_2025": -0.20127830636620458,
+              "sulfotyrosine_psc_2016": -0.33564842167708603,
+              "trityl_anchor_2013": -0.28618672698754205
+            },
+            "sourceCounts": {
+              "amps_multiphosphorylated_2022": 8,
+              "amyloid_hydrophobic_2008": 13,
+              "continuous_flow_oprd_2024": 5,
+              "hbd3_fmoc_2022": 11,
+              "peptide_purification_transfer_2026": 7,
+              "ram_spps_2025": 3,
+              "stapled_bcl9_2025": 4,
+              "sulfotyrosine_psc_2016": 6,
+              "trityl_anchor_2013": 2
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "yield_target",
+          "head": "crude|crude",
+          "source_id": "pdac_pegylation_2024",
+          "foldIndex": 0,
+          "nTrain": 21,
+          "nTest": 12,
+          "winsorizeBounds": [
+            70.0,
+            99.4
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": -0.021240473041111214,
+            "residualStd": 3.797523556930041,
+            "sourceOffsets": {
+              "segetalins_bjoc_2025": -0.11407713685339954,
+              "thioester_support_2008": 0.05432244612066644
+            },
+            "sourceCounts": {
+              "segetalins_bjoc_2025": 5,
+              "thioester_support_2008": 16
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "yield_target",
+          "head": "crude|crude",
+          "source_id": "segetalins_bjoc_2025",
+          "foldIndex": 1,
+          "nTrain": 28,
+          "nTest": 5,
+          "winsorizeBounds": [
+            27.27,
+            99.19
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": 0.029774129818606658,
+            "residualStd": 7.227970014945506,
+            "sourceOffsets": {
+              "pdac_pegylation_2024": -0.13557872403798782,
+              "thioester_support_2008": 0.10975420517360916
+            },
+            "sourceCounts": {
+              "pdac_pegylation_2024": 12,
+              "thioester_support_2008": 16
+            }
+          },
+          "usedBayesianCalibration": false
+        },
+        {
+          "target": "yield_target",
+          "head": "crude|crude",
+          "source_id": "thioester_support_2008",
+          "foldIndex": 2,
+          "nTrain": 17,
+          "nTest": 16,
+          "winsorizeBounds": [
+            27.16,
+            88.2
+          ],
+          "sourceShrinkage": {
+            "priorStrength": 5.0,
+            "globalMean": 0.06398002723312815,
+            "residualStd": 9.944097739450491,
+            "sourceOffsets": {
+              "pdac_pegylation_2024": -0.050235895980572653,
+              "segetalins_bjoc_2025": 0.0854010231669735
+            },
+            "sourceCounts": {
+              "pdac_pegylation_2024": 12,
+              "segetalins_bjoc_2025": 5
+            }
+          },
+          "usedBayesianCalibration": false
+        }
+      ],
+      "weightedHeadSummary": {
+        "totalWeightedSupport": 1753.0,
+        "weightedRmse": 26.526096509427692,
+        "weightedMae": 22.314751661706605,
+        "weightedR2": -0.6747720098465438,
+        "weightedAccuracyWithinTolerance": 0.1876782658300057
+      },
+      "strictSemanticFilter": {
+        "inputRows": 185,
+        "outputRows": 182,
+        "outputUniqueSources": 16,
+        "inputPurityRows": 166,
+        "inputYieldRows": 177,
+        "outputPurityRows": 166,
+        "outputYieldRows": 174,
+        "purityEligibility": [
+          {
+            "head": "crude_hplc",
+            "nRows": 97,
+            "nSources": 8,
+            "maxSourceShare": 0.4845360824742268,
+            "eligible": true,
+            "reasons": []
+          },
+          {
+            "head": "purified_hplc",
+            "nRows": 41,
+            "nSources": 4,
+            "maxSourceShare": 0.4878048780487805,
+            "eligible": true,
+            "reasons": []
+          },
+          {
+            "head": "final_product",
+            "nRows": 28,
+            "nSources": 3,
+            "maxSourceShare": 0.4642857142857143,
+            "eligible": true,
+            "reasons": []
+          }
+        ],
+        "yieldEligibility": [
+          {
+            "head": "isolated|isolated",
+            "nRows": 63,
+            "nSources": 10,
+            "maxSourceShare": 0.20634920634920634,
+            "eligible": true,
+            "reasons": []
+          },
+          {
+            "head": "crude|crude",
+            "nRows": 33,
+            "nSources": 3,
+            "maxSourceShare": 0.48484848484848486,
+            "eligible": true,
+            "reasons": []
+          },
+          {
+            "head": "recovery|recovery",
+            "nRows": 31,
+            "nSources": 2,
+            "maxSourceShare": 0.6451612903225806,
+            "eligible": false,
+            "reasons": [
+              "sources<3"
+            ]
+          }
+        ],
+        "allowedPurityHeads": [
+          "crude_hplc",
+          "final_product",
+          "purified_hplc"
+        ],
+        "allowedYieldHeads": [
+          "crude|crude",
+          "isolated|isolated"
+        ]
+      },
+      "predictionPolicy": {
+        "acceptedHighConfidenceHeads": [],
+        "acceptedWarningHeads": [
+          {
+            "target": "yield_target",
+            "head": "isolated|isolated",
+            "confidenceTier": "low",
+            "servePrediction": true,
+            "reasons": [
+              "weak_signal"
+            ],
+            "rmse": 24.549335105938574,
+            "r2": 0.09244478134295542,
+            "nRows": 63,
+            "nSources": 10
+          }
+        ],
+        "rejectedHeads": [
+          {
+            "target": "purity_target",
+            "head": "crude_hplc",
+            "confidenceTier": "reject",
+            "servePrediction": false,
+            "reasons": [
+              "negative_r2",
+              "interval_too_wide"
+            ],
+            "rmse": 31.667446473987095,
+            "r2": -0.9317904114401456,
+            "nRows": 97,
+            "nSources": 8
+          },
+          {
+            "target": "purity_target",
+            "head": "purified_hplc",
+            "confidenceTier": "reject",
+            "servePrediction": false,
+            "reasons": [
+              "negative_r2"
+            ],
+            "rmse": 12.499333707852736,
+            "r2": -0.9216865252663122,
+            "nRows": 41,
+            "nSources": 4
+          },
+          {
+            "target": "purity_target",
+            "head": "final_product",
+            "confidenceTier": "reject",
+            "servePrediction": false,
+            "reasons": [
+              "negative_r2"
+            ],
+            "rmse": 3.275465353900165,
+            "r2": -1.0932590032841651,
+            "nRows": 28,
+            "nSources": 3
+          },
+          {
+            "target": "yield_target",
+            "head": "crude|crude",
+            "confidenceTier": "reject",
+            "servePrediction": false,
+            "reasons": [
+              "negative_r2"
+            ],
+            "rmse": 41.769674572282774,
+            "r2": -2.778341816262173,
+            "nRows": 33,
+            "nSources": 3
+          }
+        ]
+      },
+      "isolatedYieldPrimaryHead": {
+        "baseline": {
+          "rmse": 25.769334621854547,
+          "mae": 20.602237339380203,
+          "r2": 0.0,
+          "accuracyWithinTolerance": 0.2857142857142857
+        },
+        "final": {
+          "rmse": 24.549335105938574,
+          "mae": 21.79215558742278,
+          "r2": 0.09244478134295542,
+          "accuracyWithinTolerance": 0.12698412698412698
+        },
+        "rmseChangePct": 0.04734307399933063
+      }
+    }
+  }
+}

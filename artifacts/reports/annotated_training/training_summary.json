@@ -1,0 +1,115 @@
+{
+  "dataset": "/Users/zhuhangcheng/Downloads/星辰计划/机器学习多肽/peptide-synthesis-predictor/data/annotated_training_data.csv",
+  "rows": 8033,
+  "columns": [
+    "sequence",
+    "length",
+    "avg_hydrophobicity",
+    "total_charge",
+    "molecular_weight",
+    "avg_volume",
+    "max_coupling_difficulty",
+    "bulky_ratio",
+    "polar_ratio",
+    "charged_ratio",
+    "aromatic_ratio",
+    "sulfur_ratio",
+    "reagent_score",
+    "solvent_score",
+    "temperature_score",
+    "cleavage_score",
+    "purity",
+    "yield_val",
+    "data_source",
+    "annotation_quality",
+    "annotated_at"
+  ],
+  "targets": {
+    "purity": {
+      "status": "trained",
+      "valid_rows": 8033,
+      "best_validation_model": "RandomForest",
+      "validation": {
+        "rmse": 2.1054148910536497,
+        "mae": 0.3090117415345709,
+        "r2": 0.19741939539605236,
+        "accuracy_5": 98.60696517412936,
+        "accuracy_10": 98.90547263681592
+      },
+      "test": {
+        "rmse": 2.6147662754116534,
+        "mae": 0.3362223593303818,
+        "r2": 0.09457101258534151,
+        "accuracy_5": 98.75621890547264,
+        "accuracy_10": 99.12935323383084
+      },
+      "split": {
+        "feature_columns": [
+          "length",
+          "avg_hydrophobicity",
+          "total_charge",
+          "molecular_weight",
+          "avg_volume",
+          "max_coupling_difficulty",
+          "bulky_ratio",
+          "polar_ratio",
+          "charged_ratio",
+          "aromatic_ratio",
+          "sulfur_ratio",
+          "reagent_score",
+          "solvent_score",
+          "temperature_score",
+          "cleavage_score"
+        ],
+        "train_size": 6224,
+        "val_size": 1005,
+        "test_size": 804,
+        "target_mean": 81.89817627287441,
+        "target_std": 2.1612701976685798
+      }
+    },
+    "yield_val": {
+      "status": "trained",
+      "valid_rows": 8033,
+      "best_validation_model": "GradientBoosting",
+      "validation": {
+        "rmse": 3.1675922815559985,
+        "mae": 0.5265167869370131,
+        "r2": 0.4246586701841205,
+        "accuracy_5": 98.70646766169155,
+        "accuracy_10": 99.20398009950249
+      },
+      "test": {
+        "rmse": 3.5426010916038244,
+        "mae": 0.6256482768516449,
+        "r2": -0.03005585268397515,
+        "accuracy_5": 98.2587064676617,
+        "accuracy_10": 98.75621890547264
+      },
+      "split": {
+        "feature_columns": [
+          "length",
+          "avg_hydrophobicity",
+          "total_charge",
+          "molecular_weight",
+          "avg_volume",
+          "max_coupling_difficulty",
+          "bulky_ratio",
+          "polar_ratio",
+          "charged_ratio",
+          "aromatic_ratio",
+          "sulfur_ratio",
+          "reagent_score",
+          "solvent_score",
+          "temperature_score",
+          "cleavage_score"
+        ],
+        "train_size": 6224,
+        "val_size": 1005,
+        "test_size": 804,
+        "target_mean": 50.4891945723889,
+        "target_std": 3.2598491216506806
+      }
+    }
+  }
+}
